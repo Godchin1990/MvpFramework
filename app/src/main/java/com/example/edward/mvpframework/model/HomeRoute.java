@@ -141,6 +141,10 @@ public class HomeRoute implements Parcelable {
         }
     }
 
+
+    public static class HomeRouteLists extends ResultList<HomeRoute> {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -177,7 +181,7 @@ public class HomeRoute implements Parcelable {
         in.readList(this.spot_list, List.class.getClassLoader());
     }
 
-    public static final Creator<HomeRoute> CREATOR = new Creator<HomeRoute>() {
+    public static final Parcelable.Creator<HomeRoute> CREATOR = new Parcelable.Creator<HomeRoute>() {
         public HomeRoute createFromParcel(Parcel source) {
             return new HomeRoute(source);
         }
@@ -186,24 +190,4 @@ public class HomeRoute implements Parcelable {
             return new HomeRoute[size];
         }
     };
-
-    public static class HomeRouteLists extends ResultList<HomeRoute> {
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("HomeRoute{");
-        sb.append("avatar='").append(avatar).append('\'');
-        sb.append(", cover='").append(cover).append('\'');
-        sb.append(", finish_order=").append(finish_order);
-        sb.append(", guide_id=").append(guide_id);
-        sb.append(", is_recommend=").append(is_recommend);
-        sb.append(", price='").append(price).append('\'');
-        sb.append(", route_id=").append(route_id);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", label=").append(label);
-        sb.append(", spot_list=").append(spot_list);
-        sb.append('}');
-        return sb.toString();
-    }
 }

@@ -9,6 +9,9 @@ import java.util.List;
 
 public class ResultList<T> {
 
+    @SerializedName("pagination")
+    public Pagination pagination;
+
     @SerializedName("list")
     public List<T> list = new ArrayList<T>();
 
