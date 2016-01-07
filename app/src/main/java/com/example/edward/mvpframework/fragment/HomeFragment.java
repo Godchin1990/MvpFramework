@@ -26,15 +26,22 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
     private Pagination pagination;
 
     @Override
+    protected View initView() {
+        homeView = new HomeView(getContext());
+        pagination = new Pagination(10, 0);
+        return homeView.getBootView();
+    }
+
+    @Override
     protected void initData() {
         initListener();
-        init();
+        requestNetwork();
     }
 
     /**
      * 初始化数据
      */
-    private void init() {
+    private void requestNetwork() {
         pagination.initPagination();
         NetworkHelper.getInstance().sendGetStringRequest(ServerAPI.Home.buildHomeBannerUrl(), null, this, "banner");
         NetworkHelper.getInstance().sendGetStringRequest(ServerAPI.Home.buildHomeTopicUrl(), null, this, "topic");
@@ -48,8 +55,14 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
         homeView.getPullToRefreshRecyclerView().setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
-                init();
+                /**
+                 * 添加这一行,是为了避免多次下拉刷新后,立马拉到最底部,开始上拉加载,造成分页数据获取出现断层
+                 * 即在上拉加载成功后,下拉刷新的数据过来了,导致游标出现错误
+                 * 这只是折中的解决方案
+                 * 并不完美
+                 */
                 homeView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
+                requestNetwork();
             }
 
             @Override
@@ -57,13 +70,6 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
                 NetworkHelper.getInstance().sendGetStringRequest(ServerAPI.Home.buildHomeRouteUrl(), pagination.getMap(), HomeFragment.this, "loadmore");
             }
         });
-    }
-
-    @Override
-    protected View initView() {
-        homeView = new HomeView(getContext());
-        pagination = new Pagination(10, 0);
-        return homeView.getBootView();
     }
 
     @Override
@@ -85,13 +91,11 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
                         homeView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         HomeRoute.HomeRouteLists homeRouteLists = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
                         homeView.getAdapter().setRoutes(homeRouteLists.list);
-                        //TODO 刷新Pagination
                         pagination.update(homeRouteLists.list.size());
                         break;
                     case "loadmore":
                         HomeRoute.HomeRouteLists homeRouteListsMore = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
                         homeView.getAdapter().appendRoutes(homeRouteListsMore.list);
-                        //TODO 刷新Pagination
                         pagination.update(homeRouteListsMore.list.size());
                         if (homeRouteListsMore.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
