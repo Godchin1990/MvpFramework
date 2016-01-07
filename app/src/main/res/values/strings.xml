@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MvpFramework</string>
+    <string name="load_more">加载更多</string>
+
+    <!-- index-->
+    <string name="home">首页</string>
+    <string name="discovery">发现</string>
+    <string name="message">消息</string>
+    <string name="me">我</string>
+
+    <!-- home fragment-->
+    <!-- home fragment & topic-->
+    <string name="title">标题</string>
+    <string name="discription">描述</string>
+    <string name="guider_route">%1$d个达人|%2$d条路线</string>
+    <!-- home fragment & route-->
+    <string name="unknown">未知</string>
+
+</resources>

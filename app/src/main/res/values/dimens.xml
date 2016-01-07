@@ -1,0 +1,15 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- home fragment-->
+    <dimen name="item_home_middle_height">260dp</dimen>
+    <dimen name="item_home_route_height">230dp</dimen>
+    <dimen name="item_home_head_height">283dp</dimen>
+    <!-- home fragment & topic-->
+    <dimen name="item_home_topic_text_aligntop">120dp</dimen>
+    <dimen name="item_home_topic_text_title_size">30sp</dimen>
+    <dimen name="item_home_topic_text_discription_size">16sp</dimen>
+    <dimen name="item_home_topic_text_discription_aligntop">15dp</dimen>
+</resources>
