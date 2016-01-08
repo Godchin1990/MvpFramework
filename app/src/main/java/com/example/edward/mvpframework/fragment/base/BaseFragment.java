@@ -11,9 +11,9 @@ import android.view.ViewGroup;
  * Created by Edward on 16/1/1.
  */
 public abstract class BaseFragment extends Fragment {
-    private String fragmentTag;
+    protected String TAG;
     {
-        fragmentTag = getClass().getSimpleName();
+        TAG = getClass().getSimpleName();
     }
 
     @Nullable
@@ -35,7 +35,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract View initView();
 
-    public String getFragmentTag() {
-        return fragmentTag;
+    public String getTAG() {
+        return TAG;
     }
 }

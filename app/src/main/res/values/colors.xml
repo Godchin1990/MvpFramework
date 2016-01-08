@@ -7,6 +7,7 @@
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
     <color name="transparency">#00ffffff</color>
+    <color name="base_grey_line">#ffdbdbdb</color>
 
     <!-- common-->
     <color name="theme_color">#FF49c6d8</color>

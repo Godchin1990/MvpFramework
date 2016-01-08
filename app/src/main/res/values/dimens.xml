@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- actionbar-->
+    <dimen name="action_bar_height">51dp</dimen>
+
     <!-- home fragment-->
     <dimen name="item_home_middle_height">260dp</dimen>
     <dimen name="item_home_route_height">230dp</dimen>

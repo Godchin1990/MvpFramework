@@ -1,6 +1,8 @@
 package com.example.edward.mvpframework.adapter.recyclerview.holder;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -8,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.edward.mvpframework.R;
-import com.example.edward.mvpframework.command.Command;
+import com.example.edward.mvpframework.activity.BannerActivity;
+import com.example.edward.mvpframework.activity.base.Const;
+import com.example.edward.mvpframework.command.base.Command;
 import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
 import com.example.edward.mvpframework.model.HomeBanner;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -68,10 +72,6 @@ public class HomeBannerViewHolder extends BaseViewHolder<List<HomeBanner>> {
             Command command = new SimpleDraweeViewCommand(simpleDraweeView, banners.get(position).getImage());
             command.execute();
 
-//            ImageView imageView = (ImageView) view.findViewById(R.id.home_banner_iv);
-//            Command command = new ImageViewCommand(imageView, banners.get(position).getImage());
-//            command.execute();
-
             view.setTag(banners.get(position));
             container.addView(view);
             view.setOnClickListener(this);
@@ -85,12 +85,12 @@ public class HomeBannerViewHolder extends BaseViewHolder<List<HomeBanner>> {
 
         @Override
         public void onClick(View v) {
-//            HomeBanner tag = (HomeBanner) v.getTag();
-//            Intent intent = new Intent(v.getContext(), BannerWebActivity.class);
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelable(IntentConst.BANNER, tag);
-//            intent.putExtra(IntentConst.BUNDLE, bundle);
-//            v.getContext().startActivity(intent);
+            HomeBanner tag = (HomeBanner) v.getTag();
+            Intent intent = new Intent(v.getContext(), BannerActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Const.BANNER, tag);
+            intent.putExtra(Const.BUNDLE, bundle);
+            v.getContext().startActivity(intent);
         }
     }
 }

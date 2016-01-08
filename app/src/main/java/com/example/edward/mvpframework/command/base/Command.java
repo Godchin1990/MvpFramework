@@ -1,4 +1,4 @@
-package com.example.edward.mvpframework.command;
+package com.example.edward.mvpframework.command.base;
 
 /**
  * Created by Edward on 16/1/4.

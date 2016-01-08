@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.edward.mvpframework.R;
-import com.example.edward.mvpframework.command.Command;
+import com.example.edward.mvpframework.command.base.Command;
 import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
 import com.example.edward.mvpframework.model.HomeRoute;
 import com.facebook.drawee.view.SimpleDraweeView;

@@ -21,4 +21,19 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <!-- actionbar效果-->
+    <style name="action_bar">
+        <item name="android:background">#ffffff</item>
+    </style>
+    <!-- Style for action bar left/right item -->
+    <style name="action_tab_lr">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">13dp</item>
+        <item name="android:paddingLeft">13dp</item>
+    </style>
+    <style name="action_tab_lf">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">13dp</item>
+    </style>
+
 </resources>

@@ -29,7 +29,7 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
     protected View initView() {
         homeView = new HomeView(getContext());
         pagination = new Pagination(10, 0);
-        return homeView.getBootView();
+        return homeView.getRootView();
     }
 
     @Override

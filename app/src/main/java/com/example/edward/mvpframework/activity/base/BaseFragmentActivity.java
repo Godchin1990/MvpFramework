@@ -15,11 +15,15 @@ public abstract class BaseFragmentActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentView fragmentView = new FragmentView(this);
-        setContentView(fragmentView.getBootView());
+        setContentView(fragmentView.getRootView());
         BaseFragment fragment = createFragmentForActivity();
+        if(getIntent().getBundleExtra(Const.BUNDLE)!=null){
+            Bundle bundleExtra = getIntent().getBundleExtra(Const.BUNDLE);
+            fragment.setArguments(bundleExtra);
+        }
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.activity_fragment, fragment, fragment.getFragmentTag())
+                .replace(R.id.activity_fragment, fragment, fragment.getTAG())
                 .commit();
     }
 

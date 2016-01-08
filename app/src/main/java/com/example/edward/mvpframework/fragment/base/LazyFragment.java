@@ -32,7 +32,7 @@ public abstract class LazyFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-//        Log.v(getFragmentTag(), "lazyfragment setUserVisibleHint");
+//        Log.v(getTAG(), "lazyfragment setUserVisibleHint");
         if (getUserVisibleHint()){
             isVisible=true;
             onVisible();
@@ -43,7 +43,7 @@ public abstract class LazyFragment extends BaseFragment {
 
     }
     public void onVisible(){
-//        Log.v(getFragmentTag(), "哈哈，layzyfragment我已经可见了，准备加载");
+//        Log.v(getTAG(), "哈哈，layzyfragment我已经可见了，准备加载");
         if(!isPrepared) {
             return;
         }
@@ -54,7 +54,7 @@ public abstract class LazyFragment extends BaseFragment {
     }
 
     public void onInVisible(){
-//        Log.v(getFragmentTag(), "layzyfragmrent我还没准备好呢");
+//        Log.v(getTAG(), "layzyfragmrent我还没准备好呢");
 
     }
 

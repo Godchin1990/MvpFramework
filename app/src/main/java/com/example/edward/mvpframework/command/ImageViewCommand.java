@@ -3,6 +3,7 @@ package com.example.edward.mvpframework.command;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import com.example.edward.mvpframework.command.base.Command;
 import com.squareup.picasso.Picasso;
 
 /**

@@ -7,8 +7,8 @@ import android.net.Uri;
  * Created by Edward on 15/11/9.
  */
 public class ServerAPI {
-    //debug
-    private static boolean debug = true;
+    //DEBUG
+    public static boolean DEBUG = true;
 
     /*接客debug版url*/
     private static final String SERVER_BASE_TEST = "http://tguide.selftravel.com.cn/api";
@@ -19,7 +19,7 @@ public class ServerAPI {
     public static String VERSION_V3 = "v3";
 
     private static String getServerBase() {
-        return debug ? SERVER_BASE_TEST : SERVER_BASE_PRODUCT;
+        return DEBUG ? SERVER_BASE_TEST : SERVER_BASE_PRODUCT;
     }
     /**
      * HomeFragment相关的接口
@@ -122,7 +122,7 @@ public class ServerAPI {
         private static final String CALENDAR_URL = getH5BaseUrl() +"/client/jieke/pages/calendar.html";
 
         private static String getH5BaseUrl(){
-            return debug ? H5_URL_TEST_BASE : H5_URL_PRODUCT_BASE ;
+            return DEBUG ? H5_URL_TEST_BASE : H5_URL_PRODUCT_BASE ;
         }
         /**路线详细url*/
         public static String getRouteDetailH5Url(String routeId) {

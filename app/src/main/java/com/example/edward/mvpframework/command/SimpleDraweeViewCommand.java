@@ -2,6 +2,7 @@ package com.example.edward.mvpframework.command;
 
 import android.net.Uri;
 
+import com.example.edward.mvpframework.command.base.Command;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**

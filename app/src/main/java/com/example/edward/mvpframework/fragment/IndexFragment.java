@@ -20,6 +20,6 @@ public class IndexFragment extends BaseFragment {
     @Override
     protected View initView() {
         indexView = new IndexView(getContext(),getFragmentManager());
-        return indexView.getBootView();
+        return indexView.getRootView();
     }
 }
