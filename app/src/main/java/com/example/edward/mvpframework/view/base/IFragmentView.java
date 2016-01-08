@@ -1,4 +1,4 @@
-package com.example.edward.mvpframework.view;
+package com.example.edward.mvpframework.view.base;
 
 import android.widget.FrameLayout;
 

@@ -6,8 +6,8 @@ import android.view.View;
 /**
  * Created by Edward on 16/1/4.
  */
-public class TopicViewHolder extends RecyclerView.ViewHolder {
-    public TopicViewHolder(View itemView) {
+public class SampleViewHolder extends RecyclerView.ViewHolder {
+    public SampleViewHolder(View itemView) {
         super(itemView);
     }
 }

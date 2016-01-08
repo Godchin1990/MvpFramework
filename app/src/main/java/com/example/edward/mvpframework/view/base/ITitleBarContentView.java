@@ -11,5 +11,5 @@ import com.example.edward.mvpframework.widget.MyActionBar;
 public interface ITitleBarContentView {
     MyActionBar getActionBarView();
     FrameLayout getContentView();
-    void setContentView(View view);
+    View setContentView();
 }

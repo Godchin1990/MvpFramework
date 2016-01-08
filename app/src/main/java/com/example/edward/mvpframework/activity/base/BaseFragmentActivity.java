@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.fragment.base.BaseFragment;
-import com.example.edward.mvpframework.view.FragmentView;
+import com.example.edward.mvpframework.view.base.FragmentView;
 
 /**
  * 整个界面用Fragment做时,使用该抽象类作为父类

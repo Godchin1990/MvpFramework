@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by Edward on 16/1/1.
  */
 public abstract class BaseFragment extends Fragment {
-    protected String TAG;
+    protected final String TAG;
     {
         TAG = getClass().getSimpleName();
     }

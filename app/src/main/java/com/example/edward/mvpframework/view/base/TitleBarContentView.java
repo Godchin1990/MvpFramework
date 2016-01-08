@@ -17,6 +17,8 @@ public abstract class TitleBarContentView extends BaseView implements ITitleBarC
 
     public TitleBarContentView(Context context) {
         super(context);
+        content.removeAllViews();
+        content.addView(setContentView());
     }
 
     @Override

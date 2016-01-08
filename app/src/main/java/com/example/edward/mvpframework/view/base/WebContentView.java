@@ -1,4 +1,4 @@
-package com.example.edward.mvpframework.view;
+package com.example.edward.mvpframework.view.base;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.edward.mvpframework.view.base.TitleBarContentView;
 import com.example.edward.mvpframework.view.component.IWebView;
 
 /**
@@ -23,13 +22,17 @@ public class WebContentView extends TitleBarContentView implements IWebView {
 
     public WebContentView(Context context) {
         super(context);
-        webView = new WebView(getContext());
-        setContentView(webView);
-        initWebView();
     }
 
+    @Override
+    public WebView getWebView() {
+        return webView;
+    }
+
+    @Override
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    private void initWebView() {
+    public View setContentView() {
+        webView = new WebView(getContext());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         String ua = webView.getSettings().getUserAgentString() + "/jieke";
@@ -43,16 +46,6 @@ public class WebContentView extends TitleBarContentView implements IWebView {
         });
         webView.setWebChromeClient(new WebChromeClient());
         webView.addJavascriptInterface(new GuideJavaScriptInterFace(),"guide");
-    }
-
-    @Override
-    public void setContentView(View view) {
-        getContentView().removeAllViews();
-        getContentView().addView(view);
-    }
-
-    @Override
-    public WebView getWebView() {
         return webView;
     }
 

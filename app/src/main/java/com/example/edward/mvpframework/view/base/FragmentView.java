@@ -1,11 +1,10 @@
-package com.example.edward.mvpframework.view;
+package com.example.edward.mvpframework.view.base;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.edward.mvpframework.R;
-import com.example.edward.mvpframework.view.base.BaseView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -8,60 +8,70 @@ import android.view.View;
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.adapter.recyclerview.HomeAdapter;
 import com.example.edward.mvpframework.adapter.recyclerview.holder.HomeTopicViewHolder;
+import com.example.edward.mvpframework.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
+import com.example.edward.mvpframework.view.base.BaseView;
+import com.example.edward.mvpframework.view.interfaze.IHomeView;
 import com.example.edward.mvpframework.widget.PullToRefreshRecyclerView;
+import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Edward on 16/1/1.
  */
-public class HomeView extends RefreshView implements IHomeView {
+public class HomeView extends BaseView implements IHomeView {
 
-//    @Bind(R.id.recycler_view)
-//    RecyclerView recyclerView;
-//    @Bind(R.id.swipe_refresh_layout)
-//    SwipeRefreshLayout swipeRefreshLayout;
-    @Bind(R.id.pull_to_refresh_recyclerview)
-    PullToRefreshRecyclerView pullToRefreshRecyclerView;
-    RecyclerView recyclerView;
+    private RefreshViewContainer refreshViewContainer;
+    private PullToRefreshRecyclerView pullToRefreshRecyclerView;
+    private RecyclerView recyclerView;
 
-    HomeAdapter adapter;
+    private HomeAdapter adapter;
 
     public HomeView(Context context) {
         super(context);
     }
 
     @Override
-    protected View initSuccessView() {
-        View view = View.inflate(getContext(),R.layout.layout_refresh_recyclerview,null);
-        ButterKnife.bind(this,view);
-        pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-        recyclerView = pullToRefreshRecyclerView.getRefreshableView();
-        adapter = new HomeAdapter();
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-        /**添加RecyclerView的滑动效果*/
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+    protected View initView() {
+        refreshViewContainer = new RefreshViewContainer(getContext());
+        refreshViewContainer.setAdapter(new SimpleRefreshViewAdapter(getContext()) {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int childCount = recyclerView.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View view = recyclerView.getChildAt(i);
-                    RecyclerView.ViewHolder holder = recyclerView.getChildViewHolder(view);
-                    switch (holder.getItemViewType()) {
-                        case HomeAdapter.TYPE_TOPIC:
-                            HomeTopicViewHolder topicViewHolder = (HomeTopicViewHolder) holder;
-                            topicViewHolder.setParentHeight(recyclerView.getHeight());
-                            topicViewHolder.setOffset();
+            public View setSuccessView() {
+                View view = View.inflate(getContext(), R.layout.layout_refresh_recyclerview,null);
+                pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
+                pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
+                recyclerView = pullToRefreshRecyclerView.getRefreshableView();
+                adapter = new HomeAdapter();
+                RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                recyclerView.setLayoutManager(manager);
+                recyclerView.setAdapter(adapter);
+                /**添加RecyclerView的滑动效果*/
+                recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        int childCount = recyclerView.getChildCount();
+                        for (int i = 0; i < childCount; i++) {
+                            View view = recyclerView.getChildAt(i);
+                            RecyclerView.ViewHolder holder = recyclerView.getChildViewHolder(view);
+                            switch (holder.getItemViewType()) {
+                                case HomeAdapter.TYPE_TOPIC:
+                                    HomeTopicViewHolder topicViewHolder = (HomeTopicViewHolder) holder;
+                                    topicViewHolder.setParentHeight(recyclerView.getHeight());
+                                    topicViewHolder.setOffset();
+                            }
+                        }
                     }
-                }
+                });
+                return view;
             }
         });
-        return view;
+
+        return refreshViewContainer;
+    }
+
+    @Override
+    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
+        return pullToRefreshRecyclerView;
     }
 
     @Override
@@ -75,7 +85,7 @@ public class HomeView extends RefreshView implements IHomeView {
     }
 
     @Override
-    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
-        return pullToRefreshRecyclerView;
+    public RefreshViewContainer getRefreshViewContainer() {
+        return refreshViewContainer;
     }
 }

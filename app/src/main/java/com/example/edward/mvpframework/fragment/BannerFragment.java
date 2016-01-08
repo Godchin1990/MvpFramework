@@ -7,7 +7,7 @@ import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.activity.base.Const;
 import com.example.edward.mvpframework.fragment.base.BaseFragment;
 import com.example.edward.mvpframework.model.HomeBanner;
-import com.example.edward.mvpframework.view.WebContentView;
+import com.example.edward.mvpframework.view.base.WebContentView;
 
 /**
  * Created by Edward on 16/1/7.

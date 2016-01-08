@@ -13,7 +13,7 @@ import com.example.edward.mvpframework.network.NetworkHelper;
 import com.example.edward.mvpframework.network.ServerAPI;
 import com.example.edward.mvpframework.network.StringCallBack;
 import com.example.edward.mvpframework.view.HomeView;
-import com.example.edward.mvpframework.widget.RefreshViewContainer;
+import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 

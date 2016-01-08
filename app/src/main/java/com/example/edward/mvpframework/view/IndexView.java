@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.adapter.IndexAdapter;
 import com.example.edward.mvpframework.view.base.BaseView;
+import com.example.edward.mvpframework.view.interfaze.IIndexView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +52,7 @@ public class IndexView extends BaseView implements IIndexView, RadioGroup.OnChec
         ButterKnife.bind(this, view);
         radioGroup.setOnCheckedChangeListener(this);
         viewpager.addOnPageChangeListener(this);
+        viewpager.setOffscreenPageLimit(3);
         return view;
     }
 

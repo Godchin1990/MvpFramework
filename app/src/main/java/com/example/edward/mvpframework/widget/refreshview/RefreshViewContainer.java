@@ -1,4 +1,4 @@
-package com.example.edward.mvpframework.widget;
+package com.example.edward.mvpframework.widget.refreshview;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -29,6 +29,15 @@ public class RefreshViewContainer extends FrameLayout {
 
     public RefreshViewContainer(Context context) {
         this(context, null);
+    }
+    private RefreshViewAdapter adapter;
+
+    public void setAdapter(RefreshViewAdapter adapter){
+        this.adapter = adapter;
+        setErrorView(adapter.setErrorView());
+        setSuccessView(adapter.setSuccessView());
+        setEmptyView(adapter.setEmptyView());
+        setLoadingView(adapter.setLoadingView());
     }
 
     public RefreshViewContainer(Context context, AttributeSet attrs) {

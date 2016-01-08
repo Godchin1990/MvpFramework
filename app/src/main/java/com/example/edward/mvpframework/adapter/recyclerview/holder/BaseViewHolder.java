@@ -12,6 +12,10 @@ import android.view.View;
  * Created by Edward on 15/11/17.
  */
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
+    protected final String TAG;
+    {
+        TAG = getClass().getSimpleName();
+    }
     private boolean autoInflate = true;
     private T data;
     private static  Resources resources;
