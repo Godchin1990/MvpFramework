@@ -1,13 +1,15 @@
 package com.example.edward.mvpframework.fragment;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.fragment.base.LazyFragment;
 import com.example.edward.mvpframework.model.City;
-import com.example.edward.mvpframework.model.HomeRoute;
+import com.example.edward.mvpframework.model.Discovery;
 import com.example.edward.mvpframework.model.Pagination;
 import com.example.edward.mvpframework.network.NetworkHelper;
 import com.example.edward.mvpframework.network.ServerAPI;
@@ -29,7 +31,6 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
     protected void initData() {
         requestNetwork();
         initListener();
-        discoveryView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
     }
 
     private void initListener() {
@@ -43,13 +44,16 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
                  * 并不完美
                  */
                 discoveryView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
-                requestNetwork();
+                if(TextUtils.isEmpty(discoveryView.getActionBarView().getLeftTextView().getText())){
+                    requestNetwork();
+                }else {
+                    requestLandmarkInfo(discoveryView.getActionBarView().getLeftTextView().getText().toString());
+                }
+
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
-//                int type = getArguments().getInt(Const.TOPIC_TYPE, 0);
-//                String name = getArguments().getString(Const.TOPIC_NAME);
                 String url = ServerAPI.Discovery.buildDiscoveryListUrl("北京");
                 NetworkHelper.getInstance().sendGetStringRequest(url, pagination.getMap(), DiscoveryFragment.this, "loadmore");
             }
@@ -82,25 +86,23 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
                 switch (tag) {
                     case "refresh":
                         discoveryView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
-                        HomeRoute.HomeRouteLists homeRouteLists = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-//                        discoveryView.getAdapter().setRoutes(homeRouteLists.list);
-                        pagination.update(homeRouteLists.list.size());
+                        Discovery.DiscoveryLists discoveryLists = gson.fromJson(data, Discovery.DiscoveryLists.class);
+                        discoveryView.getAdapter().setDiscovery(discoveryLists.list);
+                        pagination.update(discoveryLists.list.size());
                         break;
                     case "loadmore":
-//                        HomeRoute.HomeRouteLists homeRouteListsMore = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-//                        discoveryView.getAdapter().appendRoutes(homeRouteListsMore.list);
-//                        pagination.update(homeRouteListsMore.list.size());
-//                        if (homeRouteListsMore.list.isEmpty()) {
-//                            Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
-//                        }
+                        Discovery.DiscoveryLists discoveryListsMore = gson.fromJson(data, Discovery.DiscoveryLists.class);
+                        discoveryView.getAdapter().appendDiscovery(discoveryListsMore.list);
+                        pagination.update(discoveryListsMore.list.size());
+                        if (discoveryListsMore.list.isEmpty()) {
+                            Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case "city_list":
                         City.CityLists cityLists = gson.fromJson(data, City.CityLists.class);
                         discoveryView.getActionBarView().getLeftTextView().setText(cityLists.list.get(0).getName());
                         discoveryView.getCityListAdapter().setCity(cityLists.list);
-                        pagination.initPagination();
-                        String url = ServerAPI.Discovery.buildDiscoveryListUrl("北京");
-                        NetworkHelper.getInstance().sendGetStringRequest(url, pagination.getMap(), DiscoveryFragment.this, "refresh");
+                        requestLandmarkInfo(cityLists.list.get(0).getName());
                         return;
                 }
                 discoveryView.getPullToRefreshRecyclerView().onRefreshComplete();
@@ -108,6 +110,13 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
             }
         });
     }
+
+    void requestLandmarkInfo(String name){
+        pagination.initPagination();
+        String url = ServerAPI.Discovery.buildDiscoveryListUrl(name);
+        NetworkHelper.getInstance().sendGetStringRequest(url, pagination.getMap(), DiscoveryFragment.this, "refresh");
+    }
+
 
     @Override
     public void onFail() {
