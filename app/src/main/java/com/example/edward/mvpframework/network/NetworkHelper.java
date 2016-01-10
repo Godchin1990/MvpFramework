@@ -17,6 +17,11 @@ import java.util.Map;
  * Created by Edward on 16/1/1.
  */
 public class NetworkHelper {
+    private static String TAG;
+    {
+        TAG = getClass().getSimpleName();
+    }
+
     private static volatile NetworkHelper networkHelper;
     private Gson gson;
 
@@ -66,7 +71,9 @@ public class NetworkHelper {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                ResponseData responseData = gson.fromJson(response.body().string(), ResponseData.class);
+                String string = response.body().string();
+                ResponseData responseData = gson.fromJson(string, ResponseData.class);
+//                Log.d(TAG,string);
 
                 cb.onSuccess(gson.toJson(responseData.getData()),tag);
             }

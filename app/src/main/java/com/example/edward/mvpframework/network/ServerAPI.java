@@ -17,6 +17,7 @@ public class ServerAPI {
 
     //参数常量
     public static String VERSION_V3 = "v3";
+    public static String ID = "id";
 
     private static String getServerBase() {
         return DEBUG ? SERVER_BASE_TEST : SERVER_BASE_PRODUCT;
@@ -66,6 +67,21 @@ public class ServerAPI {
             return builder.toString();
         }
     }
+    /**
+     *  路线详情相关的接口
+     */
+    public static class RouteDetail{
+        public static final String GET_ROUTE_DETAIL = "get_route_detail";
+        public static final String PARAM_ROUTE = "ctype";
+        public static String buildRouteDetailUrl(String routeId){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(VERSION_V3);
+            builder.appendEncodedPath(GET_ROUTE_DETAIL);
+            builder.appendQueryParameter(ID, routeId);
+            return builder.toString();
+        }
+    }
+
 
     /**
      * TopicFragment相关的接口

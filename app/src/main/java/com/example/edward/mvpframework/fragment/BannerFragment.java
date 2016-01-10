@@ -15,11 +15,10 @@ import com.example.edward.mvpframework.view.base.WebContentView;
 public class BannerFragment extends BaseFragment implements WebContentView.GuideJavaScriptCallback, View.OnClickListener {
 
     private WebContentView webContentView;
-    private HomeBanner homeBanner;
 
     @Override
     protected void initData() {
-        homeBanner = getArguments().getParcelable(Const.BANNER);
+        HomeBanner homeBanner = getArguments().getParcelable(Const.BANNER);
         if(homeBanner!=null){
             webContentView.getWebView().loadUrl(homeBanner.getAct_url());
             webContentView.getActionBarView().getTitleView().setText(homeBanner.getTitle());

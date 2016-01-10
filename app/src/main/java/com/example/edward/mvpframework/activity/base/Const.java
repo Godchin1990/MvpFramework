@@ -9,4 +9,11 @@ public class Const {
     /**home banner*/
     public static final String BANNER = "banner";
     public static final String URL = "url";
+
+    /**topic fragment*/
+    public static final String TOPIC_TYPE = "topic";
+    public static final String TOPIC_NAME = "name";
+
+    /**route detail fragment*/
+    public static final java.lang.String ROUTE_ID = "route_id";
 }

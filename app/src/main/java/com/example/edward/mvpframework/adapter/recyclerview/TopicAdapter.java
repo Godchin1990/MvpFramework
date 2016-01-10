@@ -6,11 +6,18 @@ import android.view.ViewGroup;
 
 import com.example.edward.mvpframework.adapter.recyclerview.base.BaseAdapter;
 import com.example.edward.mvpframework.adapter.recyclerview.holder.HomeRouteViewHolder;
+import com.example.edward.mvpframework.model.HomeRoute;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Edward on 16/1/8.
  */
 public class TopicAdapter extends BaseAdapter {
+
+    private List<HomeRoute> routes = new ArrayList<>();
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View routeView = HomeRouteViewHolder.getView(parent.getContext());
@@ -19,11 +26,22 @@ public class TopicAdapter extends BaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        HomeRouteViewHolder routeViewHolder = (HomeRouteViewHolder) holder;
+        routeViewHolder.setData(routes.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return routes.size();
+    }
+
+    public void setRoutes(List<HomeRoute> list) {
+        routes = list;
+        notifyItemRangeChanged(0, list.size());
+    }
+
+    public void appendRoutes(List<HomeRoute> list) {
+        routes.addAll(routes.size(), list);
+        notifyItemRangeInserted(getItemCount(), list.size());
     }
 }

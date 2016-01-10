@@ -3,6 +3,7 @@ package com.example.edward.mvpframework.adapter.recyclerview.holder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.activity.TopicActivity;
+import com.example.edward.mvpframework.activity.base.Const;
 import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
 import com.example.edward.mvpframework.command.base.Command;
 import com.example.edward.mvpframework.helper.SPHelper;
@@ -92,12 +94,12 @@ public class HomeTopicViewHolder extends BaseViewHolder<HomeTopic> implements Vi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.home_topic_iv:
-//                HomeTopic tag = (HomeTopic) v.getTag();
+                HomeTopic tag = (HomeTopic) v.getTag();
                 Intent intent = new Intent(v.getContext(),TopicActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putInt(IntentConst.TOPIC_TYPE,tag.getType());
-//                bundle.putString(IntentConst.TOPIC_NAME, tag.getName());
-//                intent.putExtra(IntentConst.BUNDLE,bundle);
+                Bundle bundle = new Bundle();
+                bundle.putInt(Const.TOPIC_TYPE,tag.getType());
+                bundle.putString(Const.TOPIC_NAME, tag.getName());
+                intent.putExtra(Const.BUNDLE,bundle);
                 v.getContext().startActivity(intent);
                 break;
         }
