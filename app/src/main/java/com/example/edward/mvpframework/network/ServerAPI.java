@@ -8,7 +8,7 @@ import android.net.Uri;
  */
 public class ServerAPI {
     //DEBUG
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
     /*接客debug版url*/
     private static final String SERVER_BASE_TEST = "http://tguide.selftravel.com.cn/api";
@@ -78,6 +78,44 @@ public class ServerAPI {
             builder.appendEncodedPath(VERSION_V3);
             builder.appendEncodedPath(GET_ROUTE_DETAIL);
             builder.appendQueryParameter(ID, routeId);
+            return builder.toString();
+        }
+    }
+
+    /**
+     *  路线详情相关的接口
+     */
+    public static class GuideDetail{
+        //api/v3/get_guide_details/?id=740
+        public static final String GET_GUIDE_DETAIL = "get_guide_details";
+        public static final String PARAM_ROUTE = "ctype";
+        public static String buildGuideDetailUrl(String routeId){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(VERSION_V3);
+            builder.appendEncodedPath(GET_GUIDE_DETAIL);
+            builder.appendQueryParameter(ID, routeId);
+            return builder.toString();
+        }
+    }
+
+    /**
+     *  路线详情相关的接口
+     */
+    public static class Discovery{
+        //api/v3/get_guide_details/?id=740
+        public static final String GET_DISCOVERY_LIST = "get_discover_list";
+        public static final String GET_CITY_LIST = "get_city_list";
+        public static final String PARAM_CITY = "city";
+        public static String buildCityListUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_CITY_LIST);
+            return builder.toString();
+        }
+        public static String buildDiscoveryListUrl(String city){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(VERSION_V3);
+            builder.appendEncodedPath(GET_DISCOVERY_LIST);
+            builder.appendQueryParameter(PARAM_CITY, city);
             return builder.toString();
         }
     }

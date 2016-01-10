@@ -15,5 +15,6 @@ public class Const {
     public static final String TOPIC_NAME = "name";
 
     /**route detail fragment*/
-    public static final java.lang.String ROUTE_ID = "route_id";
+    public static final String ROUTE_ID = "route_id";
+    public static final String GUIDE_ID = "guide_id";
 }

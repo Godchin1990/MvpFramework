@@ -15,5 +15,9 @@
     <string name="guider_route">%1$d个达人|%2$d条路线</string>
     <!-- home fragment & route-->
     <string name="unknown">未知</string>
+    <!-- guide detail fragment-->
+    <string name="guider_detail">达人详情</string>
+    <!-- discovery fragment-->
+    <string name="landmark">地标</string>
 
 </resources>

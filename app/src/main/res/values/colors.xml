@@ -22,4 +22,8 @@
     <color name="home_route_text_price_color">#ffff5a5f</color>
     <color name="home_route_text_tag_color">#ff5d5d5d</color>
     <color name="home_route_text_title_color">#ff1a1a1a</color>
+
+    <!-- discovery popupwindow-->
+    <color name="white_p">#88ffffff</color>
+    <color name="pop_text_color" >#222222</color>
 </resources>

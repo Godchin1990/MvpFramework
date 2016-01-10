@@ -41,7 +41,7 @@ public abstract class TitleBarContentView extends BaseView implements ITitleBarC
      * 初始化头
      * @param view
      */
-    private void initActionBar(View view) {
+    protected void initActionBar(View view) {
         actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
         actionBar.getLeftView().setImageResource(R.mipmap.action_bar_back_black);
     }

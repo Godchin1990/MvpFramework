@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.edward.mvpframework.R;
+import com.example.edward.mvpframework.activity.GuideDetailActivity;
 import com.example.edward.mvpframework.activity.RouteDetailActivity;
 import com.example.edward.mvpframework.activity.base.Const;
 import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
@@ -70,15 +71,14 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
                 routeIntent.putExtra(Const.BUNDLE, bundleForRoute);
                 v.getContext().startActivity(routeIntent);
                 break;
-//            case R.id.riv_guide_avatar:
-//                HomeRoute tagForGuider = (HomeRoute) v.getTag();
-//                Intent guideIntent = new Intent(v.getContext(), GuiderDetailWebActivity.class);
-//                Bundle bundleForGuider = new Bundle();
-//                bundleForGuider.putInt(IntentConst.GUIDE_ID, tagForGuider.getGuideId());
-//
-//                guideIntent.putExtra(IntentConst.BUNDLE, bundleForGuider);
-//                v.getContext().startActivity(guideIntent);
-//                break;
+            case R.id.riv_guide_avatar:
+                HomeRoute tagForGuider = (HomeRoute) v.getTag();
+                Intent guideIntent = new Intent(v.getContext(), GuideDetailActivity.class);
+                Bundle bundleForGuider = new Bundle();
+                bundleForGuider.putString(Const.GUIDE_ID, tagForGuider.getGuideId()+"");
+                guideIntent.putExtra(Const.BUNDLE, bundleForGuider);
+                v.getContext().startActivity(guideIntent);
+                break;
         }
     }
 }

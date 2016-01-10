@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.RadioGroup;
 
+import com.example.edward.mvpframework.fragment.DiscoveryFragment;
 import com.example.edward.mvpframework.fragment.EmptyFragment;
 import com.example.edward.mvpframework.fragment.HomeFragment;
 
@@ -26,6 +27,9 @@ public class IndexAdapter extends FragmentPagerAdapter {
         switch(position){
             case 0:
                 fragment = new HomeFragment();
+                break;
+            case 1:
+                fragment = new DiscoveryFragment();
                 break;
             default:
                 fragment = new EmptyFragment();
