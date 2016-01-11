@@ -3,6 +3,7 @@ package com.example.edward.mvpframework.adapter.recyclerview;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.edward.mvpframework.adapter.recyclerview.base.BaseAdapter;
 import com.example.edward.mvpframework.adapter.recyclerview.holder.DiscoveryFullViewHolder;
@@ -55,6 +56,8 @@ public class DiscoveryAdapter extends BaseAdapter {
                 DiscoveryFullViewHolder fullViewHolder = (DiscoveryFullViewHolder) holder;
                 fullViewHolder.setData(discovery);
                 break;
+            default:
+                break;
         }
     }
 
@@ -83,5 +86,13 @@ public class DiscoveryAdapter extends BaseAdapter {
     public void appendDiscovery(List<Discovery> list) {
         discoveries.addAll(discoveries.size(),list);
         notifyItemRangeInserted(getItemCount(), list.size());
+    }
+
+    /**
+     * 读取 静态地图图片
+     * @param mapIv imageView
+     */
+    private void loadImageMap(final ImageView mapIv) {
+
     }
 }
