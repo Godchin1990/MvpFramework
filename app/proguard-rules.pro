@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# 高德地图混淆配置
+-keep   class com.amap.api.mapcore.**{*;}
+-keep   class com.amap.api.maps.**{*;}
+-keep   class com.autonavi.amap.mapcore.*{*;}

@@ -11,6 +11,7 @@ import com.example.edward.mvpframework.adapter.refreshviewcontainer.SimpleRefres
 import com.example.edward.mvpframework.view.base.TitleBarContentView;
 import com.example.edward.mvpframework.view.interfaze.ITopicView;
 import com.example.edward.mvpframework.widget.PullToRefreshRecyclerView;
+import com.example.edward.mvpframework.widget.recyclerview.DividerItemDecoration;
 import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
@@ -58,6 +59,7 @@ public class TopicView extends TitleBarContentView implements ITopicView {
                 adapter = new TopicAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
                 recyclerView.setAdapter(adapter);
                 return view;
             }

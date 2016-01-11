@@ -17,6 +17,7 @@ import com.example.edward.mvpframework.view.base.TitleBarContentView;
 import com.example.edward.mvpframework.view.interfaze.IDiscoveryView;
 import com.example.edward.mvpframework.widget.MyActionBar;
 import com.example.edward.mvpframework.widget.PullToRefreshRecyclerView;
+import com.example.edward.mvpframework.widget.recyclerview.DividerItemDecoration;
 import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
@@ -82,6 +83,7 @@ public class DiscoveryView extends TitleBarContentView implements IDiscoveryView
                 recyclerView = pullToRefreshRecyclerView.getRefreshableView();
                 adapter = new DiscoveryAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
                 recyclerView.setLayoutManager(manager);
                 recyclerView.setAdapter(adapter);
                 return view;

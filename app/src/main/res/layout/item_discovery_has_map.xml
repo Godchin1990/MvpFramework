@@ -11,20 +11,35 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/left_top"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:placeholderImage="@mipmap/bg_loading_image"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:viewAspectRatio="1" />
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/left_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@mipmap/bg_loading_image"
+                fresco:placeholderImageScaleType="centerCrop"
+                fresco:viewAspectRatio="1"
+                fresco:overlayImage="@color/black_transparent"/>
+
+            <include
+                android:id="@+id/left_top_desc"
+                layout="@layout/item_discovery_part" />
+
+        </RelativeLayout>
 
         <View
             android:id="@+id/view_gap1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/gap_item_plain_view"
             android:background="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/left_bottom"
@@ -33,7 +48,14 @@
                 fresco:actualImageScaleType="centerCrop"
                 fresco:placeholderImage="@mipmap/bg_loading_image"
                 fresco:placeholderImageScaleType="centerCrop"
-                fresco:viewAspectRatio="0.618"/>
+                fresco:viewAspectRatio="0.618"
+                fresco:overlayImage="@color/black_transparent"/>
+
+            <include
+                android:id="@+id/left_buttom_desc"
+                layout="@layout/item_discovery_part" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -49,9 +71,10 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!--<FrameLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="404dp">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/right_top"
                 android:layout_width="match_parent"
@@ -59,8 +82,13 @@
                 fresco:actualImageScaleType="centerCrop"
                 fresco:placeholderImage="@mipmap/bg_loading_image"
                 fresco:placeholderImageScaleType="centerCrop"
-                fresco:viewAspectRatio="0.618"/>
-        <!--</FrameLayout>-->
+                fresco:viewAspectRatio="0.618"
+                fresco:overlayImage="@color/black_transparent"/>
+
+            <include
+                android:id="@+id/right_top_desc"
+                layout="@layout/item_discovery_part" />
+        </RelativeLayout>
 
         <View
             android:id="@+id/view_gap2"
@@ -68,14 +96,25 @@
             android:layout_height="@dimen/gap_item_plain_view"
             android:background="@color/white" />
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/right_bottom"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:placeholderImage="@mipmap/bg_loading_image"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:viewAspectRatio="1" />
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/right_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@mipmap/bg_loading_image"
+                fresco:placeholderImageScaleType="centerCrop"
+                fresco:viewAspectRatio="1"
+                fresco:overlayImage="@color/black_transparent"/>
+
+            <include
+                android:id="@+id/right_bottom_desc"
+                layout="@layout/item_discovery_part" />
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>

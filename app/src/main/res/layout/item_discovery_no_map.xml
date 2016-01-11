@@ -11,6 +11,11 @@
         fresco:actualImageScaleType="centerCrop"
         fresco:placeholderImage="@mipmap/bg_loading_image"
         fresco:placeholderImageScaleType="centerCrop"
-        fresco:viewAspectRatio="2"/>
+        fresco:viewAspectRatio="2"
+        fresco:overlayImage="@color/black_transparent"/>
+
+    <include
+        android:id="@+id/no_map_desc"
+        layout="@layout/item_discovery_part" />
 
 </RelativeLayout>

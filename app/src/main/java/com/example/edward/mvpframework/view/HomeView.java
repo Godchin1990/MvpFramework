@@ -12,6 +12,7 @@ import com.example.edward.mvpframework.adapter.refreshviewcontainer.SimpleRefres
 import com.example.edward.mvpframework.view.base.BaseView;
 import com.example.edward.mvpframework.view.interfaze.IHomeView;
 import com.example.edward.mvpframework.widget.PullToRefreshRecyclerView;
+import com.example.edward.mvpframework.widget.recyclerview.DividerItemDecoration;
 import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
@@ -43,6 +44,7 @@ public class HomeView extends BaseView implements IHomeView {
                 adapter = new HomeAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerView.setLayoutManager(manager);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
                 recyclerView.setAdapter(adapter);
                 /**添加RecyclerView的滑动效果*/
                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
