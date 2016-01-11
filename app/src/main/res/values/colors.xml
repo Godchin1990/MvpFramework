@@ -26,4 +26,6 @@
     <!-- discovery popupwindow-->
     <color name="white_p">#88ffffff</color>
     <color name="pop_text_color" >#222222</color>
+    <color name="black_transparent">#2d000000</color>
+    <color name="discovery_shadow_color">#6f000000</color>
 </resources>

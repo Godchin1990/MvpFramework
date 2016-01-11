@@ -28,9 +28,6 @@ public class DiscoveryAdapter extends BaseAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        TextView textView = new TextView(parent.getContext());
-//        textView.setText("测试");
-//        return new EmptyViewHolder(textView);
         switch (viewType) {
             case TYPE_HAS_MAP : // 带有map的
                 View hasMapView = DiscoveryHasMapViewHolder.getView(parent.getContext());
@@ -48,7 +45,17 @@ public class DiscoveryAdapter extends BaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        Discovery discovery = discoveries.get(position);
+        switch (discovery.getType()){
+            case 0:
+                DiscoveryHasMapViewHolder hasMapViewHolder = (DiscoveryHasMapViewHolder) holder;
+                hasMapViewHolder.setData(discovery);
+                break;
+            case 1:
+                DiscoveryFullViewHolder fullViewHolder = (DiscoveryFullViewHolder) holder;
+                fullViewHolder.setData(discovery);
+                break;
+        }
     }
 
     @Override
@@ -71,7 +78,6 @@ public class DiscoveryAdapter extends BaseAdapter {
 
     public void setDiscovery(List<Discovery> list) {
         this.discoveries = list;
-//        notifyItemRangeChanged(0, list.size());
         notifyDataSetChanged();
     }
     public void appendDiscovery(List<Discovery> list) {

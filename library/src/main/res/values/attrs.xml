@@ -77,4 +77,12 @@
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
 
+    <!--格子控件-->
+    <declare-styleable name="PlainView" >
+        <attr name="plain1" format="reference" />
+        <attr name="plain2" format="reference" />
+        <attr name="plain3" format="reference" />
+        <attr name="plain4" format="reference" />
+    </declare-styleable>
+
 </resources>

@@ -15,4 +15,7 @@
     <dimen name="item_home_topic_text_title_size">30sp</dimen>
     <dimen name="item_home_topic_text_discription_size">16sp</dimen>
     <dimen name="item_home_topic_text_discription_aligntop">15dp</dimen>
+
+    <!-- discovery fragment item-->
+    <dimen name="gap_item_plain_view">1dp</dimen>
 </resources>
