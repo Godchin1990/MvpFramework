@@ -17,4 +17,7 @@ public class Const {
     /**route detail fragment*/
     public static final String ROUTE_ID = "route_id";
     public static final String GUIDE_ID = "guide_id";
+
+    /**discovery detail fragment*/
+    public static final String DISCOVERY_ID = "discovery_id";
 }

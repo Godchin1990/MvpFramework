@@ -16,7 +16,7 @@
     <!--//定位包、导航包需要的额外权限（注：基础权限也需要）-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <!-- 用于地图定位-->
@@ -78,6 +78,8 @@
         <activity android:name=".activity.RouteDetailActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.GuideDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DiscoveryDetailActivity"
             android:screenOrientation="portrait"/>
 
 

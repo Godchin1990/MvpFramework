@@ -67,7 +67,7 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
                 HomeRoute tagForRoute = (HomeRoute) v.getTag();
                 Intent routeIntent = new Intent(v.getContext(), RouteDetailActivity.class);
                 Bundle bundleForRoute = new Bundle();
-                bundleForRoute.putString(Const.ROUTE_ID, tagForRoute.getRouteId()+"");
+                bundleForRoute.putString(Const.ROUTE_ID, tagForRoute.getRoute_id()+"");
                 routeIntent.putExtra(Const.BUNDLE, bundleForRoute);
                 v.getContext().startActivity(routeIntent);
                 break;
@@ -75,7 +75,7 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
                 HomeRoute tagForGuider = (HomeRoute) v.getTag();
                 Intent guideIntent = new Intent(v.getContext(), GuideDetailActivity.class);
                 Bundle bundleForGuider = new Bundle();
-                bundleForGuider.putString(Const.GUIDE_ID, tagForGuider.getGuideId()+"");
+                bundleForGuider.putString(Const.GUIDE_ID, tagForGuider.getGuide_id()+"");
                 guideIntent.putExtra(Const.BUNDLE, bundleForGuider);
                 v.getContext().startActivity(guideIntent);
                 break;

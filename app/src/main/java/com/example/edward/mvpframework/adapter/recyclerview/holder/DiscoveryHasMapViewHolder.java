@@ -1,6 +1,8 @@
 package com.example.edward.mvpframework.adapter.recyclerview.holder;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -8,6 +10,8 @@ import android.widget.TextView;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.example.edward.mvpframework.R;
+import com.example.edward.mvpframework.activity.DiscoveryDetailActivity;
+import com.example.edward.mvpframework.activity.base.Const;
 import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
 import com.example.edward.mvpframework.command.base.Command;
 import com.example.edward.mvpframework.helper.LocationHelper;
@@ -18,7 +22,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /**
  * Created by Edward on 16/1/10.
  */
-public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
+public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> implements View.OnClickListener {
 
     private final SimpleDraweeView left_top;
     private final SimpleDraweeView left_bottom;
@@ -69,6 +73,7 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
             bindDiscovery(left_top,leftTop,data.getList().get(0));
             bindDiscovery(left_bottom,leftBottom,data.getList().get(1));
             bindDiscovery(right_bottom,rightBottom,data.getList().get(2));
+
         }
 
     }
@@ -80,6 +85,8 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
         tv_title.setText(model.getTitle());
         tv_desc.setText(model.getRoute_num()+"条路线");
         simpleDraweeViewCommand.execute();
+        simpleDraweeView.setOnClickListener(this);
+        simpleDraweeView.setTag(model);
     }
 
     private void bindMap(final SimpleDraweeView simpleDraweeView){
@@ -99,5 +106,18 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
                 mapCommand.execute();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Object tag = v.getTag();
+        if(tag instanceof Discovery.ListEntity){
+            Discovery.ListEntity entity = (Discovery.ListEntity) tag;
+            Intent intent = new Intent(v.getContext(), DiscoveryDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(Const.DISCOVERY_ID,entity.getId()+"");
+            intent.putExtra(Const.BUNDLE,bundle);
+            v.getContext().startActivity(intent);
+        }
     }
 }

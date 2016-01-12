@@ -99,7 +99,7 @@ public class ServerAPI {
     }
 
     /**
-     *  路线详情相关的接口
+     *  发现相关的接口
      */
     public static class Discovery{
         //api/v3/get_guide_details/?id=740
@@ -116,6 +116,21 @@ public class ServerAPI {
             builder.appendEncodedPath(VERSION_V3);
             builder.appendEncodedPath(GET_DISCOVERY_LIST);
             builder.appendQueryParameter(PARAM_CITY, city);
+            return builder.toString();
+        }
+    }
+
+    /**
+     *  发现详情相关的接口
+     */
+    public static class DiscoveryDetail{
+        //api/v3/get_guide_details/?id=740
+        public static final String DEST_ROUTE = "dest_route";
+
+        public static String buildDestRouteUrl(String id){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(DEST_ROUTE);
+            builder.appendQueryParameter(ID, id);
             return builder.toString();
         }
     }
