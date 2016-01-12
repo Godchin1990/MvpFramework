@@ -52,7 +52,7 @@
                 fresco:overlayImage="@color/black_transparent"/>
 
             <include
-                android:id="@+id/left_buttom_desc"
+                android:id="@+id/left_bottom_desc"
                 layout="@layout/item_discovery_part" />
 
         </RelativeLayout>

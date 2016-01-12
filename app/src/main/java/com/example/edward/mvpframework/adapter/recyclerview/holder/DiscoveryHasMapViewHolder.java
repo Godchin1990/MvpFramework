@@ -1,11 +1,18 @@
 package com.example.edward.mvpframework.adapter.recyclerview.holder;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import com.amap.api.maps.AMap;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.example.edward.mvpframework.R;
+import com.example.edward.mvpframework.command.SimpleDraweeViewCommand;
+import com.example.edward.mvpframework.command.base.Command;
+import com.example.edward.mvpframework.helper.LocationHelper;
 import com.example.edward.mvpframework.model.Discovery;
+import com.example.edward.mvpframework.util.ScreenHelper;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -17,7 +24,16 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
     private final SimpleDraweeView left_bottom;
     private final SimpleDraweeView right_top;
     private final SimpleDraweeView right_bottom;
-    private AMap aMap;
+
+    private View leftTop;
+    private View leftBottom;
+    private View rightTop;
+    private View rightBottom;
+
+
+    private int screenWidth;
+    private String key = "ee95e52bf08006f63fd29bcfbcf21df0";
+
 
     public static View getView(Context context) {
         View hasmapview = View.inflate(context,R.layout.item_discovery_has_map,null);
@@ -26,26 +42,62 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> {
 
     public DiscoveryHasMapViewHolder(View itemView) {
         super(itemView);
-
         left_top = (SimpleDraweeView) itemView.findViewById(R.id.left_top);
         left_bottom = (SimpleDraweeView) itemView.findViewById(R.id.left_bottom);
         right_top = (SimpleDraweeView) itemView.findViewById(R.id.right_top);
         right_bottom = (SimpleDraweeView) itemView.findViewById(R.id.right_bottom);
 
+        leftTop = itemView.findViewById(R.id.left_top_desc);
+        leftBottom = itemView.findViewById(R.id.left_bottom_desc);
+        rightTop = itemView.findViewById(R.id.right_top_desc);
+        rightBottom = itemView.findViewById(R.id.right_bottom_desc);
+
+        if(screenWidth==0){
+            screenWidth = ScreenHelper.getScreenWidth(itemView.getContext());
+        }
     }
 
     @Override
     protected void inflateView(Discovery data) {
-        if(data.getList().size()<4){
-            //高德地图静态api
-//            String url = "http://restapi.amap.com/v3/staticmap?location="
-//                    + longitude + ","
-//                    + latitude + "&zoom=16&size="
-//                    + (screenWidth /2/3) + "*"
-//                    + (mapImageViewHeight /3 +200) + "&markers=large,0x77B4EF,:" +
-//                    + longitude + ","
-//                    + latitude + "&key=ee95e52bf08006f63fd29bcfbcf21df0&scale=2";
+
+        if(data.getList().size()>=3){
+            if(data.getPosition()==0){
+                bindMap(right_top);
+            }else {
+                bindDiscovery(right_top,rightTop,data.getList().get(3));
+            }
+            bindDiscovery(left_top,leftTop,data.getList().get(0));
+            bindDiscovery(left_bottom,leftBottom,data.getList().get(1));
+            bindDiscovery(right_bottom,rightBottom,data.getList().get(2));
         }
 
+    }
+
+    private void bindDiscovery(SimpleDraweeView simpleDraweeView,View desc,Discovery.ListEntity model){
+        TextView tv_title = (TextView) desc.findViewById(R.id.tv_title);
+        TextView tv_desc = (TextView) desc.findViewById(R.id.tv_desc);
+        Command simpleDraweeViewCommand = new SimpleDraweeViewCommand(simpleDraweeView,model.getCover());
+        tv_title.setText(model.getTitle());
+        tv_desc.setText(model.getRoute_num()+"条路线");
+        simpleDraweeViewCommand.execute();
+    }
+
+    private void bindMap(final SimpleDraweeView simpleDraweeView){
+        LocationHelper.getInstance().getCurrentLocation(itemView.getContext(), new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                String url = "http://restapi.amap.com/v3/staticmap?location="
+                        + aMapLocation.getLongitude() + ","
+                        + aMapLocation.getLatitude() + "&zoom=16&size="
+                        + (screenWidth /2/3) + "*"
+                        + (right_top.getHeight() /3 +200) + "&markers=large,0x77B4EF,:" +
+                        + aMapLocation.getLongitude() + ","
+                        + aMapLocation.getLatitude() + "&key="+key+"&scale=2";
+
+                Log.d(TAG,"lat="+aMapLocation.getLatitude()+"  log"+aMapLocation.getLongitude());
+                Command mapCommand = new SimpleDraweeViewCommand(simpleDraweeView,url);
+                mapCommand.execute();
+            }
+        });
     }
 }

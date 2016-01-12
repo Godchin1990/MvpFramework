@@ -1,7 +1,10 @@
 package com.example.edward.mvpframework.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.edward.mvpframework.fragment.base.LazyFragment;
@@ -26,7 +29,7 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
     private Pagination pagination;
 
     @Override
-    protected View initView() {
+    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeView = new HomeView(getContext());
         pagination = new Pagination(10, 0);
         return homeView.getRootView();

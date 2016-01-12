@@ -13,6 +13,8 @@ public class Discovery {
      * type : 1
      */
 
+    private int position;
+
     private int type;
     /**
      * cover : http://selftravel-image.qiniudn.com/user_cover_2015_05_19_acdbf1c90cb6645ade268af2c1f92d88.jpg
@@ -26,6 +28,14 @@ public class Discovery {
      */
 
     private List<ListEntity> list;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public void setType(int type) {
         this.type = type;

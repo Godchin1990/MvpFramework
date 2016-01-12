@@ -19,7 +19,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return initView();
+        return initView(inflater,container,savedInstanceState);
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData();
 
-    protected abstract View initView();
+    protected abstract View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
     public String getTAG() {
         return TAG;

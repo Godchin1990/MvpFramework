@@ -1,8 +1,11 @@
 package com.example.edward.mvpframework.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.edward.mvpframework.R;
@@ -73,7 +76,7 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
     }
 
     @Override
-    protected View initView() {
+    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         topicView = new TopicView(getContext());
         pagination = new Pagination(10, 0);
         return topicView.getRootView();

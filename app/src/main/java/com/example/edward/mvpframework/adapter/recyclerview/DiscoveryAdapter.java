@@ -3,7 +3,6 @@ package com.example.edward.mvpframework.adapter.recyclerview;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.edward.mvpframework.adapter.recyclerview.base.BaseAdapter;
 import com.example.edward.mvpframework.adapter.recyclerview.holder.DiscoveryFullViewHolder;
@@ -19,18 +18,17 @@ import java.util.List;
  */
 public class DiscoveryAdapter extends BaseAdapter {
 
-    public static final int TYPE_HAS_MAP = 0;
-    public static final int TYPE_FULL_VIEW = 1;
+    public static final int TYPE_FULL_VIEW = 0;
+    public static final int TYPE_HAS_MAP = 1;
     public static final int TYPE_EMPTY = 2;
 
     private List<Discovery> discoveries = new ArrayList<>();
 
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case TYPE_HAS_MAP : // 带有map的
+            case TYPE_HAS_MAP: // 带有map的
                 View hasMapView = DiscoveryHasMapViewHolder.getView(parent.getContext());
                 return new DiscoveryHasMapViewHolder(hasMapView);
             case TYPE_FULL_VIEW: // 占全部宽度的
@@ -47,12 +45,14 @@ public class DiscoveryAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Discovery discovery = discoveries.get(position);
-        switch (discovery.getType()){
-            case 0:
+        //设置每个条目的position
+        discovery.setPosition(position);
+        switch (discovery.getType()) {
+            case TYPE_HAS_MAP:
                 DiscoveryHasMapViewHolder hasMapViewHolder = (DiscoveryHasMapViewHolder) holder;
                 hasMapViewHolder.setData(discovery);
                 break;
-            case 1:
+            case TYPE_FULL_VIEW:
                 DiscoveryFullViewHolder fullViewHolder = (DiscoveryFullViewHolder) holder;
                 fullViewHolder.setData(discovery);
                 break;
@@ -69,10 +69,10 @@ public class DiscoveryAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         Discovery discovery = discoveries.get(position);
-        switch (discovery.getType()){
-            case 0:
+        switch (discovery.getType()) {
+            case TYPE_HAS_MAP:
                 return TYPE_HAS_MAP;
-            case 1:
+            case TYPE_FULL_VIEW:
                 return TYPE_FULL_VIEW;
             default:
                 return TYPE_EMPTY;
@@ -83,16 +83,10 @@ public class DiscoveryAdapter extends BaseAdapter {
         this.discoveries = list;
         notifyDataSetChanged();
     }
+
     public void appendDiscovery(List<Discovery> list) {
-        discoveries.addAll(discoveries.size(),list);
+        discoveries.addAll(discoveries.size(), list);
         notifyItemRangeInserted(getItemCount(), list.size());
     }
 
-    /**
-     * 读取 静态地图图片
-     * @param mapIv imageView
-     */
-    private void loadImageMap(final ImageView mapIv) {
-
-    }
 }

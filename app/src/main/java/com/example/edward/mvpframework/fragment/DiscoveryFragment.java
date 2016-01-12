@@ -1,13 +1,17 @@
 package com.example.edward.mvpframework.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.fragment.base.LazyFragment;
+import com.example.edward.mvpframework.helper.LocationHelper;
 import com.example.edward.mvpframework.model.City;
 import com.example.edward.mvpframework.model.Discovery;
 import com.example.edward.mvpframework.model.Pagination;
@@ -44,9 +48,9 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
                  * 并不完美
                  */
                 discoveryView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
-                if(TextUtils.isEmpty(discoveryView.getActionBarView().getLeftTextView().getText())){
+                if (TextUtils.isEmpty(discoveryView.getActionBarView().getLeftTextView().getText())) {
                     requestNetwork();
-                }else {
+                } else {
                     requestLandmarkInfo(discoveryView.getActionBarView().getLeftTextView().getText().toString());
                 }
 
@@ -64,11 +68,10 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
     private void requestNetwork() {
         String cityUrl = ServerAPI.Discovery.buildCityListUrl();
         NetworkHelper.getInstance().sendGetStringRequest(cityUrl, null, this, "city_list");
-
     }
 
     @Override
-    protected View initView() {
+    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         discoveryView = new DiscoveryView(getContext());
         String string = getResources().getString(R.string.landmark);
         discoveryView.getActionBarView().getTitleView().setText(string);
@@ -135,5 +138,11 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocationHelper.getInstance().stopLocation();
     }
 }
