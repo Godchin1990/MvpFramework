@@ -30,6 +30,10 @@ public class LocationHelper {
         locationClient.stopLocation();
     }
 
+    public void onDestroy(){
+        locationClient.onDestroy();
+    }
+
     public void getCurrentLocation(Context context/*,LocationCallback callback*/,AMapLocationListener mLocationListener){
         locationClient = new AMapLocationClient(context);
         AMapLocationClientOption locationOption = new AMapLocationClientOption();

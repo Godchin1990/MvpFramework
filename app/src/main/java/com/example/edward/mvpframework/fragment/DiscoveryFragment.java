@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.edward.mvpframework.R;
+import com.example.edward.mvpframework.event.ClickEvent;
 import com.example.edward.mvpframework.fragment.base.LazyFragment;
 import com.example.edward.mvpframework.helper.LocationHelper;
 import com.example.edward.mvpframework.model.City;
@@ -22,6 +23,9 @@ import com.example.edward.mvpframework.view.DiscoveryView;
 import com.example.edward.mvpframework.widget.refreshview.RefreshViewContainer;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * Created by Edward on 16/1/10.
@@ -141,8 +145,26 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        LocationHelper.getInstance().stopLocation();
+        LocationHelper.getInstance().onDestroy();
+        EventBus.getDefault().unregister(this);
     }
+
+    @Subscribe
+    public void onEvent(ClickEvent<String> clickEvent){
+        String param = (String) clickEvent.getParam();
+        Log.d(TAG, param);
+        discoveryView.getCityListPopupWindow().dismiss();
+        discoveryView.getActionBarView().getLeftTextView().setText(param);
+        requestLandmarkInfo(param);
+
+    }
+
 }

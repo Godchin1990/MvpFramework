@@ -1,14 +1,17 @@
 package com.example.edward.mvpframework.network;
 
 import android.net.Uri;
+import android.util.Log;
 
-import com.example.edward.mvpframework.model.ResponseData;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Map;
@@ -58,7 +61,7 @@ public class NetworkHelper {
 
         //call okhttp
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        Request request = new Request.Builder()
+        final Request request = new Request.Builder()
                 .url(builder.toString())
                 .build();
         Call call = mOkHttpClient.newCall(request);
@@ -72,10 +75,15 @@ public class NetworkHelper {
             @Override
             public void onResponse(Response response) throws IOException {
                 String string = response.body().string();
-                ResponseData responseData = gson.fromJson(string, ResponseData.class);
-//                Log.d(TAG,string);
-
-                cb.onSuccess(gson.toJson(responseData.getData()),tag);
+                Log.d(TAG, string);
+                try {
+                    JSONObject jsonObject = new JSONObject(string);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    cb.onSuccess(data.toString(),tag);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                ResponseData responseData = gson.fromJson(string, ResponseData.class);
             }
 
         });

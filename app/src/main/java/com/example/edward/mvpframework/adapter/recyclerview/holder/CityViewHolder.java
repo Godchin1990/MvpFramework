@@ -6,13 +6,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.edward.mvpframework.R;
+import com.example.edward.mvpframework.event.ClickEvent;
 import com.example.edward.mvpframework.model.City;
 import com.example.edward.mvpframework.util.ScreenHelper;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Edward on 16/1/10.
  */
-public class CityViewHolder extends BaseViewHolder<City> {
+public class CityViewHolder extends BaseViewHolder<City> implements View.OnClickListener {
 
     private TextView cityTv;
 
@@ -25,13 +28,24 @@ public class CityViewHolder extends BaseViewHolder<City> {
         cityTv.setGravity(Gravity.CENTER);
         cityTv.setTextSize(16);
         cityTv.setSingleLine(true);
-        cityTv.setPadding(10,10,10,10);
+        cityTv.setPadding(10, 10, 10, 10);
         cityTv.setTextColor(itemView.getContext().getResources().getColor(R.color.pop_text_color));
         cityTv.setLayoutParams(param);
+
+        cityTv.setOnClickListener(this);
     }
 
     @Override
     protected void inflateView(City data) {
         cityTv.setText(data.getName());
+    }
+
+    @Override
+    public void onClick(View v) {
+        String cityName = cityTv.getText().toString();
+        ClickEvent<String> clickEvent = new ClickEvent<>();
+        clickEvent.setParam(cityName);
+
+        EventBus.getDefault().post(clickEvent);
     }
 }

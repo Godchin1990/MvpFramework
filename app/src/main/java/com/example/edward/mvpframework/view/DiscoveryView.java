@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.PopupWindow;
 
-import com.amap.api.maps.MapView;
 import com.example.edward.mvpframework.R;
 import com.example.edward.mvpframework.adapter.recyclerview.CityListAdapter;
 import com.example.edward.mvpframework.adapter.recyclerview.DiscoveryAdapter;
@@ -123,14 +122,6 @@ public class DiscoveryView extends TitleBarContentView implements IDiscoveryView
     @Override
     public CityListAdapter getCityListAdapter() {
         return cityListAdapter;
-    }
-
-    MapView mapView;
-    public MapView getMapView(){
-        if(mapView==null){
-            mapView = new MapView(getContext());
-        }
-        return mapView;
     }
 
 }

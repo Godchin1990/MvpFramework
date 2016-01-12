@@ -8,7 +8,7 @@ import android.net.Uri;
  */
 public class ServerAPI {
     //DEBUG
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
     /*接客debug版url*/
     private static final String SERVER_BASE_TEST = "http://tguide.selftravel.com.cn/api";
