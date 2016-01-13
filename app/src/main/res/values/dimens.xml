@@ -16,6 +16,10 @@
     <dimen name="item_home_topic_text_discription_size">16sp</dimen>
     <dimen name="item_home_topic_text_discription_aligntop">15dp</dimen>
 
-    <!-- discovery fragment item-->
+    <!-- item discovery fragment -->
     <dimen name="gap_item_plain_view">1dp</dimen>
+
+    <!-- item me fragment-->
+    <dimen name="item_me_margin_left_right">13dp</dimen>
+    <dimen name="item_me_infomation_height">106dp</dimen>
 </resources>

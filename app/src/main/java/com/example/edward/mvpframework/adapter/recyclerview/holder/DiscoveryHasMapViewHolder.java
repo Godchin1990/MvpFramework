@@ -66,7 +66,7 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> impleme
 
         if(data.getList().size()>=3){
             if(data.getPosition()==0){
-                bindMap(right_top);
+                bindMap(right_top,rightTop);
             }else {
                 bindDiscovery(right_top,rightTop,data.getList().get(3));
             }
@@ -79,6 +79,7 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> impleme
     }
 
     private void bindDiscovery(SimpleDraweeView simpleDraweeView,View desc,Discovery.ListEntity model){
+        desc.setVisibility(View.VISIBLE);
         TextView tv_title = (TextView) desc.findViewById(R.id.tv_title);
         TextView tv_desc = (TextView) desc.findViewById(R.id.tv_desc);
         Command simpleDraweeViewCommand = new SimpleDraweeViewCommand(simpleDraweeView,model.getCover());
@@ -89,23 +90,26 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> impleme
         simpleDraweeView.setTag(model);
     }
 
-    private void bindMap(final SimpleDraweeView simpleDraweeView){
+    private void bindMap(final SimpleDraweeView simpleDraweeView,View desc){
+        desc.setVisibility(View.GONE);
         LocationHelper.getInstance().getCurrentLocation(itemView.getContext(), new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
                 String url = "http://restapi.amap.com/v3/staticmap?location="
                         + aMapLocation.getLongitude() + ","
                         + aMapLocation.getLatitude() + "&zoom=16&size="
-                        + (screenWidth /2/3) + "*"
-                        + (right_top.getHeight() /3 +200) + "&markers=large,0x77B4EF,:" +
-                        + aMapLocation.getLongitude() + ","
-                        + aMapLocation.getLatitude() + "&key="+key+"&scale=2";
+                        + (screenWidth / 2 / 3) + "*"
+                        + (right_top.getHeight() / 3 + 200) + "&markers=large,0x77B4EF,:" +
+                        +aMapLocation.getLongitude() + ","
+                        + aMapLocation.getLatitude() + "&key=" + key + "&scale=2";
 
-                Log.d(TAG,"lat="+aMapLocation.getLatitude()+"  log"+aMapLocation.getLongitude());
-                Command mapCommand = new SimpleDraweeViewCommand(simpleDraweeView,url);
+                Log.d(TAG, "lat=" + aMapLocation.getLatitude() + "  log" + aMapLocation.getLongitude());
+                Command mapCommand = new SimpleDraweeViewCommand(simpleDraweeView, url);
                 mapCommand.execute();
+                simpleDraweeView.setTag(aMapLocation);
             }
         });
+
     }
 
     @Override
@@ -118,6 +122,10 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> impleme
             bundle.putString(Const.DISCOVERY_ID,entity.getId()+"");
             intent.putExtra(Const.BUNDLE,bundle);
             v.getContext().startActivity(intent);
+        }
+        if(tag instanceof AMapLocation){
+            AMapLocation aMapLocation = (AMapLocation) tag;
+            Log.d(TAG, "pass lat=" + aMapLocation.getLatitude() + "  log" + aMapLocation.getLongitude());
         }
     }
 }

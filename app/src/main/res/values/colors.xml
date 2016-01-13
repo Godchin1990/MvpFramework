@@ -12,7 +12,10 @@
     <!-- common-->
     <color name="theme_color">#FF49c6d8</color>
     <color name="theme_color_pressed">#7049c6d8</color>
-    <color name="text_color_normal">#ffb4b4b4</color>
+    <color name="text_black_text">#1E1E1E</color>
+
+    <!-- index fragment & radio button-->
+    <color name="index_radio_button_text_color_normal">#ffb4b4b4</color>
 
     <!-- home fragment-->
     <color name="home_topic_mask">#4d000000</color>
@@ -28,4 +31,8 @@
     <color name="pop_text_color" >#222222</color>
     <color name="black_transparent">#2d000000</color>
     <color name="discovery_shadow_color">#6f000000</color>
+
+    <!-- me fragment-->
+    <color name="red">#ffff2524</color>
+
 </resources>

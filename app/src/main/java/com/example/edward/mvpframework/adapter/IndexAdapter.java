@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import com.example.edward.mvpframework.fragment.DiscoveryFragment;
 import com.example.edward.mvpframework.fragment.EmptyFragment;
 import com.example.edward.mvpframework.fragment.HomeFragment;
+import com.example.edward.mvpframework.fragment.MeFragment;
 
 /**
  * Created by Edward on 16/1/1.
@@ -30,6 +31,9 @@ public class IndexAdapter extends FragmentPagerAdapter {
                 break;
             case 1:
                 fragment = new DiscoveryFragment();
+                break;
+            case 3:
+                fragment = new MeFragment();
                 break;
             default:
                 fragment = new EmptyFragment();
