@@ -13,7 +13,7 @@
             <!--android:layout_height="match_parent"/>-->
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
-    <com.example.edward.mvpframework.widget.PullToRefreshRecyclerView
+    <com.ziyou.tourGuide.widget.PullToRefreshRecyclerView
         android:id="@+id/pull_to_refresh_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
