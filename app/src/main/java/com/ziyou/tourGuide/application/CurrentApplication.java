@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import com.ziyou.tourGuide.helper.SPHelper;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.ziyou.tourGuide.helper.ShareHelper;
 
 /**
  * Created by Edward on 15/10/22.
@@ -23,6 +24,7 @@ public class CurrentApplication extends Application {
         Fresco.initialize(this, imagePipelineConfig);
 
         init();
+        ShareHelper.getInstance().init();
     }
 
     private void init() {
