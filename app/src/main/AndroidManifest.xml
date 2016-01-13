@@ -63,10 +63,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="@string/amap_key"/>
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="55a4bc5e67e58e85d2000cc8" >
-        </meta-data>
+
 
         <service android:name="com.amap.api.location.APSService" >
         </service>

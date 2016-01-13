@@ -75,6 +75,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="556431fe67e58e5ee3002f5d" >
+        </meta-data>
+
     </application>
 
 </manifest>

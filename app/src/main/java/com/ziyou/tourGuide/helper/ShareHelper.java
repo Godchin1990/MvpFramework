@@ -49,19 +49,25 @@ public class ShareHelper {
         return shareHelper;
     }
 
+    /**
+     * 在程序启动时,初始化
+     */
     public void init(){
         PlatformConfig.setQQZone(QQ_APP_ID, QQ_APP_KEY);
+        PlatformConfig.setWeixin(WECHAT_APP_ID, WECHAT_APP_SECRET);
+        //新浪微博
+//        PlatformConfig.setSinaWeibo("3921700954","04b48b094faeb16683c32669824ebdad");
     }
 
-    public void shareUrl(Activity activity, Bundle bundle){
-        shareUrl(activity, bundle, null);
+    public void shareImageAndUrl(Activity activity, Bundle bundle){
+        shareImageAndUrl(activity, bundle, null);
     }
 
-    public void shareUrl(Activity activity, Bundle bundle, ShareBoardlistener shareBoardlistener){
-        shareUrl(activity, bundle, shareBoardlistener);
-    }
+//    public void shareImageAndUrl(Activity activity, Bundle bundle, ShareBoardlistener shareBoardlistener){
+//        shareImageAndUrl(activity, bundle, shareBoardlistener);
+//    }
 
-    public void shareUrl(Activity activity, Bundle bundle, ShareBoardlistener shareBoardlistener, UMShareListener... umShareListener){
+    public void shareImageAndUrl(Activity activity, Bundle bundle, ShareBoardlistener shareBoardlistener, UMShareListener... umShareListener){
         String imageUrl = bundle.getString(PARAM_IMAGE_URL);
         String shareUrl = bundle.getString(PARAM_SHARE_URL);
         String title = bundle.getString(PARAM_TITLEL);

@@ -58,9 +58,8 @@ public class BannerFragment extends BaseFragment implements WebContentView.Guide
                 bundle.putString(ShareHelper.PARAM_CONTENT,homeBanner.getTitle());
                 bundle.putString(ShareHelper.PARAM_TITLEL,homeBanner.getTitle());
                 bundle.putString(ShareHelper.PARAM_IMAGE_URL,homeBanner.getImage());
-                bundle.putString(ShareHelper.PARAM_SHARE_URL,homeBanner.getAct_url());
-                ShareHelper.getInstance().shareUrl(getActivity(), bundle);
-                ShareHelper.getInstance().shareUrl(getActivity(), bundle);
+                bundle.putString(ShareHelper.PARAM_SHARE_URL, homeBanner.getAct_url());
+                ShareHelper.getInstance().shareImageAndUrl(getActivity(), bundle);
                 break;
         }
     }

@@ -63,7 +63,7 @@ public class WebContentView extends TitleBarContentView implements IWebView {
     }
 
     /**
-     * 设置H5监听回调
+     * 设置H5监听回调,如果不设置,就不会回调Js代码,因为被turn_app方法屏蔽了
      * @param callback
      */
     public void setCallback(GuideJavaScriptCallback callback) {
@@ -71,9 +71,13 @@ public class WebContentView extends TitleBarContentView implements IWebView {
     }
 
     /**
-     * 设置webview
+     * 回调函数
      */
     public interface GuideJavaScriptCallback{
+        /**
+         * 解析H5 Js传递过来的json数据
+         * @param json
+         */
         void parseJsonToSkip(String json);
     }
 }
