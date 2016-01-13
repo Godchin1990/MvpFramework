@@ -4,12 +4,42 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/item_me_infomation"/>
+    <include layout="@layout/item_grey_line"/>
 
-    <include layout="@layout/item_me_content"/>
-    <include layout="@layout/item_me_content"/>
-    <include layout="@layout/item_me_content"/>
-    <include layout="@layout/item_me_content"/>
-    <include layout="@layout/item_me_content"/>
-    <include layout="@layout/item_me_content"/>
+    <include
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/me_message"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/guider_area"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/my_tour"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/my_wallet"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
+
+    <include
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/customer_service"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
+    <include
+        android:id="@+id/setting"
+        layout="@layout/item_me_content"/>
+    <include layout="@layout/item_grey_line"/>
 
 </LinearLayout>

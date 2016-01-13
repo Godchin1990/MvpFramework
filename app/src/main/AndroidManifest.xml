@@ -49,6 +49,24 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
+    <!-- 友盟分享-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+
     <application
         android:name=".application.CurrentApplication"
         android:allowBackup="true"
@@ -60,6 +78,10 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="@string/amap_key"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55a4bc5e67e58e85d2000cc8" >
+        </meta-data>
 
         <service android:name="com.amap.api.location.APSService" >
         </service>
@@ -81,6 +103,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.DiscoveryDetailActivity"
             android:screenOrientation="portrait"/>
+
 
 
     </application>

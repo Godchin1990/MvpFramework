@@ -36,4 +36,5 @@ dependencies {
     compile files('libs/AMap_Android_3DMapSDK_V3.1.1.jar')
     compile files('libs/AMap_Location_V2.2.0_20151222.jar')
     compile 'de.greenrobot:eventbus:3.0.0-beta1'
+    compile project(':sharelibrary')
 }

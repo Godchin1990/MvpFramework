@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MvpFramework.iml" filepath="$PROJECT_DIR$/MvpFramework.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sharelibrary/sharelibrary.iml" filepath="$PROJECT_DIR$/sharelibrary/sharelibrary.iml" />
     </modules>
   </component>
 </project>
