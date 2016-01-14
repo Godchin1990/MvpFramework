@@ -19,5 +19,12 @@
     <string name="guider_detail">达人详情</string>
     <!-- discovery fragment-->
     <string name="landmark">地标</string>
+    <!-- me fragment-->
+    <string name="my_message">我的消息</string>
+    <string name="guider_area">达人专区</string>
+    <string name="my_tour">我的旅程</string>
+    <string name="my_wallet">我的钱包</string>
+    <string name="customer_service">客服</string>
+    <string name="setting">设置</string>
 
 </resources>
