@@ -22,10 +22,10 @@ import butterknife.ButterKnife;
  */
 public class MeView extends TitleBarContentView implements IMeView {
 
-
-
-    @Bind(R.id.me_infomation)
-    ViewGroup me_infomation;
+    @Bind(R.id.me_infomation_layout)
+    ViewGroup me_infomation_layout;
+    @Bind(R.id.me_infomation_layout_part)
+    ViewGroup me_infomation_layout_part;
     @Bind(R.id.riv_user_avatar)
     SimpleDraweeView riv_user_avatar;
     @Bind(R.id.my_message)
@@ -55,15 +55,15 @@ public class MeView extends TitleBarContentView implements IMeView {
     }
 
     private void initMeItemList() {
-        List<View> list = new ArrayList<>();
-        list.add(my_message);
-        list.add(guider_area);
-        list.add(my_tour);
-        list.add(my_wallet);
-        list.add(customer_service);
-        list.add(setting);
+        List<View> viewList = new ArrayList<>();
+        viewList.add(my_message);
+        viewList.add(guider_area);
+        viewList.add(my_tour);
+        viewList.add(my_wallet);
+        viewList.add(customer_service);
+        viewList.add(setting);
 
-        InitMeItemCommand initMeItemCommand = new InitMeItemCommand(getContext(),list);
+        InitMeItemCommand initMeItemCommand = new InitMeItemCommand(getContext(),viewList);
         initMeItemCommand.execute();
     }
 
@@ -76,12 +76,47 @@ public class MeView extends TitleBarContentView implements IMeView {
     }
 
     @Override
+    public ViewGroup getInfomationLayoutPart() {
+        return me_infomation_layout_part;
+    }
+
+    @Override
     public SimpleDraweeView getAvatar() {
         return riv_user_avatar;
     }
 
     @Override
     public ViewGroup getInfomationLayout() {
-        return me_infomation;
+        return me_infomation_layout;
+    }
+
+    @Override
+    public View getMyMessage() {
+        return my_message;
+    }
+
+    @Override
+    public View getGuiderArea() {
+        return guider_area;
+    }
+
+    @Override
+    public View getMyTour() {
+        return my_tour;
+    }
+
+    @Override
+    public View getMyWallet() {
+        return my_wallet;
+    }
+
+    @Override
+    public View getCustomerService() {
+        return customer_service;
+    }
+
+    @Override
+    public View getSetting() {
+        return setting;
     }
 }

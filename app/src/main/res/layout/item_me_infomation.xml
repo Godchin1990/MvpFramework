@@ -23,7 +23,7 @@
             fresco:roundAsCircle="true" />
 
         <FrameLayout
-            android:id="@+id/me_infomation"
+            android:id="@+id/me_infomation_layout_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

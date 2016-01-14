@@ -27,4 +27,8 @@
     <string name="customer_service">客服</string>
     <string name="setting">设置</string>
 
+    <!-- login fragment-->
+    <string name="quick_login">快速登陆</string>
+
+
 </resources>
