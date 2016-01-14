@@ -10,6 +10,7 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.view.LoginView;
 
 /**
+ * 登陆页面fragment
  * Created by Edward on 16/1/14.
  */
 public class LoginFragment extends BaseFragment implements View.OnClickListener {

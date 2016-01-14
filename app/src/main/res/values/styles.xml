@@ -42,6 +42,12 @@
     <style name="item_me">
         <item name="android:paddingLeft">13dp</item>
         <item name="android:paddingRight">13dp</item>
+        <item name="android:layout_height">53dp</item>
+    </style>
+
+    <!-- item fragment input -->
+    <style name="item_login_edittext">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

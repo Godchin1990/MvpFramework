@@ -5,6 +5,7 @@ import com.ziyou.tourGuide.fragment.LoginFragment;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 
 /**
+ * 登录页面activity
  * Created by Edward on 16/1/14.
  */
 public class LoginActivity extends BaseFragmentActivity{
