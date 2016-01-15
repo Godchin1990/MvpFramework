@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
+import com.ziyou.tourGuide.helper.UserHelper;
+import com.ziyou.tourGuide.model.UserInformation;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.MeView;
 
@@ -25,6 +27,10 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         super.onResume();
         //用来时刻刷新当前页面的数据和显示状态
         //每次回到这个页面,都会刷新
+        //fragment 作为presenter,把model传递给view,供view显示和刷新
+        Log.d(TAG,"MeFragment onResume()");
+        UserInformation userInformation = UserHelper.getInstance().getUserInformation();
+        meView.setInfomationLayoutPart(userInformation);
     }
 
     @Override
@@ -48,7 +54,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
     }
 
     @Override
-    public void onFail() {
+    public void onFail(int code, String message, Object object) {
 
     }
 

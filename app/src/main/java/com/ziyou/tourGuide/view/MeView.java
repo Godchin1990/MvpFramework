@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.command.SimpleDraweeViewCommand;
+import com.ziyou.tourGuide.command.base.Command;
 import com.ziyou.tourGuide.command.view.InitMeItemCommand;
+import com.ziyou.tourGuide.model.UserInformation;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMeView;
 import com.ziyou.tourGuide.widget.MyActionBar;
@@ -41,6 +44,10 @@ public class MeView extends TitleBarContentView implements IMeView {
     @Bind(R.id.setting)
     View setting;
 
+    View unLoginView;
+    View userLoginView;
+    View LoginView;
+
     public MeView(Context context) {
         super(context);
     }
@@ -49,7 +56,8 @@ public class MeView extends TitleBarContentView implements IMeView {
     public View setContentView() {
         View view = View.inflate(getContext(), R.layout.fragment_me,null);
         ButterKnife.bind(this,view);
-
+        unLoginView = View.inflate(getContext(),R.layout.item_me_information_unlogin_part,null);
+        userLoginView = View.inflate(getContext(),R.layout.item_me_information_login_part,null);
         initMeItemList();
         return view;
     }
@@ -118,5 +126,26 @@ public class MeView extends TitleBarContentView implements IMeView {
     @Override
     public View getSetting() {
         return setting;
+    }
+
+    /**
+     * 设置用户信息
+     * @param userInformation
+     */
+    public void setInfomationLayoutPart(UserInformation userInformation) {
+        getInfomationLayoutPart().removeAllViews();
+        if(userInformation==null){
+            //刷新头像
+            Command commandForCover = new SimpleDraweeViewCommand(getAvatar(),"");
+            commandForCover.execute();
+            //刷新Layout
+            getInfomationLayoutPart().addView(unLoginView);
+        }else {
+            //刷新头像
+            Command commandForCover = new SimpleDraweeViewCommand(getAvatar(),userInformation.getQiniu_avatar());
+            commandForCover.execute();
+            //刷新Layout
+            getInfomationLayoutPart().addView(userLoginView);
+        }
     }
 }

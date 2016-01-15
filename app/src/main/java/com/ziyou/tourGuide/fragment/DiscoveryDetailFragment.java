@@ -110,7 +110,7 @@ public class DiscoveryDetailFragment extends BaseFragment implements StringCallB
     }
 
     @Override
-    public void onFail() {
+    public void onFail(int code, String message, Object object) {
 
     }
 

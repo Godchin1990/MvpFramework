@@ -126,7 +126,7 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
 
 
     @Override
-    public void onFail() {
+    public void onFail(int code, String message, Object object) {
 
     }
 

@@ -31,6 +31,8 @@
     <string name="quick_login">快速登陆</string>
     <string name="please_input_phone">请输入手机号</string>
     <string name="please_input_password">请输入密码</string>
+    <string name="phone_number_empty">手机号不能为空</string>
+    <string name="password_empty">密码不能为空</string>
 
 
 </resources>

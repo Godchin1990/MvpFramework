@@ -49,7 +49,13 @@ public abstract class LazyFragment extends BaseFragment {
         }
         if(!isLoadFinish){
             initData();
+        }else {
+            onLazyResume();
         }
+
+    }
+
+    protected void onLazyResume(){
 
     }
 

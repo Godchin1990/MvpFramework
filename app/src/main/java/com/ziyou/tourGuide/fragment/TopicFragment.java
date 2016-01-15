@@ -112,7 +112,7 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
     }
 
     @Override
-    public void onFail() {
+    public void onFail(int code, String message, Object object) {
 
     }
 

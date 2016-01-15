@@ -5,5 +5,5 @@ package com.ziyou.tourGuide.network;
  */
 public interface StringCallBack<T> {
     void onSuccess(String data, T tag);
-    void onFail();
+    void onFail(int code, String message, Object object);
 }

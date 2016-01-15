@@ -90,7 +90,7 @@ public class RouteDetailFragment extends BaseFragment implements WebContentView.
     }
 
     @Override
-    public void onFail() {
+    public void onFail(int code, String message, Object object) {
 
     }
 }

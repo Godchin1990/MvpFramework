@@ -140,10 +140,12 @@ public class ServerAPI {
      * TopicFragment相关的接口
      */
     public static class User{
+
         public static final String USER = "user";
         public static final String LOGIN = "verify_code_login";
         public static final String IDENTIFY_CODE = "send_code";
         public static final String USER_INFO = "get_userinfo";
+        public static final String PASSWORDLOGIN = "password_login";
 
         public static final String PARAM_PHONE = "phone";
         public static final String PARAM_IDENTIFY_CODE = "activation_code";
@@ -155,6 +157,12 @@ public class ServerAPI {
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(USER);
             builder.appendEncodedPath(LOGIN);
+            return builder.toString();
+        }
+        public static String buildPasswordLoginUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(USER);
+            builder.appendEncodedPath(PASSWORDLOGIN);
             return builder.toString();
         }
 

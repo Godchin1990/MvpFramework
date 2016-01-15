@@ -24,6 +24,7 @@ public class CurrentApplication extends Application {
         Fresco.initialize(this, imagePipelineConfig);
 
         init();
+        SPHelper.getInstance().init(getApplicationContext());
         ShareHelper.getInstance().init();
     }
 
