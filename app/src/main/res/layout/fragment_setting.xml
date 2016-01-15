@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/clear_cache"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/use_help"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/about_me"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+            <Button
+                android:id="@+id/un_login"
+                style="@style/width_match_parent_button"
+                android:background="@drawable/bg_unlogin_button_selector"
+                android:text="@string/unlogin" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</FrameLayout>

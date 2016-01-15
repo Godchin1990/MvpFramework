@@ -29,10 +29,19 @@
 
     <!-- login fragment-->
     <string name="quick_login">快速登陆</string>
+    <string name="login">登陆</string>
     <string name="please_input_phone">请输入手机号</string>
     <string name="please_input_password">请输入密码</string>
     <string name="phone_number_empty">手机号不能为空</string>
     <string name="password_empty">密码不能为空</string>
+
+    <!-- setting fragment-->
+    <string name="more">更多</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="use_helpe">使用帮助</string>
+    <string name="about_me">关于我们</string>
+    <string name="unlogin">退出登陆</string>
+
 
 
 </resources>

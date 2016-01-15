@@ -35,4 +35,8 @@
     <!-- me fragment-->
     <color name="red">#ffff2524</color>
 
+    <!-- setting fragment-->
+    <color name="unlogin_color_normal">#ff5a5f</color>
+    <color name="unlogin_color_pressed">#eb454a</color>
+
 </resources>

@@ -8,7 +8,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.command.SimpleDraweeViewCommand;
 import com.ziyou.tourGuide.command.base.Command;
-import com.ziyou.tourGuide.command.view.InitMeItemCommand;
+import com.ziyou.tourGuide.command.view.InitItemCommand;
+import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.model.UserInformation;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMeView;
@@ -71,8 +72,16 @@ public class MeView extends TitleBarContentView implements IMeView {
         viewList.add(customer_service);
         viewList.add(setting);
 
-        InitMeItemCommand initMeItemCommand = new InitMeItemCommand(getContext(),viewList);
-        initMeItemCommand.execute();
+        List<ItemViewMode> viewModeList = new ArrayList<>();
+        viewModeList.add(new ItemViewMode(R.string.my_message,R.mipmap.ic_my_message));
+        viewModeList.add(new ItemViewMode(R.string.guider_area,R.mipmap.ic_guider_area));
+        viewModeList.add(new ItemViewMode(R.string.my_tour,R.mipmap.ic_my_tour));
+        viewModeList.add(new ItemViewMode(R.string.my_wallet,R.mipmap.ic_my_wallet));
+        viewModeList.add(new ItemViewMode(R.string.customer_service,R.mipmap.ic_customer_service));
+        viewModeList.add(new ItemViewMode(R.string.setting,R.mipmap.ic_setting));
+
+        InitItemCommand initItemCommand = new InitItemCommand(getContext(),viewList,viewModeList);
+        initItemCommand.execute();
     }
 
     @Override

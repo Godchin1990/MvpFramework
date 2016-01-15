@@ -22,14 +22,14 @@ public class MeItemCommand implements Command {
 
     private ViewCallBack viewCallBack;
 
-    private final String title;
+    private final int titleId;
     private final int iconId;
 
     public MeItemCommand(View itemView, Bundle itemBundle) {
         this.itemView = itemView;
         this.itemBundle = itemBundle;
 
-        title = itemBundle.getString(PARAM_TITLE);
+        titleId = itemBundle.getInt(PARAM_TITLE);
         iconId = itemBundle.getInt(PARAM_ICON);
     }
 
@@ -38,7 +38,7 @@ public class MeItemCommand implements Command {
         this.itemBundle = itemBundle;
         this.viewCallBack = viewCallBack;
 
-        title = itemBundle.getString(PARAM_TITLE);
+        titleId = itemBundle.getInt(PARAM_TITLE);
         iconId = itemBundle.getInt(PARAM_ICON);
     }
 
@@ -54,9 +54,12 @@ public class MeItemCommand implements Command {
     public void execute() {
         ImageView itemIcon = (ImageView) itemView.findViewById(R.id.item_icon);
         TextView itemText = (TextView) itemView.findViewById(R.id.item_text);
-        itemIcon.setImageDrawable(itemView.getResources().getDrawable(iconId));
-        itemText.setText(title);
-
+        if(iconId!=0){
+            itemIcon.setImageDrawable(itemView.getResources().getDrawable(iconId));
+        }
+        if(titleId!=0){
+            itemText.setText(itemView.getResources().getString(titleId));
+        }
         if(viewCallBack !=null){
             ViewGroup viewGroup = (ViewGroup) itemView.findViewById(R.id.item_layout);
             viewGroup.addView(viewCallBack.getInflateView());

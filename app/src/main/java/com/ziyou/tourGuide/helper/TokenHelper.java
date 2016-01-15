@@ -41,6 +41,9 @@ public class TokenHelper {
         return null;
     }
 
+
+
+
     public void setTokenInformation(TokenInfomation tokenInfomation){
         String s = gson.toJson(tokenInfomation);
         SPHelper.getInstance().getSharedPreference().edit().putString(SPHelper.Const.token,s).apply();
@@ -52,5 +55,8 @@ public class TokenHelper {
             return gson.fromJson(token,TokenInfomation.class);
         }
         return null;
+    }
+    public void clearTokenInformation(){
+        SPHelper.getInstance().getSharedPreference().edit().remove(SPHelper.Const.token).apply();
     }
 }

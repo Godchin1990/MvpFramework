@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
+import com.ziyou.tourGuide.activity.SettingActivity;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.model.UserInformation;
@@ -28,14 +30,19 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         //用来时刻刷新当前页面的数据和显示状态
         //每次回到这个页面,都会刷新
         //fragment 作为presenter,把model传递给view,供view显示和刷新
-        Log.d(TAG,"MeFragment onResume()");
+        Log.d(TAG, "MeFragment onResume()");
         UserInformation userInformation = UserHelper.getInstance().getUserInformation();
         meView.setInfomationLayoutPart(userInformation);
+        if(UserHelper.getInstance().isLogin()){
+            meView.getAvatar().setClickable(true);
+        }else {
+            meView.getAvatar().setClickable(false);
+        }
     }
 
     @Override
     protected void initData() {
-        View view = View.inflate(getContext(), R.layout.item_me_information_unlogin_part,null);
+        View view = View.inflate(getContext(), R.layout.item_me_information_unlogin_part, null);
         meView.getInfomationLayoutPart().addView(view);
     }
 
@@ -44,7 +51,8 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView = new MeView(getContext());
         meView.getInfomationLayout().setOnClickListener(this);
         meView.getInfomationLayoutPart().setOnClickListener(this);
-//        meView.getAvatar().setOnClickListener(this);
+        meView.getSetting().setOnClickListener(this);
+        meView.getAvatar().setOnClickListener(this);
         return meView.getRootView();
     }
 
@@ -60,17 +68,29 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        Intent intent = null;
+        switch (v.getId()) {
             case R.id.me_infomation_layout:
-                Log.d(TAG,"click me_infomation_layout");
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                getContext().startActivity(intent);
+                Log.d(TAG, "click me_infomation_layout");
+                if (UserHelper.getInstance().isLogin()) {
+                    intent = new Intent(getContext(), AmendUserInformationActivity.class);
+                    getContext().startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    getContext().startActivity(intent);
+                }
+
                 break;
             case R.id.me_infomation_layout_part:
-                Log.d(TAG,"click me_infomation_layout_part");
+                Log.d(TAG, "click me_infomation_layout_part");
                 break;
             case R.id.riv_user_avatar:
-                Log.d(TAG,"click riv_user_avatar");
+                Log.d(TAG, "click riv_user_avatar");
+                break;
+            case R.id.setting:
+                Log.d(TAG, "click setting");
+                intent = new Intent(getContext(), SettingActivity.class);
+                getContext().startActivity(intent);
                 break;
         }
     }

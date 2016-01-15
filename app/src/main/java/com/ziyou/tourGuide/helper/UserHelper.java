@@ -1,6 +1,5 @@
 package com.ziyou.tourGuide.helper;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -50,7 +49,17 @@ public class UserHelper {
         return phone;
     }
 
-    public void clearUserInformation(Context context){
-        SPHelper.getInstance().getSharedPreference(context).edit().remove(SPHelper.Const.user).apply();
+    public boolean isLogin(){
+        UserInformation userInformation = getUserInformation();
+        if(userInformation==null){
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+
+    public void clearUserInformation(){
+        SPHelper.getInstance().getSharedPreference().edit().remove(SPHelper.Const.user).apply();
     }
 }

@@ -96,12 +96,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                         Log.d(TAG, "user info success");
                         UserInformation userInformation = gson.fromJson(data, UserInformation.class);
                         UserHelper.getInstance().setUserInformation(userInformation);
-
-//                        String phoneNumber = UserHelper.getInstance().getPhoneNumber();
-//                        Log.d(TAG,"getPhoneNumber() = " +phoneNumber);
-//                        TokenInfomation tokenInfomation = gson.fromJson(data, TokenInfomation.class);
-//                        TokenHelper.getInstance().setTokenInformation(getContext(),tokenInfomation);
-//                        getUserInfomation(tokenInfomation);
+                        getActivity().finish();
                         break;
                 }
             }
