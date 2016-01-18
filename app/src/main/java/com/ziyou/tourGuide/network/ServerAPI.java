@@ -191,6 +191,18 @@ public class ServerAPI {
     }
 
     /**
+     * 我的钱包
+     */
+    public static class Wallet{
+        public static final String MY_WALLET = "my_wallet";
+        public static String buildMyWalletUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(MY_WALLET);
+            return builder.toString();
+        }
+    }
+
+    /**
      * 用户订单接口 ( 包括 我的旅行 MyTourActivity)
      */
     public static class Order{

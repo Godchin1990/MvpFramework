@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_me"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    style="@style/item_me" >
+    android:background="@color/white">
+
     <ImageView
         android:id="@+id/item_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginRight="10dp" />
+
     <TextView
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_icon"
         android:text="标题"
         android:textColor="@color/text_black_text"
-        android:textSize="16sp"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:id="@+id/item_begin_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/item_icon"/>
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/item_text" />
 
     <!--预览内部信息，默认不可见-->
     <!--<TextView-->
-        <!--android:id="@+id/item_coupons_nums"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textColor="@color/red"-->
-        <!--android:textSize="16sp"-->
-        <!--android:text="信息"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:visibility="invisible"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_toLeftOf="@+id/back"/>-->
+    <!--android:id="@+id/item_coupons_nums"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textColor="@color/red"-->
+    <!--android:textSize="16sp"-->
+    <!--android:text="信息"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:visibility="invisible"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_toLeftOf="@+id/back"/>-->
 
     <FrameLayout
-        android:id="@+id/item_layout"
+        android:id="@+id/item_end_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/next"/>
+        android:layout_toLeftOf="@+id/next" />
 
     <ImageView
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_next"
-        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:id="@+id/next"
-        />
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_next" />
 
 </RelativeLayout>

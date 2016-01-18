@@ -36,6 +36,7 @@ public class UserInformation {
     private String nickname;
     private String im_password;
     private int userid;
+//  0: 游客 1 达人 2 导游
     private int type;
     private String intro;
     private String city;

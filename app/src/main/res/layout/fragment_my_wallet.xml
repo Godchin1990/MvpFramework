@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/cash"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/can_withdraw_cash"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="13dp"
+                android:id="@+id/withdraw_cash_explain"
+                android:text="@string/withdraw_cash_explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"/>
+
+            <include
+                android:layout_marginTop="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/discount_coupon"
+                layout="@layout/item_me_content"/>
+            <include layout="@layout/item_grey_line"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</FrameLayout>

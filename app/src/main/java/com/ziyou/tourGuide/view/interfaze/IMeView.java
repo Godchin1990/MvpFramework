@@ -18,4 +18,6 @@ public interface IMeView {
     View getMyWallet();
     View getCustomerService();
     View getSetting();
+    View getUserLoginView();
+    View getUnLoginView();
 }

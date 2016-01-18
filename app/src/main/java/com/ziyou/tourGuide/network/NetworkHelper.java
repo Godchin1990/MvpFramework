@@ -105,6 +105,7 @@ public class NetworkHelper {
 
         } catch (JSONException e) {
             e.printStackTrace();
+            cb.onFail(-1, "Json解析出错", null);
         }
 
         //第二种解析方式

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <TextView
-        android:textSize="14sp"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="已经登陆" />
-</FrameLayout>
+        android:text="用户名"
+        android:textSize="17sp"
+        android:textColor="@color/text_black_text"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:padding="5dp"
+        />
+    <TextView
+        android:id="@+id/guider_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户类型"
+        android:textSize="17sp"
+        android:textColor="@color/text_black_text"
+        android:drawableLeft="@mipmap/ic_me_name_left"
+        android:layout_toRightOf="@+id/user_name"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:padding="5dp"
+        android:drawablePadding="5dp"
+        android:textColorHint="#ffffff"
+        />
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID:"
+        android:textSize="17sp"
+        android:textColor="@color/text_black_text"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:padding="5dp"
+        android:layout_below="@id/user_name"
+        />
+</RelativeLayout>

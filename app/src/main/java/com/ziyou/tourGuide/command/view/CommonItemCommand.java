@@ -20,7 +20,8 @@ public class CommonItemCommand implements Command {
     private View itemView;
     private Bundle itemBundle;
 
-    private ViewCallBack viewCallBack;
+    private ViewCallBack endViewCallBack;
+    private ViewCallBack startViewCallBack;
 
     private final int titleId;
     private final int iconId;
@@ -33,10 +34,10 @@ public class CommonItemCommand implements Command {
         iconId = itemBundle.getInt(PARAM_ICON);
     }
 
-    public CommonItemCommand(View itemView, Bundle itemBundle, ViewCallBack viewCallBack) {
+    public CommonItemCommand(View itemView, Bundle itemBundle, ViewCallBack endViewCallBack) {
         this.itemView = itemView;
         this.itemBundle = itemBundle;
-        this.viewCallBack = viewCallBack;
+        this.endViewCallBack = endViewCallBack;
 
         titleId = itemBundle.getInt(PARAM_TITLE);
         iconId = itemBundle.getInt(PARAM_ICON);
@@ -46,8 +47,16 @@ public class CommonItemCommand implements Command {
      * 设置获得layout的回调函数callback
      * @param viewCallBack
      */
-    public void setViewCallBack(ViewCallBack viewCallBack) {
-        this.viewCallBack = viewCallBack;
+    public void setEndViewCallBack(ViewCallBack viewCallBack) {
+        this.endViewCallBack = viewCallBack;
+    }
+
+    /**
+     * 设置获得layout的回调函数callback
+     * @param viewCallBack
+     */
+    public void setBeginViewCallBack(ViewCallBack viewCallBack) {
+        this.startViewCallBack = viewCallBack;
     }
 
     @Override
@@ -62,9 +71,14 @@ public class CommonItemCommand implements Command {
         if(titleId!=0){
             itemText.setText(itemView.getResources().getString(titleId));
         }
-        if(viewCallBack !=null){
-            ViewGroup viewGroup = (ViewGroup) itemView.findViewById(R.id.item_layout);
-            viewGroup.addView(viewCallBack.getInflateView());
+        if(endViewCallBack !=null){
+            ViewGroup viewGroup = (ViewGroup) itemView.findViewById(R.id.item_end_layout);
+            viewGroup.addView(endViewCallBack.getInflateView());
+        }
+
+        if(startViewCallBack !=null){
+            ViewGroup viewGroup = (ViewGroup) itemView.findViewById(R.id.item_begin_layout);
+            viewGroup.addView(startViewCallBack.getInflateView());
         }
     }
 

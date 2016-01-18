@@ -6,17 +6,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderAreaActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.MyMessageActivity;
 import com.ziyou.tourGuide.activity.MyTourActivity;
+import com.ziyou.tourGuide.activity.MyWalletActivity;
 import com.ziyou.tourGuide.activity.SettingActivity;
+import com.ziyou.tourGuide.command.SimpleDraweeViewCommand;
+import com.ziyou.tourGuide.command.base.Command;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.model.UserInformation;
+import com.ziyou.tourGuide.network.NetworkHelper;
+import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.MeView;
 
@@ -34,13 +41,14 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         //每次回到这个页面,都会刷新
         //fragment 作为presenter,把model传递给view,供view显示和刷新
         Log.d(TAG, "MeFragment onResume()");
+
+        //先显示本地的数据
         UserInformation userInformation = UserHelper.getInstance().getUserInformation();
-        meView.setInfomationLayoutPart(userInformation);
-        if(UserHelper.getInstance().isLogin()){
-            meView.getAvatar().setClickable(true);
-        }else {
-            meView.getAvatar().setClickable(false);
-        }
+        setInfomation(userInformation);
+
+        //请求网络,获取最新的数据
+        String url = ServerAPI.User.buildUserInfoUrl();
+        NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "refresh");
     }
 
     @Override
@@ -58,18 +66,39 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView.getMyMessage().setOnClickListener(this);
         meView.getGuiderArea().setOnClickListener(this);
         meView.getMyTour().setOnClickListener(this);
+        meView.getMyWallet().setOnClickListener(this);
         meView.getSetting().setOnClickListener(this);
         return meView.getRootView();
     }
 
     @Override
-    public void onSuccess(String data, String tag) {
-
+    public void onSuccess(final String data, final String tag) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Gson gson = new Gson();
+                switch (tag) {
+                    case "refresh":
+                        UserInformation userInformation = gson.fromJson(data, UserInformation.class);
+                        setInfomation(userInformation);
+                        UserHelper.getInstance().setUserInformation(userInformation);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     public void onFail(int code, String message, Object object) {
-
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //说明用户信息得不到
+                //清除用户信息
+                Log.d(TAG, "error");
+                setInfomation(null);
+            }
+        });
     }
 
     @Override
@@ -81,7 +110,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                 if (UserHelper.getInstance().isLogin()) {
                     intent = new Intent(getContext(), AmendUserInformationActivity.class);
                     getContext().startActivity(intent);
-                }else {
+                } else {
                     intent = new Intent(getContext(), LoginActivity.class);
                     getContext().startActivity(intent);
                 }
@@ -94,31 +123,41 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                 break;
             case R.id.my_message:
                 Log.d(TAG, "click my_message");
-                if(UserHelper.getInstance().isLogin()){
-                    intent = new Intent(getContext(),MyMessageActivity.class);
+                if (UserHelper.getInstance().isLogin()) {
+                    intent = new Intent(getContext(), MyMessageActivity.class);
                     startActivity(intent);
-                }else {
-                    intent = new Intent(getContext(),LoginActivity.class);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 break;
             case R.id.guider_area:
                 Log.d(TAG, "click guider_area");
-                if(UserHelper.getInstance().isLogin()){
+                if (UserHelper.getInstance().isLogin()) {
                     intent = new Intent(getContext(), GuiderAreaActivity.class);
                     startActivity(intent);
-                }else {
-                    intent = new Intent(getContext(),LoginActivity.class);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 break;
             case R.id.my_tour:
                 Log.d(TAG, "click my_tour");
-                if(UserHelper.getInstance().isLogin()){
+                if (UserHelper.getInstance().isLogin()) {
                     intent = new Intent(getContext(), MyTourActivity.class);
                     startActivity(intent);
-                }else {
-                    intent = new Intent(getContext(),LoginActivity.class);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.my_wallet:
+                Log.d(TAG, "click my_tour");
+                if (UserHelper.getInstance().isLogin()) {
+                    intent = new Intent(getContext(), MyWalletActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -128,9 +167,57 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                 getContext().startActivity(intent);
                 break;
             default:
-                intent = new Intent(getContext(),LoginActivity.class);
+                intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    /**
+     * 设置用户信息
+     *
+     * @param userInformation
+     */
+    private void setInfomation(UserInformation userInformation) {
+        meView.getInfomationLayoutPart().removeAllViews();
+        if (userInformation == null) {
+            //刷新头像
+            Command commandForCover = new SimpleDraweeViewCommand(meView.getAvatar(), "");
+            commandForCover.execute();
+            //刷新Layout
+            meView.getInfomationLayoutPart().addView(meView.getUnLoginView());
+        } else {
+            //刷新头像
+            Command commandForCover = new SimpleDraweeViewCommand(meView.getAvatar(), userInformation.getQiniu_avatar());
+            commandForCover.execute();
+            TextView user_name = (TextView) meView.getUserLoginView().findViewById(R.id.user_name);
+            TextView guider_type = (TextView) meView.getUserLoginView().findViewById(R.id.guider_type);
+            TextView user_id = (TextView) meView.getUserLoginView().findViewById(R.id.user_id);
+
+            user_name.setText(userInformation.getNickname());
+            switch (userInformation.getType()) {
+                case 0:
+                    guider_type.setText("游客");
+                    break;
+                case 1:
+                    guider_type.setText("达人");
+                    break;
+                case 2:
+                    guider_type.setText("导游");
+                    break;
+                default:
+                    guider_type.setText("未知");
+                    break;
+            }
+            user_id.setText(String.format(getResources().getString(R.string.id), userInformation.getIdentity_num()));
+            //刷新Layout
+            meView.getInfomationLayoutPart().addView(meView.getUserLoginView());
+        }
+
+        if(UserHelper.getInstance().isLogin()){
+            meView.getAvatar().setClickable(true);
+        }else {
+            meView.getAvatar().setClickable(false);
         }
     }
 }
