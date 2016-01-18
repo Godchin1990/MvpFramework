@@ -34,7 +34,7 @@ public class OrderViewHolder extends BaseViewHolder<Order> implements View.OnCli
     public TextView status;
 
     public static View getView(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_my_guide_order, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_my_tour_order, null);
         return view;
     }
 

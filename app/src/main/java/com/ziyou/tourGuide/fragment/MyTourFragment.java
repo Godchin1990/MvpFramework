@@ -15,6 +15,9 @@ import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.MyTourView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Edward on 16/1/18.
  */
@@ -62,6 +65,14 @@ public class MyTourFragment extends BaseFragment implements View.OnClickListener
                 switch (tag){
                     case "refresh":
                         Order.OrderList orderList = gson.fromJson(data, Order.OrderList.class);
+                        //对数据做处理,删除无效的订单
+                        List<Order> temp = new ArrayList<>();
+                        for(Order order:orderList.list){
+                            if(order.getTrade_status()==0){
+                                temp.add(order);
+                            }
+                        }
+                        orderList.list.removeAll(temp);
                         myTourView.getAdapter().setOrders(orderList.list);
                         break;
                 }
