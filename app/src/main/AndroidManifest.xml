@@ -93,6 +93,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.MyMessageActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GuiderAreaActivity"
+            android:screenOrientation="portrait"/>
 
 
     </application>

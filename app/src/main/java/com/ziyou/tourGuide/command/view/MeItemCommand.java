@@ -56,6 +56,8 @@ public class MeItemCommand implements Command {
         TextView itemText = (TextView) itemView.findViewById(R.id.item_text);
         if(iconId!=0){
             itemIcon.setImageDrawable(itemView.getResources().getDrawable(iconId));
+        }else {
+            itemIcon.setVisibility(View.GONE);
         }
         if(titleId!=0){
             itemText.setText(itemView.getResources().getString(titleId));

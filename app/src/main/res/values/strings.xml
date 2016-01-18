@@ -44,7 +44,12 @@
 
     <!-- mymessage fragment-->
 
-
+    <!-- guider_area-->
+    <string name="my_order">我的订单</string>
+    <string name="guider_information">达人信息</string>
+    <string name="receive_route">已领路线</string>
+    <string name="order_statistic">订单统计</string>
+    <string name="route_community">路线社区</string>
 
 
 </resources>

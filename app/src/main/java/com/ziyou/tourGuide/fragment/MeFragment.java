@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
+import com.ziyou.tourGuide.activity.GuiderAreaActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.MyMessageActivity;
 import com.ziyou.tourGuide.activity.SettingActivity;
@@ -54,6 +55,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView.getInfomationLayout().setOnClickListener(this);
         meView.getInfomationLayoutPart().setOnClickListener(this);
         meView.getMyMessage().setOnClickListener(this);
+        meView.getGuiderArea().setOnClickListener(this);
         meView.getSetting().setOnClickListener(this);
         return meView.getRootView();
     }
@@ -98,6 +100,17 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                     intent = new Intent(getContext(),LoginActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.guider_area:
+                Log.d(TAG, "click guider_area");
+                if(UserHelper.getInstance().isLogin()){
+                    intent = new Intent(getContext(), GuiderAreaActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
             case R.id.setting:
                 Log.d(TAG, "click setting");
