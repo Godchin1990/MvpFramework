@@ -191,6 +191,19 @@ public class ServerAPI {
     }
 
     /**
+     * 用户订单接口 ( 包括 我的旅行 MyTourActivity)
+     */
+    public static class Order{
+        public static final String GET_USER_ORDERS = "get_user_orders";
+        public static String buildGetUserOrdersUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(VERSION_V3);
+            builder.appendEncodedPath(GET_USER_ORDERS);
+            return builder.toString();
+        }
+    }
+
+    /**
      * H5相关的接口
      */
     public static class H5{

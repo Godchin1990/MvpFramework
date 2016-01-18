@@ -12,6 +12,7 @@ import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderAreaActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.MyMessageActivity;
+import com.ziyou.tourGuide.activity.MyTourActivity;
 import com.ziyou.tourGuide.activity.SettingActivity;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.helper.UserHelper;
@@ -56,6 +57,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView.getInfomationLayoutPart().setOnClickListener(this);
         meView.getMyMessage().setOnClickListener(this);
         meView.getGuiderArea().setOnClickListener(this);
+        meView.getMyTour().setOnClickListener(this);
         meView.getSetting().setOnClickListener(this);
         return meView.getRootView();
     }
@@ -83,7 +85,6 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                     intent = new Intent(getContext(), LoginActivity.class);
                     getContext().startActivity(intent);
                 }
-
                 break;
             case R.id.me_infomation_layout_part:
                 Log.d(TAG, "click me_infomation_layout_part");
@@ -110,7 +111,16 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                     intent = new Intent(getContext(),LoginActivity.class);
                     startActivity(intent);
                 }
-
+                break;
+            case R.id.my_tour:
+                Log.d(TAG, "click my_tour");
+                if(UserHelper.getInstance().isLogin()){
+                    intent = new Intent(getContext(), MyTourActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.setting:
                 Log.d(TAG, "click setting");

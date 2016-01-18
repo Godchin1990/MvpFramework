@@ -12,7 +12,7 @@ import com.ziyou.tourGuide.command.base.Command;
 /**
  * Created by Edward on 16/1/14.
  */
-public class MeItemCommand implements Command {
+public class CommonItemCommand implements Command {
 
     public static final String PARAM_TITLE = "title";
     public static final String PARAM_ICON = "iconId";
@@ -25,7 +25,7 @@ public class MeItemCommand implements Command {
     private final int titleId;
     private final int iconId;
 
-    public MeItemCommand(View itemView, Bundle itemBundle) {
+    public CommonItemCommand(View itemView, Bundle itemBundle) {
         this.itemView = itemView;
         this.itemBundle = itemBundle;
 
@@ -33,7 +33,7 @@ public class MeItemCommand implements Command {
         iconId = itemBundle.getInt(PARAM_ICON);
     }
 
-    public MeItemCommand(View itemView, Bundle itemBundle,ViewCallBack viewCallBack) {
+    public CommonItemCommand(View itemView, Bundle itemBundle, ViewCallBack viewCallBack) {
         this.itemView = itemView;
         this.itemBundle = itemBundle;
         this.viewCallBack = viewCallBack;

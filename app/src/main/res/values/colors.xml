@@ -39,4 +39,11 @@
     <color name="unlogin_color_normal">#ff5a5f</color>
     <color name="unlogin_color_pressed">#eb454a</color>
 
+    <!-- my_tour fragment-->
+    <color name="order_detail">#9b9b9b</color>
+    <color name="order_detail_orange">#FF5400</color>
+    <color name="order_list_status_over_text">#9b9b9b</color>
+    <color name="order_list_status_wait_receive_text">#ff4e00</color>
+    <color name="order_list_status_wait_comment_text">#4aa835</color>
+
 </resources>

@@ -16,12 +16,12 @@ import java.util.List;
 public class InitItemCommand implements Command {
 
     private final Context context;
-    private List<MeItemCommand> commands = new ArrayList<>();
+    private List<CommonItemCommand> commands = new ArrayList<>();
 
     public InitItemCommand(Context context, List<View> views, List<ItemViewMode> viewModeList) {
         this.context = context;
         for (int i = 0;i< views.size();i++){
-            MeItemCommand command = new MeItemCommand(views.get(i), getBundle(viewModeList.get(i)));
+            CommonItemCommand command = new CommonItemCommand(views.get(i), getBundle(viewModeList.get(i)));
             commands.add(command);
         }
     }
@@ -35,12 +35,12 @@ public class InitItemCommand implements Command {
 
     private Bundle getBundle(ItemViewMode mode){
         Bundle bundle = new Bundle();
-        bundle.putInt(MeItemCommand.PARAM_TITLE, mode.getTitleId());
-        bundle.putInt(MeItemCommand.PARAM_ICON, mode.getIconId());
+        bundle.putInt(CommonItemCommand.PARAM_TITLE, mode.getTitleId());
+        bundle.putInt(CommonItemCommand.PARAM_ICON, mode.getIconId());
         return bundle;
     }
 
-    public MeItemCommand getItemCommand(int position){
+    public CommonItemCommand getItemCommand(int position){
         return commands.get(position);
     }
 
