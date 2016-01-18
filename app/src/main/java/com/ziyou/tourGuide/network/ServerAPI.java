@@ -146,6 +146,7 @@ public class ServerAPI {
         public static final String IDENTIFY_CODE = "send_code";
         public static final String USER_INFO = "get_userinfo";
         public static final String PASSWORDLOGIN = "password_login";
+        public static final String GET_MESSAGE_LIST = "get_message_list";
 
         public static final String PARAM_PHONE = "phone";
         public static final String PARAM_IDENTIFY_CODE = "activation_code";
@@ -177,6 +178,13 @@ public class ServerAPI {
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(USER);
             builder.appendEncodedPath(USER_INFO);
+            return builder.toString();
+        }
+
+        public static String buildGetMessageListUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(USER);
+            builder.appendEncodedPath(GET_MESSAGE_LIST);
             return builder.toString();
         }
 

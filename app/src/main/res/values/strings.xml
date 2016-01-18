@@ -42,6 +42,9 @@
     <string name="about_me">关于我们</string>
     <string name="unlogin">退出登陆</string>
 
+    <!-- mymessage fragment-->
+
+
 
 
 </resources>

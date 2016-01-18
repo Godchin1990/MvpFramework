@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
+import com.ziyou.tourGuide.activity.MyMessageActivity;
 import com.ziyou.tourGuide.activity.SettingActivity;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.helper.UserHelper;
@@ -49,10 +50,11 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         meView = new MeView(getContext());
+        meView.getAvatar().setOnClickListener(this);
         meView.getInfomationLayout().setOnClickListener(this);
         meView.getInfomationLayoutPart().setOnClickListener(this);
+        meView.getMyMessage().setOnClickListener(this);
         meView.getSetting().setOnClickListener(this);
-        meView.getAvatar().setOnClickListener(this);
         return meView.getRootView();
     }
 
@@ -87,10 +89,24 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
             case R.id.riv_user_avatar:
                 Log.d(TAG, "click riv_user_avatar");
                 break;
+            case R.id.my_message:
+                Log.d(TAG, "click my_message");
+                if(UserHelper.getInstance().isLogin()){
+                    intent = new Intent(getContext(),MyMessageActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
             case R.id.setting:
                 Log.d(TAG, "click setting");
                 intent = new Intent(getContext(), SettingActivity.class);
                 getContext().startActivity(intent);
+                break;
+            default:
+                intent = new Intent(getContext(),LoginActivity.class);
+                startActivity(intent);
                 break;
         }
     }
