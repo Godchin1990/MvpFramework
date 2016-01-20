@@ -207,12 +207,22 @@ public class ServerAPI {
      */
     public static class Order{
         public static final String GET_USER_ORDERS = "get_user_orders";
+        public static final String GET_GUIDE_ORDERS = "get_guide_orders";
+
         public static String buildGetUserOrdersUrl(){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(VERSION_V3);
             builder.appendEncodedPath(GET_USER_ORDERS);
             return builder.toString();
         }
+
+        public static String buildGetGuideOrdersUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(VERSION_V3);
+            builder.appendEncodedPath(GET_GUIDE_ORDERS);
+            return builder.toString();
+        }
+
     }
 
     /**

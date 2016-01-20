@@ -1,11 +1,14 @@
 package com.ziyou.tourGuide.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.GuiderOrderActivity;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.view.GuiderAreaView;
 
@@ -29,6 +32,7 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
     private void initListener() {
         guiderAreaView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_area));
         guiderAreaView.getActionBarView().getLeftView().setOnClickListener(this);
+        guiderAreaView.getMyOrder().setOnClickListener(this);
     }
 
     @Override
@@ -39,9 +43,15 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        Intent intent = null;
         switch (v.getId()){
             case R.id.action_bar_left:
                 getActivity().finish();
+                break;
+            case R.id.my_order:
+                Log.d(TAG,"click guider order");
+                intent = new Intent(getContext(), GuiderOrderActivity.class);
+                startActivity(intent);
                 break;
         }
     }

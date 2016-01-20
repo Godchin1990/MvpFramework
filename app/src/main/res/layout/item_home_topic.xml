@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/home_topic_title"
             android:layout_centerHorizontal="true"
-            android:hint="@string/discription"
+            android:hint="@string/description"
             android:textSize="@dimen/item_home_topic_text_discription_size"
             android:textColor="@color/home_topic_text_color"
             android:textColorHint="@color/home_topic_text_color"/>

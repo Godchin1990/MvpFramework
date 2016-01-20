@@ -2,6 +2,12 @@
     <string name="app_name">MvpFramework</string>
     <string name="load_more">加载更多</string>
 
+    <string name="title">标题</string>
+    <string name="description">描述</string>
+    <string name="date">日期</string>
+    <string name="status">状态</string>
+
+
     <!-- index-->
     <string name="home">首页</string>
     <string name="discovery">发现</string>
@@ -10,8 +16,6 @@
 
     <!-- home fragment-->
     <!-- home fragment & topic-->
-    <string name="title">标题</string>
-    <string name="discription">描述</string>
     <string name="guider_route">%1$d个达人|%2$d条路线</string>
     <!-- home fragment & route-->
     <string name="unknown">未知</string>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    style="@style/item_layout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_centerVertical="true"
+            android:id="@+id/riv_guide_avatar"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@mipmap/bg_avata_hint"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderWidth="1dp"
+            android:layout_marginRight="24dp"
+            />
+        <!--fresco:roundingBorderWidth="1dp"-->
+        <!--fresco:roundingBorderColor="@color/white"-->
+
+        <LinearLayout
+            android:id="@+id/guider_info_layout"
+            android:layout_toRightOf="@id/riv_guide_avatar"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/title"
+                android:id="@+id/title"
+                android:textColor="@color/text_black_text"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="16dp"
+                android:textColor="@color/home_route_text_tag_color"
+                android:text="@string/date"
+                android:id="@+id/time"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_alignTop="@+id/guider_info_layout"
+            android:text="@string/status"
+            android:id="@+id/status"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+</FrameLayout>

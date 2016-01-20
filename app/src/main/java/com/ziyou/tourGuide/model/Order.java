@@ -13,6 +13,14 @@ public class Order {
      * trade_status : 1
      * username : 大宝
      */
+//    {
+//        "avatar": "http://selftravel-image.qiniudn.com/Fp1NOGDigELcOYqtDTir5C_3ZTHx?imageView2/0/w/300",
+//            "create_time": "2015-12-25 16:39:19",
+//            "id": 1117,
+//            "trade_status": 11,
+//            "username": "剑心"
+//    }
+
 
     private String avatar;
     private String create_time;
