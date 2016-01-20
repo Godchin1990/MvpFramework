@@ -3,10 +3,11 @@ package com.ziyou.tourGuide.view;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.command.view.InitItemCommand;
 import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMeView;
@@ -75,10 +76,15 @@ public class MeView extends TitleBarContentView implements IMeView {
         viewModeList.add(new ItemViewMode(R.string.my_tour,R.mipmap.ic_my_tour));
         viewModeList.add(new ItemViewMode(R.string.my_wallet, R.mipmap.ic_my_wallet));
         viewModeList.add(new ItemViewMode(R.string.customer_service,R.mipmap.ic_customer_service));
-        viewModeList.add(new ItemViewMode(R.string.setting,R.mipmap.ic_setting));
+        viewModeList.add(new ItemViewMode(R.string.setting, R.mipmap.ic_setting));
 
-        InitItemCommand initItemCommand = new InitItemCommand(getContext(),viewList,viewModeList);
-        initItemCommand.execute();
+        for(int i = 0;i<viewList.size();i++){
+            TextView itemText = (TextView) viewList.get(i).findViewById(R.id.item_text);
+            ImageView itemIcon = (ImageView) viewList.get(i).findViewById(R.id.item_icon);
+            itemText.setText(getContext().getResources().getString(viewModeList.get(i).getTitleId()));
+            itemIcon.setImageDrawable(getContext().getResources().getDrawable(viewModeList.get(i).getIconId()));
+        }
+
     }
 
     @Override

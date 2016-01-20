@@ -40,6 +40,7 @@ public class GuiderOrderFragment extends BaseFragment implements StringCallBack<
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         guiderOrderView = new GuiderOrderView(getContext());
+        guiderOrderView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_order));
         return guiderOrderView.getRootView();
     }
 

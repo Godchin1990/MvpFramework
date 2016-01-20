@@ -13,15 +13,15 @@
 
             <include
                 android:id="@+id/clear_cache"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/use_help"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/about_me"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_next"/>
             <include layout="@layout/item_grey_line"/>
             <Button
                 android:id="@+id/un_login"

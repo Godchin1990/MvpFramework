@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.command.view.CommonItemCommand;
-import com.ziyou.tourGuide.command.view.InitItemCommand;
 import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMyWalletView;
@@ -73,27 +71,13 @@ public class MyWalletView extends TitleBarContentView implements IMyWalletView {
         viewModeList.add(new ItemViewMode(R.string.can_withdraw_cash));
         viewModeList.add(new ItemViewMode(R.string.discount_coupon));
 
-        InitItemCommand initItemCommand = new InitItemCommand(getContext(),viewList,viewModeList);
-        initItemCommand.getItemCommand(0).setBeginViewCallBack(new CommonItemCommand.ViewCallBack() {
-            @Override
-            public View getInflateView() {
-                cash_tv = new TextView(getContext());
-                cash_tv.setText("0");
-                return cash_tv;
-            }
-        });
-        initItemCommand.getItemCommand(1).setBeginViewCallBack(new CommonItemCommand.ViewCallBack() {
-            @Override
-            public View getInflateView() {
-                can_withdraw_cash_tv = new TextView(getContext());
-                can_withdraw_cash_tv.setText("0");
-                return can_withdraw_cash_tv;
-            }
-        });
+        for(int i = 0;i<viewList.size();i++){
+            TextView itemText = (TextView) viewList.get(i).findViewById(R.id.item_text);
+            itemText.setText(getContext().getResources().getString(viewModeList.get(i).getTitleId()));
+        }
 
-        cash.findViewById(R.id.next).setVisibility(View.GONE);
-        can_withdraw_cash.findViewById(R.id.next).setVisibility(View.GONE);
-        initItemCommand.execute();
+        cash_tv = (TextView) cash.findViewById(R.id.item_left_desc);
+        can_withdraw_cash_tv = (TextView) can_withdraw_cash.findViewById(R.id.item_left_desc);
 
         getActionBarView().getRightTextView().setText(getContext().getString(R.string.withdraw_cash));
         getActionBarView().getRightTextView().setVisibility(View.VISIBLE);

@@ -11,28 +11,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <include
-                android:id="@+id/my_order"
+                android:id="@+id/name"
+                layout="@layout/item_match_edittext"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/phone_number"
+                layout="@layout/item_match_edittext"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/current_living_place"
+                layout="@layout/item_textview"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/password_setting"
                 layout="@layout/item_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
-                android:id="@+id/guider_information"
-                layout="@layout/item_next"/>
+                android:id="@+id/age"
+                layout="@layout/item_textview"/>
             <include layout="@layout/item_grey_line"/>
             <include
-                android:id="@+id/receive_route"
-                layout="@layout/item_next"/>
-            <include layout="@layout/item_grey_line"/>
-            <include
-                android:id="@+id/order_statistic"
-                layout="@layout/item_next"/>
-            <include layout="@layout/item_grey_line"/>
-            <include
-                android:id="@+id/route_community"
-                layout="@layout/item_next"/>
-            <include layout="@layout/item_grey_line"/>
+                android:id="@+id/gender"
+                layout="@layout/item_textview"/>
         </LinearLayout>
     </ScrollView>
-
-
 
 </FrameLayout>

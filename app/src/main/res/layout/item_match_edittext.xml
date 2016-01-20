@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_me"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_icon"
+        android:text="标题"
+        android:textColor="@color/text_black_text"
+        android:textSize="16sp" />
+
+    <EditText
+        style="@style/item_edittext"
+        android:layout_toRightOf="@id/item_text"
+        android:id="@+id/item_edittext"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

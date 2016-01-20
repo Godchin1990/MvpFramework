@@ -55,6 +55,7 @@
     <string name="receive_route">已领路线</string>
     <string name="order_statistic">订单统计</string>
     <string name="route_community">路线社区</string>
+    <string name="guider_order">达人订单</string>
 
     <!-- my_wallet fragment-->
     <string name="cash">现金</string>
@@ -63,5 +64,16 @@
     <string name="withdraw_cash">提现</string>
     <string name="discount_coupon">优惠券</string>
 
+    <!-- user_edit fragment -->
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
+    <string name="name">名称</string>
+    <string name="phone_number">手机</string>
+    <string name="current_living_place">现居地</string>
+    <string name="password_setting">密码设置</string>
+    <string name="age">年龄</string>
+    <string name="gender">性别</string>
+    <string name="introduction">个人介绍</string>
+    <string name="tag">标签</string>
 
 </resources>

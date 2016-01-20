@@ -20,19 +20,19 @@
                 layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/my_message"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/guider_area"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/my_tour"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/my_wallet"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
 
             <include
@@ -42,11 +42,11 @@
                 layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/customer_service"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/setting"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_icon_next"/>
             <include layout="@layout/item_grey_line"/>
         </LinearLayout>
     </ScrollView>

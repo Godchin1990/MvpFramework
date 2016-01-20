@@ -3,9 +3,9 @@ package com.ziyou.tourGuide.view;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.command.view.InitItemCommand;
 import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.ISettingView;
@@ -54,8 +54,11 @@ public class SettingView extends TitleBarContentView implements ISettingView {
         viewModeList.add(new ItemViewMode(R.string.use_helpe));
         viewModeList.add(new ItemViewMode(R.string.about_me));
 
-        InitItemCommand initItemCommand = new InitItemCommand(getContext(),viewList, viewModeList);
-        initItemCommand.execute();
+        for(int i = 0;i<viewList.size();i++){
+            TextView itemText = (TextView) viewList.get(i).findViewById(R.id.item_text);
+            itemText.setText(getContext().getResources().getString(viewModeList.get(i).getTitleId()));
+        }
+
     }
 
     @Override

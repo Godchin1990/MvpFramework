@@ -13,11 +13,11 @@
 
             <include
                 android:id="@+id/cash"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_left_textview"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/can_withdraw_cash"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_left_textview"/>
             <include layout="@layout/item_grey_line"/>
 
             <TextView
@@ -36,7 +36,7 @@
                 layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/discount_coupon"
-                layout="@layout/item_me_content"/>
+                layout="@layout/item_next"/>
             <include layout="@layout/item_grey_line"/>
         </LinearLayout>
     </ScrollView>
