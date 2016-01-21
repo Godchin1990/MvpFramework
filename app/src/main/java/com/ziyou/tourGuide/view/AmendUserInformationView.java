@@ -33,10 +33,15 @@ public class AmendUserInformationView extends TitleBarContentView implements IAm
     View age;
     @Bind(R.id.gender)
     View gender;
+    @Bind(R.id.introduction)
+    View introduction;
 
     private EditText username_et;
     private EditText phone_number_et;
     private TextView current_living_place_tv;
+    private TextView age_tv;
+    private TextView gender_tv;
+    private EditText introduction_et;
 
     public AmendUserInformationView(Context context) {
         super(context);
@@ -45,20 +50,12 @@ public class AmendUserInformationView extends TitleBarContentView implements IAm
     @Override
     public View setContentView() {
         View view = View.inflate(getContext(), R.layout.fragment_amend_user_information,null);
-        ButterKnife.bind(this,view);
-        initMeItemList();
-        initCotentView();
+        ButterKnife.bind(this, view);
+        initItemList();
         return view.getRootView();
     }
 
-    private void initCotentView() {
-        username_et = (EditText) name.findViewById(R.id.item_edittext);
-        phone_number_et = (EditText) phone_number.findViewById(R.id.item_edittext);
-//        current_living_place_tv = (TextView) current_living_place.findViewById(R.id.);
-//        current_living_place_tv = (TextView) phone_number.findViewById(R.id.);
-    }
-
-    private void initMeItemList() {
+    private void initItemList() {
         List<View> viewList = new ArrayList<>();
         viewList.add(name);
         viewList.add(phone_number);
@@ -79,6 +76,13 @@ public class AmendUserInformationView extends TitleBarContentView implements IAm
             TextView itemText = (TextView) viewList.get(i).findViewById(R.id.item_text);
             itemText.setText(getContext().getResources().getString(viewModeList.get(i).getTitleId()));
         }
+
+        username_et = (EditText) name.findViewById(R.id.item_edittext);
+        phone_number_et = (EditText) phone_number.findViewById(R.id.item_edittext);
+        current_living_place_tv = (TextView)current_living_place.findViewById(R.id.item_right_desc);
+        age_tv = (TextView)age.findViewById(R.id.item_right_desc);
+        gender_tv = (TextView)gender.findViewById(R.id.item_right_desc);
+        introduction_et = (EditText)introduction.findViewById(R.id.muti_edittext);
     }
 
     @Override
@@ -98,17 +102,22 @@ public class AmendUserInformationView extends TitleBarContentView implements IAm
 
     @Override
     public View getPasswordSettingView() {
-        return null;
+        return password_setting;
     }
 
     @Override
-    public View getAgeTextView() {
-        return null;
+    public TextView getAgeTextView() {
+        return age_tv;
     }
 
     @Override
-    public View getGenderTextView() {
-        return null;
+    public TextView getGenderTextView() {
+        return gender_tv;
+    }
+
+    @Override
+    public EditText getIntroductionEditText() {
+        return introduction_et;
     }
 
 }

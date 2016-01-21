@@ -88,6 +88,7 @@
         <activity android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.AmendUserInformationActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.SettingActivity"
             android:screenOrientation="portrait"/>
@@ -102,6 +103,8 @@
         <activity android:name=".activity.MyWalletActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.GuiderOrderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AmendPasswordActivity"
             android:screenOrientation="portrait"/>
     </application>
 

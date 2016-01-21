@@ -12,6 +12,7 @@ public interface IAmendUserInformationView {
     EditText getPhoneNumberEditText();
     TextView getCurrentLivingPlaceTextView();
     View getPasswordSettingView();
-    View getAgeTextView();
-    View getGenderTextView();
+    TextView getAgeTextView();
+    TextView getGenderTextView();
+    EditText getIntroductionEditText();
 }

@@ -65,10 +65,17 @@
     </style>
 
     <!-- -->
+    <style name="item_muti_edittext">
+        <item name="android:padding">13dp</item>
+        <item name="android:gravity">left|top</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="item_edittext">
-        <item name="android:gravity">right</item>
+        <item name="android:gravity">right|center_vertical</item>
         <item name="android:singleLine">true</item>
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textSize">16sp</item>
     </style>
 

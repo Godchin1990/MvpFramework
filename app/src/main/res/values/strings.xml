@@ -73,7 +73,16 @@
     <string name="password_setting">密码设置</string>
     <string name="age">年龄</string>
     <string name="gender">性别</string>
+    <string name="gentle_man">男</string>
+    <string name="lady">女</string>
     <string name="introduction">个人介绍</string>
     <string name="tag">标签</string>
+    <string name="amend_password">修改密码</string>
+    <string name="old_password">旧密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="password_can_not_be_null">密码不能为空</string>
+    <string name="password_can_not_less_six">密码不能少于6位</string>
+    <string name="password_two_input_not_equal">两次密码输入不一致</string>
+    <string name="password_amend_success">修改密码成功</string>
 
 </resources>

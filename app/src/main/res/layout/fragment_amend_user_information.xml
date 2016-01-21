@@ -20,7 +20,7 @@
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/current_living_place"
-                layout="@layout/item_textview"/>
+                layout="@layout/item_right_textview"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/password_setting"
@@ -28,11 +28,14 @@
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/age"
-                layout="@layout/item_textview"/>
+                layout="@layout/item_right_textview"/>
             <include layout="@layout/item_grey_line"/>
             <include
                 android:id="@+id/gender"
-                layout="@layout/item_textview"/>
+                layout="@layout/item_right_textview"/>
+            <include layout="@layout/item_grey_line"/>
+            <include android:id="@+id/introduction"
+                layout="@layout/item_muti_line_edittext"/>
         </LinearLayout>
     </ScrollView>
 
