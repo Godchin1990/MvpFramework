@@ -148,6 +148,7 @@ public class ServerAPI {
         public static final String PASSWORDLOGIN = "password_login";
         public static final String GET_MESSAGE_LIST = "get_message_list";
         public static final String CHANGE_PASSWORD = "change_password";
+        public static final String MODIFY_USER = "modify_user";
 
         public static final String PARAM_PHONE = "phone";
         public static final String PARAM_IDENTIFY_CODE = "activation_code";
@@ -193,6 +194,12 @@ public class ServerAPI {
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(USER);
             builder.appendEncodedPath(CHANGE_PASSWORD);
+            return builder.build().toString();
+        }
+        public static String buildModifyUserUrl() {
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(USER);
+            builder.appendEncodedPath(MODIFY_USER);
             return builder.build().toString();
         }
 

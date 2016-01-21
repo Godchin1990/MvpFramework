@@ -52,22 +52,13 @@ public class AmendPasswordFragment extends BaseFragment implements View.OnClickL
                 Log.d(TAG,"click setting");
                 String newPassword = amendPasswordView.getNewPasswordEditText().getText().toString();
                 String confirmPassword = amendPasswordView.getOldPasswordEditText().getText().toString();
-                if(TextUtils.isEmpty(confirmPassword)||TextUtils.isEmpty(newPassword)){
-                    Toast.makeText(getContext(),getResources().getString(R.string.password_can_not_be_null),Toast.LENGTH_SHORT).show();
-                    return;
+
+                if(canChangePasswordStrategy(newPassword,confirmPassword)){
+                    String url = ServerAPI.User.buildChangePasswordUrl();
+                    Map<String,String> params = new HashMap<>();
+                    params.put("password",newPassword);
+                    NetworkHelper.getInstance().sendPostStringRequest(url,params,this,"refresh");
                 }
-                if(confirmPassword.length()<6){
-                    Toast.makeText(getContext(),getResources().getString(R.string.password_can_not_less_six),Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(!confirmPassword.equals(newPassword)){
-                    Toast.makeText(getContext(),getResources().getString(R.string.password_two_input_not_equal),Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String url = ServerAPI.User.buildChangePasswordUrl();
-                Map<String,String> params = new HashMap<>();
-                params.put("password",newPassword);
-                NetworkHelper.getInstance().sendPostStringRequest(url,params,this,"refresh");
                 break;
         }
     }
@@ -77,10 +68,10 @@ public class AmendPasswordFragment extends BaseFragment implements View.OnClickL
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                switch (tag){
+                switch (tag) {
                     case "refresh":
-                        Log.d(TAG,data);
-                        Toast.makeText(getContext(),getResources().getString(R.string.password_amend_success),Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, data);
+                        Toast.makeText(getContext(), getResources().getString(R.string.password_amend_success), Toast.LENGTH_SHORT).show();
                         getActivity().finish();
                         break;
                 }
@@ -97,5 +88,27 @@ public class AmendPasswordFragment extends BaseFragment implements View.OnClickL
                 Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    /**
+     * 判断参数策略
+     * @param newPassword
+     * @param confirmPassword
+     * @return
+     */
+    private boolean canChangePasswordStrategy(String newPassword, String confirmPassword) {
+        if(TextUtils.isEmpty(confirmPassword)||TextUtils.isEmpty(newPassword)){
+            Toast.makeText(getContext(),getResources().getString(R.string.password_can_not_be_null),Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(confirmPassword.length()<6){
+            Toast.makeText(getContext(),getResources().getString(R.string.password_can_not_less_six),Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!confirmPassword.equals(newPassword)){
+            Toast.makeText(getContext(),getResources().getString(R.string.password_two_input_not_equal),Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

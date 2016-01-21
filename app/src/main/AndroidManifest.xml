@@ -106,6 +106,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.AmendPasswordActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ReceiveRouteActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
