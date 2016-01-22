@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <declare-styleable name="WordWrapView">
+        <attr name="child_background" format="reference" />
+        <attr name="child_padding" format="dimension" />
+        <attr name="child_padding_left" format="dimension" />
+        <attr name="child_padding_top" format="dimension" />
+        <attr name="child_padding_right" format="dimension" />
+        <attr name="child_padding_bottom" format="dimension" />
+        <attr name="child_textsize" format="integer" />
+    </declare-styleable>
 </resources>

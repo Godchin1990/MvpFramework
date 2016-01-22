@@ -17,9 +17,6 @@ import com.ziyou.tourGuide.command.base.Command;
 import com.ziyou.tourGuide.model.HomeRoute;
 import com.ziyou.tourGuide.widget.WordWrapView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Edward on 15/11/8.
  */
@@ -65,26 +62,8 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
         riv_guide_avatar.setTag(data);
         riv_guide_avatar.setOnClickListener(this);
 
-        List<View> textViewList = getTextViewList(data.getLabel(), 0);
-        view_wordwrap.removeAllViews();
-        for(int i = 0;i<textViewList.size();i++){
-            view_wordwrap.addView(textViewList.get(i));
-        }
+        view_wordwrap.setLabelList(data.getLabel(),3);
 
-    }
-
-    public List<View> getTextViewList(List<String> labels,int limit){
-        List<View> list = new ArrayList<>();
-        for(int i = 0;i<labels.size();i++){
-            if(limit>0&&i>=limit){
-                break;
-            }
-            View inflate = View.inflate(itemView.getContext(), R.layout.item_label_part, null);
-            TextView label = (TextView) inflate.findViewById(R.id.label);
-            label.setText(labels.get(i));
-            list.add(inflate);
-        }
-        return list;
     }
 
     @Override

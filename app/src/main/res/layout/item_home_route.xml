@@ -80,6 +80,10 @@
             android:textSize="16sp" />
 
         <com.ziyou.tourGuide.widget.WordWrapView
+            app:child_padding_left="10dp"
+            app:child_padding_right="10dp"
+            app:child_background="@drawable/bg_item_tag_selector"
+            app:child_textsize="16"
             android:id="@+id/view_wordwrap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
