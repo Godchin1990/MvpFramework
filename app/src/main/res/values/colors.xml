@@ -10,6 +10,8 @@
     <color name="base_grey_line">#ffdbdbdb</color>
     <color name="base_order_grey_line">#ffebebeb</color>
 
+    <color name="tag_color">#d8d8d8</color>
+
     <!-- common-->
     <color name="theme_color">#FF49c6d8</color>
     <color name="theme_color_pressed">#7049c6d8</color>

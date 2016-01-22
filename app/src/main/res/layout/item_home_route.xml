@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:fresco="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:background="@color/white"
+    android:paddingBottom="20dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/home_route_iv"
@@ -12,7 +13,7 @@
         android:layout_height="@dimen/item_home_route_height"
         fresco:actualImageScaleType="centerCrop"
         fresco:placeholderImage="@mipmap/bg_loading_image"
-        fresco:placeholderImageScaleType="centerCrop"/>
+        fresco:placeholderImageScaleType="centerCrop" />
 
 
     <LinearLayout
@@ -34,9 +35,9 @@
             fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@mipmap/bg_avata_hint"
             fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundAsCircle="true"
-            fresco:roundingBorderWidth="1dp"
-            fresco:roundingBorderColor="@color/white"/>
+            fresco:roundAsCircle="true" />
+        <!--fresco:roundingBorderWidth="1dp"-->
+        <!--fresco:roundingBorderColor="@color/white"-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="￥"
                 android:textColor="@color/home_route_text_price_color"
-                android:textSize="13sp"/>
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tv_server_pay"
@@ -57,30 +58,34 @@
                 android:layout_height="wrap_content"
                 android:text="@string/unknown"
                 android:textColor="@color/home_route_text_price_color"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/home_route_iv"
+        android:id="@+id/route_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/home_route_iv"
+        android:layout_marginTop="10dp"
         android:layout_toLeftOf="@id/ll_avatar_money"
         android:padding="10dp">
+
         <TextView
-            android:textColor="@color/home_route_text_title_color"
             android:id="@+id/route_title"
-            android:hint="@string/title"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <!--<com.example.edward.test.widget.WordWrapNoPaddingView-->
-            <!--android:id="@+id/wv_tag"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@id/route_title"-->
-            <!--android:layout_marginTop="5dp" />-->
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:textColor="@color/home_route_text_title_color"
+            android:textSize="16sp" />
+
+        <com.ziyou.tourGuide.widget.WordWrapView
+            android:id="@+id/view_wordwrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/route_title"
+            android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
 
 

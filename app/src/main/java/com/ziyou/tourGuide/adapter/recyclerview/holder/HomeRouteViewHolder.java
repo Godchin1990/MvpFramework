@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.GuideDetailActivity;
 import com.ziyou.tourGuide.activity.RouteDetailActivity;
@@ -14,7 +15,10 @@ import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.command.SimpleDraweeViewCommand;
 import com.ziyou.tourGuide.command.base.Command;
 import com.ziyou.tourGuide.model.HomeRoute;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.ziyou.tourGuide.widget.WordWrapView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Edward on 15/11/8.
@@ -26,6 +30,7 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
     public SimpleDraweeView riv_guide_avatar;
     public TextView tv_server_pay;
     public TextView route_title;
+    private WordWrapView view_wordwrap;
 
     public static View getView(Context context) {
         View routeView = LayoutInflater.from(context).inflate(R.layout.item_home_route, null);
@@ -38,6 +43,7 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
         riv_guide_avatar = (SimpleDraweeView) itemView.findViewById(R.id.riv_guide_avatar);
         route_title = (TextView) itemView.findViewById(R.id.route_title);
         tv_server_pay = (TextView) itemView.findViewById(R.id.tv_server_pay);
+        view_wordwrap = (WordWrapView) itemView.findViewById(R.id.view_wordwrap);
 
     }
 
@@ -58,6 +64,27 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
         routeCover.setOnClickListener(this);
         riv_guide_avatar.setTag(data);
         riv_guide_avatar.setOnClickListener(this);
+
+        List<View> textViewList = getTextViewList(data.getLabel(), 0);
+        view_wordwrap.removeAllViews();
+        for(int i = 0;i<textViewList.size();i++){
+            view_wordwrap.addView(textViewList.get(i));
+        }
+
+    }
+
+    public List<View> getTextViewList(List<String> labels,int limit){
+        List<View> list = new ArrayList<>();
+        for(int i = 0;i<labels.size();i++){
+            if(limit>0&&i>=limit){
+                break;
+            }
+            View inflate = View.inflate(itemView.getContext(), R.layout.item_label_part, null);
+            TextView label = (TextView) inflate.findViewById(R.id.label);
+            label.setText(labels.get(i));
+            list.add(inflate);
+        }
+        return list;
     }
 
     @Override
