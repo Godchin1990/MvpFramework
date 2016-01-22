@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.activity.AmendUserInformationActivity;
+import com.ziyou.tourGuide.activity.UserInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderAreaActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.MyMessageActivity;
@@ -107,7 +107,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
             case R.id.me_infomation_layout:
                 Log.d(TAG, "click me_infomation_layout");
                 if (UserHelper.getInstance().isLogin()) {
-                    intent = new Intent(getContext(), AmendUserInformationActivity.class);
+                    intent = new Intent(getContext(), UserInformationActivity.class);
                     getContext().startActivity(intent);
                 } else {
                     intent = new Intent(getContext(), LoginActivity.class);

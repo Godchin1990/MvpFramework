@@ -15,7 +15,7 @@ import com.ziyou.tourGuide.model.UserInformation;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.AmendUserInformationView;
+import com.ziyou.tourGuide.view.UserInformationView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,9 +23,9 @@ import java.util.Map;
 /**
  * Created by Edward on 16/1/15.
  */
-public class AmendUserInformationFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
+public class UserInformationFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
 
-    private AmendUserInformationView amendUserInformationView;
+    private UserInformationView userInformationView;
 
     @Override
     protected void initData() {
@@ -34,18 +34,18 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
     }
 
     private void initListener() {
-        amendUserInformationView.getActionBarView().getLeftView().setOnClickListener(this);
-        amendUserInformationView.getActionBarView().getRightTextView().setOnClickListener(this);
-        amendUserInformationView.getPasswordSettingView().setOnClickListener(this);
+        userInformationView.getActionBarView().getLeftView().setOnClickListener(this);
+        userInformationView.getActionBarView().getRightTextView().setOnClickListener(this);
+        userInformationView.getPasswordSettingView().setOnClickListener(this);
     }
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        amendUserInformationView = new AmendUserInformationView(getContext());
-        amendUserInformationView.getActionBarView().getTitleView().setText(getResources().getString(R.string.edit));
-        amendUserInformationView.getActionBarView().getRightTextView().setVisibility(View.VISIBLE);
-        amendUserInformationView.getActionBarView().getRightTextView().setText(getResources().getString(R.string.save));
-        return amendUserInformationView.getRootView();
+        userInformationView = new UserInformationView(getContext());
+        userInformationView.getActionBarView().getTitleView().setText(getResources().getString(R.string.edit));
+        userInformationView.getActionBarView().getRightTextView().setVisibility(View.VISIBLE);
+        userInformationView.getActionBarView().getRightTextView().setText(getResources().getString(R.string.save));
+        return userInformationView.getRootView();
     }
 
     @Override
@@ -69,11 +69,11 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
 
     private Map<String, String> getUploadInformationParams() {
         Map<String,String> params = new HashMap<>();
-        String name = amendUserInformationView.getUserNameEditText().getText().toString();
-        String phone = amendUserInformationView.getPhoneNumberEditText().getText().toString();
-        String gender = amendUserInformationView.getGenderTextView().getText().toString();
-        String intro = amendUserInformationView.getIntroductionEditText().getText().toString();
-        String city = amendUserInformationView.getCurrentLivingPlaceTextView().getText().toString();
+        String name = userInformationView.getUserNameEditText().getText().toString();
+        String phone = userInformationView.getPhoneNumberEditText().getText().toString();
+        String gender = userInformationView.getGenderTextView().getText().toString();
+        String intro = userInformationView.getIntroductionEditText().getText().toString();
+        String city = userInformationView.getCurrentLivingPlaceTextView().getText().toString();
         params.put("name",name);
         params.put("phone",phone);
         params.put("gender","1");
@@ -99,20 +99,20 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
     private void refreshInformation(){
         UserInformation userInformation = UserHelper.getInstance().getUserInformation();
 
-        amendUserInformationView.getUserNameEditText().setText(userInformation.getNickname());
-        amendUserInformationView.getPhoneNumberEditText().setText(userInformation.getPhone());
-        amendUserInformationView.getAgeTextView().setText(userInformation.getAge()+"");
-        amendUserInformationView.getCurrentLivingPlaceTextView().setText(userInformation.getCity());
-        amendUserInformationView.getIntroductionEditText().setText(userInformation.getIntro());
+        userInformationView.getUserNameEditText().setText(userInformation.getNickname());
+        userInformationView.getPhoneNumberEditText().setText(userInformation.getPhone());
+        userInformationView.getAgeTextView().setText(userInformation.getAge()+"");
+        userInformationView.getCurrentLivingPlaceTextView().setText(userInformation.getCity());
+        userInformationView.getIntroductionEditText().setText(userInformation.getIntro());
         switch (userInformation.getGender()){
             case 1:
-                amendUserInformationView.getGenderTextView().setText(getResources().getString(R.string.gentle_man));
+                userInformationView.getGenderTextView().setText(getResources().getString(R.string.gentle_man));
                 break;
             case 2:
-                amendUserInformationView.getGenderTextView().setText(getResources().getString(R.string.lady));
+                userInformationView.getGenderTextView().setText(getResources().getString(R.string.lady));
                 break;
             default:
-                amendUserInformationView.getGenderTextView().setText(getResources().getString(R.string.unknown));
+                userInformationView.getGenderTextView().setText(getResources().getString(R.string.unknown));
                 break;
         }
 

@@ -45,7 +45,8 @@
                 android:id="@+id/is_select"
                 android:padding="5dp"
                 android:src="@drawable/item_close_img_selecter"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,6 +54,7 @@
                 android:text="感谢您在白导预定导游服务，欢迎您再光临"
                 android:id="@+id/item_content"
                 android:textSize="17sp"
+                android:layout_centerVertical="true"
                 android:textColor="@color/default_text_color"
                 android:ellipsize="end"
                 android:singleLine="true"

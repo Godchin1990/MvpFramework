@@ -7,7 +7,7 @@ import android.widget.TextView;
 /**
  * Created by Edward on 16/1/20.
  */
-public interface IAmendUserInformationView {
+public interface IGuiderInformationView {
     EditText getUserNameEditText();
     EditText getPhoneNumberEditText();
     TextView getCurrentLivingPlaceTextView();

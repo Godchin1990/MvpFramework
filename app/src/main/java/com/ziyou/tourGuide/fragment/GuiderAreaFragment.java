@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.GuiderInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderOrderActivity;
 import com.ziyou.tourGuide.activity.ReceiveRouteActivity;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
@@ -31,15 +32,16 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
     }
 
     private void initListener() {
-        guiderAreaView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_area));
         guiderAreaView.getActionBarView().getLeftView().setOnClickListener(this);
         guiderAreaView.getMyOrder().setOnClickListener(this);
         guiderAreaView.getReceiveRoute().setOnClickListener(this);
+        guiderAreaView.getGuiderInformation().setOnClickListener(this);
     }
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         guiderAreaView = new GuiderAreaView(getContext());
+        guiderAreaView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_area));
         return guiderAreaView.getRootView();
     }
 
@@ -53,6 +55,11 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
             case R.id.my_order:
                 Log.d(TAG,"click guider order");
                 intent = new Intent(getContext(), GuiderOrderActivity.class);
+                getContext().startActivity(intent);
+                break;
+            case R.id.guider_information:
+                Log.d(TAG,"click guider_information");
+                intent = new Intent(getContext(), GuiderInformationActivity.class);
                 getContext().startActivity(intent);
                 break;
             case R.id.receive_route:

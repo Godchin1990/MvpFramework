@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
-import com.ziyou.tourGuide.view.interfaze.IAmendUserInformationView;
+import com.ziyou.tourGuide.view.interfaze.IGuiderInformationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Edward on 16/1/20.
  */
-public class AmendUserInformationView extends TitleBarContentView implements IAmendUserInformationView {
+public class GuiderInformationView extends TitleBarContentView implements IGuiderInformationView {
 
     @Bind(R.id.name)
     View name;
@@ -43,7 +43,7 @@ public class AmendUserInformationView extends TitleBarContentView implements IAm
     private TextView gender_tv;
     private EditText introduction_et;
 
-    public AmendUserInformationView(Context context) {
+    public GuiderInformationView(Context context) {
         super(context);
     }
 

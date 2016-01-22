@@ -6,18 +6,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="75dp">
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_centerVertical="true"
             android:id="@+id/riv_guide_avatar"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@mipmap/bg_avata_hint"
             fresco:placeholderImageScaleType="centerCrop"
             fresco:roundAsCircle="true"
             fresco:roundingBorderWidth="1dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="18dp"
             />
         <!--fresco:roundingBorderWidth="1dp"-->
         <!--fresco:roundingBorderColor="@color/white"-->
@@ -33,15 +33,15 @@
                 android:text="@string/title"
                 android:id="@+id/title"
                 android:textColor="@color/text_black_text"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:textColor="@color/home_route_text_tag_color"
                 android:text="@string/date"
                 android:id="@+id/time"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -50,7 +50,7 @@
             android:layout_alignTop="@+id/guider_info_layout"
             android:text="@string/status"
             android:id="@+id/status"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"/>
