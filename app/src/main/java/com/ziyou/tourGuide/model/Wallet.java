@@ -10,22 +10,22 @@ public class Wallet {
      * total_amount : 0
      */
 
-    private int amount;
-    private int total_amount;
+    private float amount;
+    private float total_amount;
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
-    public void setTotal_amount(int total_amount) {
+    public void setTotal_amount(float total_amount) {
         this.total_amount = total_amount;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public int getTotal_amount() {
+    public float getTotal_amount() {
         return total_amount;
     }
 }

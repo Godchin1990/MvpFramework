@@ -5,10 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.adapter.recyclerview.MyTourAdapter;
 import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMyTourView;
+import com.ziyou.tourGuide.widget.recyclerview.CommenDividerItemDecoration;
 import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
@@ -48,7 +50,7 @@ public class MyTourView extends TitleBarContentView implements IMyTourView {
                 adapter = new MyTourAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
-                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
+                recyclerView.addItemDecoration(new CommenDividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST,R.drawable.recyclerview_order_divide_decoration));
                 recyclerView.setAdapter(adapter);
                 return recyclerView;
             }
