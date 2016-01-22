@@ -52,6 +52,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 getActivity().finish();
                 break;
             case R.id.login:
+                Log.d(TAG,"click login");
                 executeLogin();
                 break;
         }

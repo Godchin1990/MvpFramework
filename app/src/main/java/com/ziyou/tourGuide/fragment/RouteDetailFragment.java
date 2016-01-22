@@ -33,7 +33,7 @@ public class RouteDetailFragment extends BaseFragment implements WebContentView.
 
     private void requestNetwork() {
         String routeId = getArguments().getString(Const.ROUTE_ID);
-        String url = ServerAPI.RouteDetail.buildRouteDetailUrl(routeId);
+        String url = ServerAPI.Route.buildGetRouteDetailUrl(routeId);
         NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "refresh");
     }
 

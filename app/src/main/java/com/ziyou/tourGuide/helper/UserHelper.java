@@ -62,4 +62,15 @@ public class UserHelper {
     public void clearUserInformation(){
         SPHelper.getInstance().getSharedPreference().edit().remove(SPHelper.Const.user).apply();
     }
+
+    public String getGenderCode(String gender){
+        switch (gender){
+            case "男":
+                return "1";
+            case "女":
+                return "2";
+            default:
+                return "0";
+        }
+    }
 }

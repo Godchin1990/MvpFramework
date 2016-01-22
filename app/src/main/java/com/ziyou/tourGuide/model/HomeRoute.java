@@ -179,6 +179,4 @@ public class HomeRoute {
     public static class HomeRouteLists extends ResultList<HomeRoute> {
     }
 
-
-
 }

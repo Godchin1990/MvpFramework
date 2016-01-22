@@ -12,12 +12,18 @@ import com.ziyou.tourGuide.activity.AmendPasswordActivity;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.model.UserInformation;
+import com.ziyou.tourGuide.network.NetworkHelper;
+import com.ziyou.tourGuide.network.ServerAPI;
+import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.AmendUserInformationView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Edward on 16/1/15.
  */
-public class AmendUserInformationFragment extends BaseFragment implements View.OnClickListener {
+public class AmendUserInformationFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
 
     private AmendUserInformationView amendUserInformationView;
 
@@ -50,8 +56,8 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
                 getActivity().finish();
                 break;
             case R.id.action_bar_right_text:
-                Log.d(TAG,"click action_bar_right_text");
-
+                Log.d(TAG, "click action_bar_right_text");
+                uploadInformation();
                 break;
             case R.id.password_setting:
                 Log.d(TAG,"click password_setting");
@@ -61,12 +67,30 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
         }
     }
 
+    private Map<String, String> getUploadInformationParams() {
+        Map<String,String> params = new HashMap<>();
+        String name = amendUserInformationView.getUserNameEditText().getText().toString();
+        String phone = amendUserInformationView.getPhoneNumberEditText().getText().toString();
+        String gender = amendUserInformationView.getGenderTextView().getText().toString();
+        String intro = amendUserInformationView.getIntroductionEditText().getText().toString();
+        String city = amendUserInformationView.getCurrentLivingPlaceTextView().getText().toString();
+        params.put("name",name);
+        params.put("phone",phone);
+        params.put("gender","1");
+        params.put("gender",UserHelper.getInstance().getGenderCode(gender));
+        params.put("intro",intro);
+        params.put("city",city);
+        return params;
+    }
+
     /**
      * 上传数据到网络
      */
     private void uploadInformation(){
         //TODO 上传数据
-        //TODO 数据保存到本地
+        String url = ServerAPI.User.buildModifyUserUrl();
+        Map<String,String> params = getUploadInformationParams();
+        NetworkHelper.getInstance().sendPostStringRequest(url, params, this, "upload");
     }
 
     /**
@@ -92,5 +116,31 @@ public class AmendUserInformationFragment extends BaseFragment implements View.O
                 break;
         }
 
+    }
+
+    @Override
+    public void onSuccess(final String data, final String tag) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG,data);
+                switch (tag){
+                    case "upload":
+                        // 因为每次返回Mefragment都会重新获得一次个人信息,所以不需要保存个人信息,直接关闭当前页面就好
+                        getActivity().finish();
+                        break;
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onFail(int code, final String message, Object object) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG,message);
+            }
+        });
     }
 }

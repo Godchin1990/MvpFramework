@@ -11,9 +11,9 @@ import com.ziyou.tourGuide.adapter.recyclerview.ReceiveRouteAdapter;
 import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IReceiveRouteView;
+import com.ziyou.tourGuide.widget.MyActionBar;
 import com.ziyou.tourGuide.widget.PullToRefreshRecyclerView;
-import com.ziyou.tourGuide.widget.recyclerview.CommenDividerItemDecoration;
-import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
+import com.ziyou.tourGuide.widget.recyclerview.DividerItemSeparateDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
@@ -63,11 +63,18 @@ public class ReceiveRouteView extends TitleBarContentView implements IReceiveRou
                 adapter = new ReceiveRouteAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
-                recyclerView.addItemDecoration(new CommenDividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST,R.drawable.recyclerview_order_divide_decoration));
+                recyclerView.addItemDecoration(new DividerItemSeparateDecoration());
                 recyclerView.setAdapter(adapter);
                 return view;
             }
         });
         return refreshViewContainer;
+    }
+    protected void initActionBar(View view) {
+        actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
+        actionBar.getLeftView().setImageResource(R.mipmap.action_bar_back_black);
+        actionBar.getRightTextView().setVisibility(View.VISIBLE);
+        actionBar.getRightTextView().setText(getContext().getResources().getString(R.string.get_route));
+        actionBar.getRightTextView().setTextColor(getContext().getResources().getColor(R.color.theme_color));
     }
 }

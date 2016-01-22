@@ -1,45 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <RelativeLayout
             style="@style/item_layout"
             android:layout_width="match_parent"
             android:layout_height="115dp">
-            <LinearLayout
-                android:orientation="vertical"
+
+            <TextView
+                android:id="@+id/item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true">
-                <TextView
-                    android:text="@string/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:text="@string/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
-                <TextView
-                    android:text="@string/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
-            </LinearLayout>
+                android:layout_marginTop="22dp"
+                android:text="@string/title"
+                android:textSize="16sp" />
+
+            <com.ziyou.tourGuide.widget.WordWrapView
+                android:id="@+id/view_wordwrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                app:child_background="@drawable/bg_item_tag_selector"
+                app:child_padding_left="10dp"
+                app:child_padding_right="10dp"
+                app:child_textsize="16" />
+
+            <TextView
+                android:id="@id/item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:text="@string/title"
+                android:textSize="13sp" />
+
         </RelativeLayout>
-        <include layout="@layout/item_grey_line"/>
+
+        <include layout="@layout/item_grey_line" />
+
         <RelativeLayout
             style="@style/item_layout"
             android:layout_width="match_parent"
             android:layout_height="48dp">
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/old_price"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/receive_route_item_btn_stroke_normal"
+                    android:text="@string/price_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/new_price"
+                    android:textColor="@color/receive_route_item_btn_stroke_normal"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="13sp"
+                    android:textColor="@color/receive_route_item_btn_stroke_normal"
+                    android:text="@string/yuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/btn_transparent"
+                android:layout_centerVertical="true"
+                android:text="@string/manage"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/receive_route_item_btn_stroke_normal"
+                android:background="@drawable/bg_transparent_red_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+    <ImageView
+        android:src="@mipmap/ic_receive_route_offline"
+        android:id="@+id/item_status"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

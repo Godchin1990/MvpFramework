@@ -70,14 +70,22 @@ public class ServerAPI {
     /**
      *  路线详情相关的接口
      */
-    public static class RouteDetail{
+    public static class Route {
         public static final String GET_ROUTE_DETAIL = "get_route_detail";
+        public static final String GET_FETCH_ROUTES = "get_fetch_routes";
+
         public static final String PARAM_ROUTE = "ctype";
-        public static String buildRouteDetailUrl(String routeId){
+        public static String buildGetRouteDetailUrl(String routeId){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(VERSION_V3);
             builder.appendEncodedPath(GET_ROUTE_DETAIL);
             builder.appendQueryParameter(ID, routeId);
+            return builder.toString();
+        }
+
+        public static String buildGetFetchRouteslUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_FETCH_ROUTES);
             return builder.toString();
         }
     }

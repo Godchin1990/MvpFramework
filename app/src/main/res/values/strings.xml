@@ -6,6 +6,7 @@
     <string name="description">描述</string>
     <string name="date">日期</string>
     <string name="status">状态</string>
+    <string name="yuan">元</string>
 
 
     <!-- index-->
@@ -84,5 +85,12 @@
     <string name="password_can_not_less_six">密码不能少于6位</string>
     <string name="password_two_input_not_equal">两次密码输入不一致</string>
     <string name="password_amend_success">修改密码成功</string>
+
+    <!-- receive route fragment-->
+    <string name="price_sign">￥</string>
+    <string name="old_price">￥%1$s元</string>
+    <string name="manage">管理</string>
+    <string name="get_route">认领路线</string>
+
 
 </resources>

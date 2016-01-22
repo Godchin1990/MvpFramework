@@ -17,9 +17,7 @@ import java.util.List;
  * Created by Edward on 16/1/22.
  */
 public class WordWrapView extends ViewGroup {
-    //    private static final int PADDING_HOR = 0;//水平方向padding
-//    private static final int PADDING_VERTICAL = 5;//垂直方向padding
-    private static final int SIDE_MARGIN = 0;//左右间距
+    private static final int SIDE_MARGIN = 0;   //左右间距
     private static final int TEXT_MARGIN = 10;
 
     private int mUserTextSize;
@@ -32,6 +30,13 @@ public class WordWrapView extends ViewGroup {
     private int mUserBottomPaddingInitial;
 
     private Drawable tagBackground;
+
+    interface WordWrapViewAdapter<T>{
+        View getItemView();
+        void inflateItemView(View view, T list);
+    }
+
+    WordWrapViewAdapter adapter;
 
     /**
      * @param context
@@ -193,4 +198,18 @@ public class WordWrapView extends ViewGroup {
         }
         return list;
     }
+
+    public <T> void setLabelList(List<T> list,int limit,WordWrapViewAdapter<T> adapter){
+        removeAllViews();
+        for(int i = 0;i<list.size();i++){
+            if(limit>0&&i>=limit) {
+                break;
+            }
+            View view = adapter.getItemView();
+            assert view != null;
+            adapter.inflateItemView(view,list.get(i));
+            addView(view);
+        }
+    }
+
 }

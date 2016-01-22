@@ -45,7 +45,7 @@ public class HomeView extends BaseView implements IHomeView {
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerView.setLayoutManager(manager);
                 recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
-//                recyclerView.addItemDecoration(new DividerItemMeDecoration());
+//                recyclerView.addItemDecoration(new DividerItemSeparateDecoration());
                 recyclerView.setAdapter(adapter);
                 /**添加RecyclerView的滑动效果*/
                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

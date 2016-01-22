@@ -77,7 +77,7 @@ public class NetworkHelper {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-
+                Log.d(TAG,"服务器解析异常");
             }
 
             @Override

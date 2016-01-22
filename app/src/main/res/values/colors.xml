@@ -49,4 +49,8 @@
     <color name="order_list_status_wait_receive_text">#ff4e00</color>
     <color name="order_list_status_wait_comment_text">#4aa835</color>
 
+    <!-- receive route fragment-->
+    <color name="receive_route_item_btn_stroke_normal">#fe5b5f</color>
+    <color name="receive_route_item_btn_stroke_selected">#99fe5b5f</color>
+
 </resources>

@@ -62,7 +62,6 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView = new MeView(getContext());
         meView.getAvatar().setOnClickListener(this);
         meView.getInfomationLayout().setOnClickListener(this);
-        meView.getInfomationLayoutPart().setOnClickListener(this);
         meView.getMyMessage().setOnClickListener(this);
         meView.getGuiderArea().setOnClickListener(this);
         meView.getMyTour().setOnClickListener(this);
@@ -114,9 +113,6 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                     intent = new Intent(getContext(), LoginActivity.class);
                     getContext().startActivity(intent);
                 }
-                break;
-            case R.id.me_infomation_layout_part:
-                Log.d(TAG, "click me_infomation_layout_part");
                 break;
             case R.id.riv_user_avatar:
                 Log.d(TAG, "click riv_user_avatar");
