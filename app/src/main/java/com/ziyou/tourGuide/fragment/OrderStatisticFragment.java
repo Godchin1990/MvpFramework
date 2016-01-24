@@ -95,7 +95,7 @@ public class OrderStatisticFragment extends BaseFragment implements View.OnClick
                         orderStatisticView.getRouteAcquireProfitShareTextView().setText(String.format(acquire_profit_share
                                 ,routeCommunity.getFetch_sum()+""));
 
-                        orderStatisticView.getShareAcquireProfitShareTextView().setText(String.format(share_route
+                        orderStatisticView.getShareRouteTextView().setText(String.format(share_route
                                 ,routeCommunity.getShare_route()+""));
                         orderStatisticView.getShareOrderNumberTextView().setText(String.format(order_number
                                 ,routeCommunity.getShare_order()+""));

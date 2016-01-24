@@ -75,10 +75,12 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
                 Log.d(TAG,"click receive_route");
                 intent = new Intent(getContext(),RouteCommunityActivity.class);
                 startActivity(intent);
+                break;
             case R.id.order_statistic:
                 Log.d(TAG,"click order_statistic");
                 intent = new Intent(getContext(),OrderStatisticActivity.class);
                 startActivity(intent);
+                break;
         }
     }
 }
