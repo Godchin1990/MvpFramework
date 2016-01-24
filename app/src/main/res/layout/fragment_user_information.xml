@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include
+                android:id="@+id/name"
+                layout="@layout/item_match_edittext"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/phone_number"
+                layout="@layout/item_match_edittext"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/current_living_place"
+                layout="@layout/item_right_textview"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/password_setting"
+                layout="@layout/item_next"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/age"
+                layout="@layout/item_right_textview"/>
+            <include layout="@layout/item_grey_line"/>
+            <include
+                android:id="@+id/gender"
+                layout="@layout/item_right_textview"/>
+            <include layout="@layout/item_grey_line"/>
+
+            <include
+                android:layout_marginTop="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/item_grey_line"/>
+            <include android:id="@+id/introduction"
+                layout="@layout/item_muti_line_edittext"/>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

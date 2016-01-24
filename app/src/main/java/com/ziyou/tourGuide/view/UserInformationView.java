@@ -49,7 +49,7 @@ public class UserInformationView extends TitleBarContentView implements IUserInf
 
     @Override
     public View setContentView() {
-        View view = View.inflate(getContext(), R.layout.fragment_amend_user_information,null);
+        View view = View.inflate(getContext(), R.layout.fragment_user_information,null);
         ButterKnife.bind(this, view);
         initItemList();
         return view.getRootView();

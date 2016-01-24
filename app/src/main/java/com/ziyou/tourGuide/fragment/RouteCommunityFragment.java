@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
-import com.ziyou.tourGuide.view.GuiderInformationView;
+import com.ziyou.tourGuide.view.RouteCommunityView;
 
 /**
- * Created by Edward on 16/1/22.
+ * Created by Edward on 16/1/24.
  */
-public class GuiderInformationFragment extends BaseFragment implements View.OnClickListener {
+public class RouteCommunityFragment extends BaseFragment implements View.OnClickListener {
 
-    private GuiderInformationView amendGuiderInformationView;
+    private RouteCommunityView routeCommunityView;
 
     @Override
     protected void initData() {
@@ -22,14 +22,14 @@ public class GuiderInformationFragment extends BaseFragment implements View.OnCl
     }
 
     private void initListener() {
-        amendGuiderInformationView.getActionBarView().getLeftView().setOnClickListener(this);
+        routeCommunityView.getActionBarView().getLeftView().setOnClickListener(this);
     }
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        amendGuiderInformationView = new GuiderInformationView(getContext());
-        amendGuiderInformationView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_information));
-        return amendGuiderInformationView.getRootView();
+        routeCommunityView = new RouteCommunityView(getContext(),getFragmentManager());
+        routeCommunityView.getActionBarView().getTitleView().setText(getResources().getString(R.string.route_community));
+        return routeCommunityView.getRootView();
     }
 
     @Override

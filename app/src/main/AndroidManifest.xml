@@ -110,6 +110,9 @@
         <activity android:name=".activity.ReceiveRouteActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.GuiderInformationActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RouteCommunityActivity"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -11,6 +11,7 @@ import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.GuiderInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderOrderActivity;
 import com.ziyou.tourGuide.activity.ReceiveRouteActivity;
+import com.ziyou.tourGuide.activity.RouteCommunityActivity;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.view.GuiderAreaView;
 
@@ -36,6 +37,7 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
         guiderAreaView.getMyOrder().setOnClickListener(this);
         guiderAreaView.getReceiveRoute().setOnClickListener(this);
         guiderAreaView.getGuiderInformation().setOnClickListener(this);
+        guiderAreaView.getRouteCommunity().setOnClickListener(this);
     }
 
     @Override
@@ -67,6 +69,10 @@ public class GuiderAreaFragment extends BaseFragment implements View.OnClickList
                 intent = new Intent(getContext(), ReceiveRouteActivity.class);
                 getContext().startActivity(intent);
                 break;
+            case R.id.route_community:
+                Log.d(TAG,"click receive_route");
+                intent = new Intent(getContext(),RouteCommunityActivity.class);
+                startActivity(intent);
         }
     }
 }
