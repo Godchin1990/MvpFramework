@@ -92,5 +92,19 @@
     <string name="manage">管理</string>
     <string name="get_route">认领路线</string>
 
+    <!-- order statistic fragment-->
+    <string name="check_description">查看详情</string>
+    <string name="order">订单</string>
+    <string name="route_profit_share">路线分成</string>
+    <string name="share_profit_share">分享分成</string>
+    <string name="finished_order">已完结的订单:%1$s单</string>
+    <string name="order_amount_price">订单总额:%1$s元</string>
+    <string name="deduct_profit_share">扣除分成:%1$s元</string>
+    <string name="provide_route">提供路线:%1$s条</string>
+    <string name="order_number">订单:%1$s次</string>
+    <string name="acquire_profit_share">获得分成:%1$s元</string>
+    <string name="share_route">分享路线:%1$s条</string>
+    <string name="total_profit">总收益:%1$s元</string>
+
 
 </resources>

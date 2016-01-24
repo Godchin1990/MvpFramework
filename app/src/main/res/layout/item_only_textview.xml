@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    style="@style/item_me">
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="标题"
+        android:textColor="@color/text_black_text"
+        android:textSize="16sp" />
+
+</RelativeLayout>

@@ -114,6 +114,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.RouteCommunityActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OrderStatisticActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

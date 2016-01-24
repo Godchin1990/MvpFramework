@@ -91,6 +91,19 @@ public class ServerAPI {
     }
 
     /**
+     * 路线社区
+     * 需登陆
+     */
+    public static class RouteCommunity{
+        public static final String GET_STATIST_ORDER = "get_statist_order";
+        public static String buildGetRouteDetailUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_STATIST_ORDER);
+            return builder.toString();
+        }
+
+    }
+    /**
      *  路线详情相关的接口
      */
     public static class GuideDetail{
