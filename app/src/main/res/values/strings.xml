@@ -107,5 +107,8 @@
     <string name="total_profit">总收益:%1$s元</string>
     <string name="suggest_price">建议价格 : ￥%1$d元</string>
 
+    <!-- route detail fragment-->
+    <string name="yuan_per_person">元/人</string>
+    <string name="appoint_right_now">立即预约</string>
 
 </resources>

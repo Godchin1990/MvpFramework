@@ -12,12 +12,13 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
+import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
 import com.ziyou.tourGuide.view.base.WebContentView;
 
 /**
  * Created by Edward on 16/1/10.
  */
-public class GuideDetailFragment extends BaseFragment implements WebContentView.GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
+public class GuideDetailFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
 
     private WebContentView webContentView;
 

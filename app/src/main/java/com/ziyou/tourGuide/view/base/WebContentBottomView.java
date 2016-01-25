@@ -9,13 +9,15 @@ import com.ziyou.tourGuide.helper.WebViewHelper;
 import com.ziyou.tourGuide.view.component.IWebView;
 
 /**
- * Created by Edward on 16/1/8.
+ * Created by Edward on 16/1/25.
  */
-public class WebContentView extends TitleBarContentView implements IWebView {
+public class WebContentBottomView extends TitleBarBottomContentView implements IWebView {
 
     private WebView webView;
 
-    public WebContentView(Context context) {
+    private GuideJavaScriptCallback callback;
+
+    public WebContentBottomView(Context context) {
         super(context);
     }
 
@@ -38,5 +40,4 @@ public class WebContentView extends TitleBarContentView implements IWebView {
     public void setCallback(GuideJavaScriptCallback callback) {
         webView.addJavascriptInterface(new GuideJavaScriptInterFace(callback),"guide");
     }
-
 }

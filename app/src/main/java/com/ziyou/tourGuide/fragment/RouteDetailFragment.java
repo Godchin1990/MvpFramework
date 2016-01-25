@@ -1,5 +1,6 @@
 package com.ziyou.tourGuide.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,7 +14,8 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.base.WebContentView;
+import com.ziyou.tourGuide.view.RouteDetailWebView;
+import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,9 +23,9 @@ import org.json.JSONObject;
 /**
  * Created by Edward on 16/1/10.
  */
-public class RouteDetailFragment extends BaseFragment implements WebContentView.GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
+public class RouteDetailFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
 
-    private WebContentView webContentView;
+    private RouteDetailWebView webContentView;
 
     @Override
     protected void initData() {
@@ -39,11 +41,12 @@ public class RouteDetailFragment extends BaseFragment implements WebContentView.
 
     private void initListener() {
         webContentView.getActionBarView().getLeftView().setOnClickListener(this);
+        webContentView.getAppointTextView().setOnClickListener(this);
     }
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        webContentView = new WebContentView(getContext());
+        webContentView = new RouteDetailWebView(getContext());
         return webContentView.getRootView();
     }
 
@@ -54,9 +57,15 @@ public class RouteDetailFragment extends BaseFragment implements WebContentView.
 
     @Override
     public void onClick(View v) {
+        Intent intent = null;
         switch (v.getId()){
             case R.id.action_bar_left:
                 getActivity().finish();
+                break;
+            case R.id.appoint:
+                Log.d(TAG,"click appoint");
+//                intent = new Intent(getContext(),);
+//                getContext().startActivity(intent);
                 break;
         }
     }
@@ -71,8 +80,9 @@ public class RouteDetailFragment extends BaseFragment implements WebContentView.
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     String title = jsonObject.getString("title");
-
+                    String price = jsonObject.getString("price");
                     webContentView.getActionBarView().getTitleView().setText(title);
+                    webContentView.getPriceTextView().setText(price);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
