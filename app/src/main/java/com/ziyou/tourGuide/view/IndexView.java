@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.adapter.IndexAdapter;
+import com.ziyou.tourGuide.adapter.IndexViewPagerAdapter;
 import com.ziyou.tourGuide.view.base.BaseView;
 import com.ziyou.tourGuide.view.interfaze.IIndexView;
 
@@ -23,11 +23,11 @@ public class IndexView extends BaseView implements IIndexView, RadioGroup.OnChec
     ViewPager viewpager;
     @Bind(R.id.radio_group)
     RadioGroup radioGroup;
-    private final IndexAdapter adapter;
+    private final IndexViewPagerAdapter adapter;
 
     public IndexView(Context context, FragmentManager fragmentManager) {
         super(context);
-        adapter = new IndexAdapter(fragmentManager, radioGroup);
+        adapter = new IndexViewPagerAdapter(fragmentManager, radioGroup);
         viewpager.setAdapter(adapter);
     }
 
@@ -37,7 +37,7 @@ public class IndexView extends BaseView implements IIndexView, RadioGroup.OnChec
     }
 
     @Override
-    public IndexAdapter getAdapter() {
+    public IndexViewPagerAdapter getAdapter() {
         return adapter;
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Edward on 16/1/24.
  */
-public class RouteCommunityAdapter extends FragmentPagerAdapter {
+public class RouteCommunityViewPagerAdapter extends FragmentPagerAdapter {
 
     ViewPagerAdapterCallBack callBack;
 
@@ -20,7 +20,7 @@ public class RouteCommunityAdapter extends FragmentPagerAdapter {
         Fragment getFragment(String title,int index);
     }
 
-    public RouteCommunityAdapter(FragmentManager fm,List<String> list,ViewPagerAdapterCallBack callBack) {
+    public RouteCommunityViewPagerAdapter(FragmentManager fm, List<String> list, ViewPagerAdapterCallBack callBack) {
         super(fm);
         this.list = list;
         this.callBack = callBack;

@@ -13,11 +13,11 @@ import com.ziyou.tourGuide.fragment.MeFragment;
 /**
  * Created by Edward on 16/1/1.
  */
-public class IndexAdapter extends FragmentPagerAdapter {
+public class IndexViewPagerAdapter extends FragmentPagerAdapter {
 
     private RadioGroup radioGroup;
 
-    public IndexAdapter(FragmentManager fm,RadioGroup radioGroup) {
+    public IndexViewPagerAdapter(FragmentManager fm, RadioGroup radioGroup) {
         super(fm);
         this.radioGroup = radioGroup;
     }

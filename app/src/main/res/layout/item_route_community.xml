@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        style="@style/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:paddingBottom="12dp"
+        android:paddingTop="22dp">
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="item标题"
+            android:textColor="@color/text_black_text"
+            android:textSize="16sp" />
+
+        <com.ziyou.tourGuide.widget.WordWrapView
+
+            android:layout_marginTop="15dp"
+            android:id="@+id/view_wordwrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_title"
+            android:layout_centerHorizontal="true"
+            app:child_background="@drawable/bg_item_tag_selector"
+            app:child_padding_left="10dp"
+            app:child_padding_right="10dp"
+            app:child_textsize="16" />
+        <!--<com.ziyou.tourGuide.widget.WordWrapNoPaddingView-->
+        <!--android:id="@+id/wv_tag"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/item_title"-->
+        <!--android:layout_marginTop="10dp"/>-->
+
+        <TextView
+            android:id="@+id/suggest_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/suggest_price"
+            android:textColor="@color/text_black_text"
+            android:textColorHint="@color/text_black_text" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/is_receive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/ic_is_receive"
+        android:visibility="invisible" />
+
+</RelativeLayout>

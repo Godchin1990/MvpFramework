@@ -1,111 +1,66 @@
 package com.ziyou.tourGuide.model;
 
+import java.util.List;
+
 /**
- * Created by Edward on 16/1/24.
+ * Created by Edward on 16/1/25.
  */
 public class RouteCommunity {
 
     /**
-     * deduct : 0.73
-     * fetch_route : 2
-     * fetch_sum : 0.33
-     * fetcher_order : 5
-     * finish_order : 14
-     * finish_sum : 310.44
-     * share_order : 0
-     * share_route : 0
-     * share_sum : 0.0
-     * sum_input : 310.77
+     * id : 354
+     * is_me : 1
+     * labels : []
+     * suggest_price : 100
+     * title : 川藏线自驾游
      */
 
-    private double deduct;
-    private int fetch_route;
-    private double fetch_sum;
-    private int fetcher_order;
-    private int finish_order;
-    private double finish_sum;
-    private int share_order;
-    private int share_route;
-    private double share_sum;
-    private double sum_input;
+    private int id;
+    private int is_me;
+    private String suggest_price;
+    private String title;
+    private List<String> labels;
 
-    public void setDeduct(double deduct) {
-        this.deduct = deduct;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFetch_route(int fetch_route) {
-        this.fetch_route = fetch_route;
+    public void setIs_me(int is_me) {
+        this.is_me = is_me;
     }
 
-    public void setFetch_sum(double fetch_sum) {
-        this.fetch_sum = fetch_sum;
+    public void setSuggest_price(String suggest_price) {
+        this.suggest_price = suggest_price;
     }
 
-    public void setFetcher_order(int fetcher_order) {
-        this.fetcher_order = fetcher_order;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setFinish_order(int finish_order) {
-        this.finish_order = finish_order;
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
     }
 
-    public void setFinish_sum(double finish_sum) {
-        this.finish_sum = finish_sum;
+    public int getId() {
+        return id;
     }
 
-    public void setShare_order(int share_order) {
-        this.share_order = share_order;
+    public int getIs_me() {
+        return is_me;
     }
 
-    public void setShare_route(int share_route) {
-        this.share_route = share_route;
+    public String getSuggest_price() {
+        return suggest_price;
     }
 
-    public void setShare_sum(double share_sum) {
-        this.share_sum = share_sum;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSum_input(double sum_input) {
-        this.sum_input = sum_input;
+    public List<String> getLabels() {
+        return labels;
     }
 
-    public double getDeduct() {
-        return deduct;
-    }
-
-    public int getFetch_route() {
-        return fetch_route;
-    }
-
-    public double getFetch_sum() {
-        return fetch_sum;
-    }
-
-    public int getFetcher_order() {
-        return fetcher_order;
-    }
-
-    public int getFinish_order() {
-        return finish_order;
-    }
-
-    public double getFinish_sum() {
-        return finish_sum;
-    }
-
-    public int getShare_order() {
-        return share_order;
-    }
-
-    public int getShare_route() {
-        return share_route;
-    }
-
-    public double getShare_sum() {
-        return share_sum;
-    }
-
-    public double getSum_input() {
-        return sum_input;
+    public static class RouteCommunityList extends ResultList<RouteCommunity> {
     }
 }

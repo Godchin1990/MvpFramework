@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
-import com.ziyou.tourGuide.model.RouteCommunity;
+import com.ziyou.tourGuide.model.OrderStatistic;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
@@ -48,7 +48,7 @@ public class OrderStatisticFragment extends BaseFragment implements View.OnClick
     }
 
     private void requestNetwork() {
-        String url = ServerAPI.RouteCommunity.buildGetRouteDetailUrl();
+        String url = ServerAPI.OrderStatistic.buildGetStatistOrderUrl();
         NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "refresh");
     }
 
@@ -80,30 +80,30 @@ public class OrderStatisticFragment extends BaseFragment implements View.OnClick
                 Gson gson = new Gson();
                 switch (tag){
                     case "refresh":
-                        RouteCommunity routeCommunity = gson.fromJson(data, RouteCommunity.class);
+                        OrderStatistic orderStatistic = gson.fromJson(data, OrderStatistic.class);
                         orderStatisticView.getFinishedOrderTextView().setText(String.format(finished_order
-                                ,routeCommunity.getFinish_order()+""));
+                                , orderStatistic.getFinish_order()+""));
                         orderStatisticView.getOrderAmountPriceTextView().setText(String.format(order_amount_price
-                                ,routeCommunity.getFinish_sum()+""));
+                                , orderStatistic.getFinish_sum()+""));
                         orderStatisticView.getDeductProfitShareTextView().setText(String.format(deduct_profit_share
-                                ,routeCommunity.getDeduct()+""));
+                                , orderStatistic.getDeduct()+""));
 
                         orderStatisticView.getProvideRouteTextView().setText(String.format(provide_route
-                                ,routeCommunity.getFetch_route()+""));
+                                , orderStatistic.getFetch_route()+""));
                         orderStatisticView.getRouteOrderNumberTextView().setText(String.format(order_number
-                                ,routeCommunity.getFetcher_order()+""));
+                                , orderStatistic.getFetcher_order()+""));
                         orderStatisticView.getRouteAcquireProfitShareTextView().setText(String.format(acquire_profit_share
-                                ,routeCommunity.getFetch_sum()+""));
+                                , orderStatistic.getFetch_sum()+""));
 
                         orderStatisticView.getShareRouteTextView().setText(String.format(share_route
-                                ,routeCommunity.getShare_route()+""));
+                                , orderStatistic.getShare_route()+""));
                         orderStatisticView.getShareOrderNumberTextView().setText(String.format(order_number
-                                ,routeCommunity.getShare_order()+""));
+                                , orderStatistic.getShare_order()+""));
                         orderStatisticView.getShareAcquireProfitShareTextView().setText(String.format(acquire_profit_share
-                                , routeCommunity.getShare_sum() + ""));
+                                , orderStatistic.getShare_sum() + ""));
 
                         orderStatisticView.getTotalProfitTextView().setText(String.format(total_profit
-                                ,routeCommunity.getSum_input()+""));
+                                , orderStatistic.getSum_input()+""));
                         break;
                 }
             }

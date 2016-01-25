@@ -5,15 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.WindowManager;
 
-import com.ziyou.tourGuide.helper.SPHelper;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.ziyou.tourGuide.helper.SPHelper;
 import com.ziyou.tourGuide.helper.ShareHelper;
 
 /**
  * Created by Edward on 15/10/22.
  */
-public class CurrentApplication extends Application {
+public class CurrentApplication extends Application implements Thread.UncaughtExceptionHandler{
 
     @Override
     public void onCreate() {
@@ -41,4 +41,13 @@ public class CurrentApplication extends Application {
     }
 
 
+    @Override
+    public void uncaughtException(Thread thread, Throwable ex) {
+        System.out.println("uncaughtException");
+        System.exit(0);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+    }
 }

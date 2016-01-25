@@ -90,7 +90,7 @@ public class NetworkHelper {
     }
 
     private <T> void parseResponse(String string, StringCallBack cb, T tag) {
-        Log.d(TAG, string);
+//        Log.d(TAG, string);
         //第一种解析方式
         try {
             JSONObject jsonObject = new JSONObject(string);

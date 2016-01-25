@@ -8,8 +8,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.adapter.RouteCommunityAdapter;
+import com.ziyou.tourGuide.adapter.RouteCommunityViewPagerAdapter;
 import com.ziyou.tourGuide.fragment.EmptyFragment;
+import com.ziyou.tourGuide.fragment.MoreRouteFragment;
+import com.ziyou.tourGuide.fragment.MyRouteFragment;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IRouteCommunityView;
 
@@ -29,7 +31,7 @@ public class RouteCommunityView extends TitleBarContentView implements IRouteCom
     @Bind(R.id.view_pager)
     ViewPager view_pager;
 
-    private RouteCommunityAdapter adapter;
+    private RouteCommunityViewPagerAdapter adapter;
 
     public RouteCommunityView(Context context,FragmentManager fragmentManager) {
         super(context);
@@ -40,10 +42,17 @@ public class RouteCommunityView extends TitleBarContentView implements IRouteCom
         /**
          * 新建与tablayout绑定的adapter
          */
-        adapter = new RouteCommunityAdapter(fragmentManager,tilteList,new RouteCommunityAdapter.ViewPagerAdapterCallBack() {
+        adapter = new RouteCommunityViewPagerAdapter(fragmentManager,tilteList,new RouteCommunityViewPagerAdapter.ViewPagerAdapterCallBack() {
             @Override
             public Fragment getFragment(String title, int index) {
-                return new EmptyFragment();
+                switch (index){
+                    case 0:
+                        return new MyRouteFragment();
+                    case 1:
+                        return new MoreRouteFragment();
+                    default:
+                        return new EmptyFragment();
+                }
             }
         });
 

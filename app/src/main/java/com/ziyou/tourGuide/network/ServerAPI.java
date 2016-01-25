@@ -95,10 +95,18 @@ public class ServerAPI {
      * 需登陆
      */
     public static class RouteCommunity{
-        public static final String GET_STATIST_ORDER = "get_statist_order";
-        public static String buildGetRouteDetailUrl(){
+        public static final String GET_WRITE_ROUTE = "get_write_routes";
+        public static final String GET_SHARE_ROUTES = "get_share_routes";
+
+        public static String buildGetWriteRouteUrl(){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
-            builder.appendEncodedPath(GET_STATIST_ORDER);
+            builder.appendEncodedPath(GET_WRITE_ROUTE);
+            return builder.toString();
+        }
+
+        public static String buildGetShareRouteUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_SHARE_ROUTES);
             return builder.toString();
         }
 
@@ -259,6 +267,18 @@ public class ServerAPI {
             return builder.toString();
         }
 
+    }
+
+    /**
+     * 订单统计
+     */
+    public static class OrderStatistic{
+        public static final String GET_STATIST_ORDER = "get_statist_order";
+        public static String buildGetStatistOrderUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_STATIST_ORDER);
+            return builder.toString();
+        }
     }
 
     /**

@@ -105,6 +105,7 @@
     <string name="acquire_profit_share">获得分成:%1$s元</string>
     <string name="share_route">分享路线:%1$s条</string>
     <string name="total_profit">总收益:%1$s元</string>
+    <string name="suggest_price">建议价格 : ￥%1$d元</string>
 
 
 </resources>
