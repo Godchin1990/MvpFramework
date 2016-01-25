@@ -42,6 +42,8 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
     private void initListener() {
         webContentView.getActionBarView().getLeftView().setOnClickListener(this);
         webContentView.getAppointTextView().setOnClickListener(this);
+        //未加载网络数据前,设置不可点击
+        webContentView.getAppointTextView().setClickable(false);
     }
 
     @Override
@@ -86,6 +88,9 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                //设置可点击
+                webContentView.getAppointTextView().setClickable(true);
 
                 String routeId = getArguments().getString(Const.ROUTE_ID);
                 String routeDetailH5Url = ServerAPI.H5.getRouteDetailH5Url(routeId);

@@ -26,6 +26,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
  */
 public class DiscoveryView extends TitleBarContentView implements IDiscoveryView<CityListAdapter> {
 
+    public static final String TAG_CHECK_CITY = "tag_check_city";
+
     private RefreshViewContainer refreshViewContainer;
     private PullToRefreshRecyclerView pullToRefreshRecyclerView;
     private RecyclerView recyclerView;

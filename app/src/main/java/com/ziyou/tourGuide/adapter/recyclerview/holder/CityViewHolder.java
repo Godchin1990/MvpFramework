@@ -43,7 +43,7 @@ public class CityViewHolder extends BaseViewHolder<City> implements View.OnClick
     @Override
     public void onClick(View v) {
         String cityName = cityTv.getText().toString();
-        ClickEvent<String> clickEvent = new ClickEvent<>();
+        ClickEvent clickEvent = new ClickEvent("check_city");
         clickEvent.setParam(cityName);
 
         EventBus.getDefault().post(clickEvent);

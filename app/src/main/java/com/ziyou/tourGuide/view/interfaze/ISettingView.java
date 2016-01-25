@@ -11,4 +11,6 @@ public interface ISettingView {
     View getUseHelp();
     View getAboutMe();
     Button getUnloginButton();
+    void showCancelLoginDialog();
+    void showClearCacheDialog();
 }

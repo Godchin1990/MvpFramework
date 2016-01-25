@@ -158,13 +158,16 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
     }
 
     @Subscribe
-    public void onEvent(ClickEvent<String> clickEvent){
-        String param = (String) clickEvent.getParam();
-        Log.d(TAG, param);
-        discoveryView.getCityListPopupWindow().dismiss();
-        discoveryView.getActionBarView().getLeftTextView().setText(param);
-        requestLandmarkInfo(param);
-
+    public void onEvent(ClickEvent clickEvent){
+        Log.d(TAG, clickEvent.toString());
+        switch (clickEvent.getTag()){
+            case "check_city":
+                String param = (String) clickEvent.getParam();
+                discoveryView.getCityListPopupWindow().dismiss();
+                discoveryView.getActionBarView().getLeftTextView().setText(param);
+                requestLandmarkInfo(param);
+                break;
+        }
     }
 
 }

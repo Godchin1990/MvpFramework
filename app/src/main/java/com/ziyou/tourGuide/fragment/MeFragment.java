@@ -41,14 +41,15 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         //每次回到这个页面,都会刷新
         //fragment 作为presenter,把model传递给view,供view显示和刷新
         Log.d(TAG, "MeFragment onResume()");
-
-        //先显示本地的数据
+        //刷新本地数据
         UserInformation userInformation = UserHelper.getInstance().getUserInformation();
         setInfomation(userInformation);
 
-        //请求网络,获取最新的数据
-        String url = ServerAPI.User.buildUserInfoUrl();
-        NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "refresh");
+        if(UserHelper.getInstance().isLogin()){
+            //请求网络,获取最新的数据
+            String url = ServerAPI.User.buildUserInfoUrl();
+            NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "refresh");
+        }
     }
 
     @Override

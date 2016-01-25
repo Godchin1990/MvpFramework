@@ -9,6 +9,7 @@
     <color name="transparency">#00ffffff</color>
     <color name="base_grey_line">#ffdbdbdb</color>
     <color name="base_order_grey_line">#ffebebeb</color>
+    <color name="dialog_grey">#ffc8ccd4</color>
 
     <color name="tag_color">#d8d8d8</color>
 

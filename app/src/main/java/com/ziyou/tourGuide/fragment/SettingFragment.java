@@ -6,10 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
+import com.ziyou.tourGuide.helper.DataCleanHelper;
+import com.ziyou.tourGuide.helper.LocationHelper;
 import com.ziyou.tourGuide.helper.TokenHelper;
 import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.view.SettingView;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * Created by Edward on 16/1/15.
@@ -36,6 +42,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private void initListener() {
         settingView.getActionBarView().getLeftView().setOnClickListener(this);
         settingView.getUnloginButton().setOnClickListener(this);
+        settingView.getClearCache().setOnClickListener(this);
     }
 
     @Override
@@ -52,10 +59,45 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 getActivity().finish();
                 break;
             case R.id.un_login:
+                settingView.showCancelLoginDialog();
+                break;
+            case R.id.clear_cache:
+                settingView.showClearCacheDialog();
+                break;
+//            case R.id.click:
+//                Log.d(TAG,"dialog click");
+//                break;
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocationHelper.getInstance().onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(ClickEvent clickEvent){
+        switch (clickEvent.getTag()){
+            case SettingView.TAG_CANCEL_LOGIN:
+                //取消登陆点击后执行
                 UserHelper.getInstance().clearUserInformation();
                 TokenHelper.getInstance().clearTokenInformation();
                 getActivity().finish();
                 break;
+            case SettingView.TAG_CLEAR_CACHE:
+                //清除缓存点击后执行
+                DataCleanHelper.getInstance().cleanAppCache(getContext());
+
+                break;
         }
+
     }
 }
