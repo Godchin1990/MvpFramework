@@ -70,6 +70,7 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
             Intent intent;
             switch (type){
                 case 2:
+                    //跳转导游
                     String guideId = jsonObject.getJSONObject("params").getString("guider_id");
                     intent = new Intent(getContext(), GuideDetailActivity.class);
                     Bundle bundleForGuider = new Bundle();
@@ -78,6 +79,7 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                     getContext().startActivity(intent);
                     break;
                 case 4:
+                    //跳转拨打电话页面
                     String phone = jsonObject.getJSONObject("params").getString("phone");
                     webContentView.showCallPhoneDialog(phone);
                     break;

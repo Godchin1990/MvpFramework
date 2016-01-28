@@ -58,15 +58,18 @@ public class NetworkHelper {
      * @param tag
      */
     public <T> void sendGetStringRequest(String url, Map<String, String> params, final StringCallBack cb, final T tag) {
+        Log.d(TAG,"start request");
+        Log.d(TAG,"request method is GET");
         //add params for get request
         Uri.Builder builder = Uri.parse(url).buildUpon();
         if (params != null) {
+            Log.d(TAG,"params " + params.toString());
             for (Map.Entry<String, String> entry :
                     params.entrySet()) {
                 builder.appendQueryParameter(entry.getKey(), entry.getValue());
             }
         }
-
+        Log.d(TAG,"url is " + builder.toString());
         //call okhttp
         OkHttpClient mOkHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -99,6 +102,7 @@ public class NetworkHelper {
                 JSONObject data = jsonObject.getJSONObject("data");
                 cb.onSuccess(data.toString(), tag);
             } else {
+                Log.d(TAG, string);
                 String message = jsonObject.getString("message");
                 cb.onFail(code, message, null);
             }
@@ -113,21 +117,19 @@ public class NetworkHelper {
 //      cb.onSuccess(gson.toJson(responseData.getData()),tag);
     }
 
-    private void parseResponse(Response response) {
-
-
-
-
-    }
-
     public <T> void sendPostStringRequest(String url, Map<String, String> params, final StringCallBack cb, final T tag) {
+        Log.d(TAG,"start request");
+        Log.d(TAG,"request method is POST");
 
         FormEncodingBuilder builder = new FormEncodingBuilder();
         if (params != null) {
+            Log.d(TAG,"params " + params.toString());
             for (String key : params.keySet()) {
                 builder.add(key, params.get(key));
             }
         }
+
+        Log.d(TAG,"url is " + builder.toString());
         //call okhttp
         OkHttpClient mOkHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -159,6 +161,7 @@ public class NetworkHelper {
         Map<String, String> headerMap = new HashMap<>();
         TokenInfomation tokenInformation = TokenHelper.getInstance().getTokenInformation();
         if (tokenInformation != null) {
+            Log.d(TAG,"Token " + tokenInformation.getAccess_token());
             headerMap.put("Authorization", "Token " + tokenInformation.getAccess_token());
         }
 //        String uid = AppUtils.getUid(mContext);
