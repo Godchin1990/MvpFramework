@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * 订单统计view
  * Created by Edward on 16/1/24.
  */
 public class OrderStatisticView extends TitleBarContentView implements IOrderStatisticView {

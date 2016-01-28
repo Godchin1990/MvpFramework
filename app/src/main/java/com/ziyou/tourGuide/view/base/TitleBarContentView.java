@@ -13,7 +13,7 @@ import com.ziyou.tourGuide.widget.MyActionBar;
 public abstract class TitleBarContentView extends BaseView implements ITitleBarContentView {
 
     protected FrameLayout content;
-    protected MyActionBar actionBar;
+    private MyActionBar actionBar;
 
     public TitleBarContentView(Context context) {
         super(context);
@@ -24,8 +24,9 @@ public abstract class TitleBarContentView extends BaseView implements ITitleBarC
     @Override
     protected View initView() {
         View view = View.inflate(getContext(), R.layout.layout_titlebar_content, null);
+        actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
         initContent(view);
-        initActionBar(view);
+        initActionBar();
         return view;
     }
 
@@ -39,11 +40,9 @@ public abstract class TitleBarContentView extends BaseView implements ITitleBarC
 
     /**
      * 初始化头
-     * @param view
      */
-    protected void initActionBar(View view) {
-        actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
-        actionBar.getLeftView().setImageResource(R.mipmap.action_bar_back_black);
+    protected void initActionBar() {
+        getActionBarView().getLeftView().setImageResource(R.mipmap.action_bar_back_black);
     }
 
 

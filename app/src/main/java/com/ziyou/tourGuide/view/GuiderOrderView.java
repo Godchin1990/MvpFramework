@@ -17,6 +17,7 @@ import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
+ * @deprecated
  * Created by Edward on 16/1/19.
  */
 public class GuiderOrderView extends TitleBarContentView implements IGuiderOrderView {

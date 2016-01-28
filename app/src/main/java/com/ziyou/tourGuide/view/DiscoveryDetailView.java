@@ -16,6 +16,7 @@ import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
+ * @deprecated
  * Created by Edward on 16/1/12.
  */
 public class DiscoveryDetailView extends TitleBarContentView implements IDiscoveryDetailView {

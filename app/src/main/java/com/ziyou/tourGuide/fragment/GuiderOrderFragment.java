@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.adapter.recyclerview.GuiderOrderAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.Order;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.GuiderOrderView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
@@ -20,7 +21,8 @@ import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
  */
 public class GuiderOrderFragment extends BaseFragment implements StringCallBack<String>, View.OnClickListener {
 
-    private GuiderOrderView guiderOrderView;
+    private RefreshRecyclerView<GuiderOrderAdapter> guiderOrderView;
+    private GuiderOrderAdapter guiderOrderAdapter;
 
     @Override
     protected void initData() {
@@ -39,7 +41,9 @@ public class GuiderOrderFragment extends BaseFragment implements StringCallBack<
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        guiderOrderView = new GuiderOrderView(getContext());
+        guiderOrderView = new RefreshRecyclerView<>(getContext());
+        guiderOrderAdapter = new GuiderOrderAdapter();
+        guiderOrderView.setAdapter(guiderOrderAdapter);
         guiderOrderView.getActionBarView().getTitleView().setText(getResources().getString(R.string.guider_order));
         return guiderOrderView.getRootView();
     }
@@ -53,7 +57,7 @@ public class GuiderOrderFragment extends BaseFragment implements StringCallBack<
                 switch (tag){
                     case "refresh":
                         Order.OrderList orderList = gson.fromJson(data, Order.OrderList.class);
-                        guiderOrderView.getAdapter().setOrders(orderList.list);
+                        guiderOrderAdapter.setOrders(orderList.list);
                         break;
                 }
                 guiderOrderView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);

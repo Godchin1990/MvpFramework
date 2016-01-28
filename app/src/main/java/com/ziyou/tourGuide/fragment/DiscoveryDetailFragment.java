@@ -8,26 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.base.Const;
+import com.ziyou.tourGuide.adapter.recyclerview.DiscoveryDetailAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.DiscoveryDetail;
 import com.ziyou.tourGuide.model.Pagination;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.DiscoveryDetailView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
  * Created by Edward on 16/1/12.
  */
 public class DiscoveryDetailFragment extends BaseFragment implements StringCallBack<String>, View.OnClickListener {
 
-    private DiscoveryDetailView discoveryDetailView;
+    private RefreshRecyclerView<DiscoveryDetailAdapter> discoveryDetailView;
     private Pagination pagination;
+    private DiscoveryDetailAdapter adapter;
 
     @Override
     protected void initData() {
@@ -69,7 +71,9 @@ public class DiscoveryDetailFragment extends BaseFragment implements StringCallB
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        discoveryDetailView = new DiscoveryDetailView(getContext());
+        discoveryDetailView = new RefreshRecyclerView<>(getContext());
+        adapter = new DiscoveryDetailAdapter();
+        discoveryDetailView.setAdapter(adapter);
         pagination = new Pagination(10, 0);
         return discoveryDetailView.getRootView();
     }
@@ -88,14 +92,14 @@ public class DiscoveryDetailFragment extends BaseFragment implements StringCallB
                         //设置标题头
                         discoveryDetailView.getActionBarView().getTitleView().setText(discoveryDetailLists.getBanner().getName());
                         //设置路线
-                        discoveryDetailView.getAdapter().setRoutes(discoveryDetailLists.getList());
+                        adapter.setRoutes(discoveryDetailLists.getList());
                         //设置banner
-                        discoveryDetailView.getAdapter().setBanner(discoveryDetailLists.getBanner());
+                        adapter.setBanner(discoveryDetailLists.getBanner());
                         pagination.update(discoveryDetailLists.getList().size());
                         break;
                     case "loadmore":
                         DiscoveryDetail discoveryDetailListsMore = gson.fromJson(data, DiscoveryDetail.class);
-                        discoveryDetailView.getAdapter().appendDiscoveryDetail(discoveryDetailListsMore.getList());
+                        adapter.appendDiscoveryDetail(discoveryDetailListsMore.getList());
                         pagination.update(discoveryDetailListsMore.getList().size());
                         if (discoveryDetailListsMore.getList().isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();

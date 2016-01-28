@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.adapter.recyclerview.MyMessageAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.MyMessage;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.MyMessageView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
@@ -20,7 +21,8 @@ import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
  */
 public class MyMessageFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
 
-    private MyMessageView myMessageView;
+    private RefreshRecyclerView<MyMessageAdapter> myMessageView;
+    private MyMessageAdapter myMessageAdapter;
 
     @Override
     protected void initData() {
@@ -39,7 +41,9 @@ public class MyMessageFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myMessageView = new MyMessageView(getContext());
+        myMessageView = new RefreshRecyclerView<>(getContext());
+        myMessageAdapter = new MyMessageAdapter();
+        myMessageView.setAdapter(myMessageAdapter);
         myMessageView.getActionBarView().getTitleView().setText(getResources().getString(R.string.my_message));
         return myMessageView.getRootView();
     }
@@ -62,7 +66,7 @@ public class MyMessageFragment extends BaseFragment implements View.OnClickListe
                 switch (tag){
                     case "refresh":
                         MyMessage.MyMessageList myMessageList = gson.fromJson(data, MyMessage.MyMessageList.class);
-                        myMessageView.getAdapter().setMessages(myMessageList.list);
+                        myMessageAdapter.setMessages(myMessageList.list);
                         break;
                 }
                 myMessageView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);

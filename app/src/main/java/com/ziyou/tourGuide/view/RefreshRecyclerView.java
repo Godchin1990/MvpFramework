@@ -11,6 +11,7 @@ import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IRefreshRecyclerView;
 import com.ziyou.tourGuide.widget.PullToRefreshRecyclerView;
+import com.ziyou.tourGuide.widget.recyclerview.CommenDividerItemDecoration;
 import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
@@ -39,11 +40,15 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
 //                adapter = new TopicAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
-                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+                setDecoration(recyclerView);
                 return view;
             }
         });
         return refreshViewContainer;
+    }
+
+    protected void setDecoration(RecyclerView recyclerView) {
+        recyclerView.addItemDecoration(new CommenDividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST,R.drawable.recyclerview_order_divide_decoration));
     }
 
     @Override

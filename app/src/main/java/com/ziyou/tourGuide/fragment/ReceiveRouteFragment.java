@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.adapter.recyclerview.ReceiveRouteAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.Pagination;
 import com.ziyou.tourGuide.model.ReceiveRoute;
@@ -18,6 +19,7 @@ import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.ReceiveRouteView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
@@ -25,8 +27,9 @@ import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
  */
 public class ReceiveRouteFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
 
-    private ReceiveRouteView receiveRouteView;
+    private RefreshRecyclerView<ReceiveRouteAdapter> receiveRouteView;
     private Pagination pagination;
+    private ReceiveRouteAdapter receiveRouteAdapter;
 
     @Override
     protected void initData() {
@@ -65,7 +68,10 @@ public class ReceiveRouteFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        receiveRouteView = new ReceiveRouteView(getContext());
+        receiveRouteView = new ReceiveRouteView<>(getContext());
+        receiveRouteAdapter = new ReceiveRouteAdapter();
+        receiveRouteView.setAdapter(receiveRouteAdapter);
+
         pagination = new Pagination(10, 0);
         receiveRouteView.getActionBarView().getTitleView().setText(getResources().getString(R.string.receive_route));
         return receiveRouteView.getRootView();
@@ -92,12 +98,12 @@ public class ReceiveRouteFragment extends BaseFragment implements View.OnClickLi
                     case "refresh":
                         receiveRouteView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         list = gson.fromJson(data, ReceiveRoute.ReceiveRouteList.class);
-                        receiveRouteView.getAdapter().setReceiveRoutes(list.list);
+                        receiveRouteAdapter.setReceiveRoutes(list.list);
                         pagination.update(list.list.size());
                         break;
                     case "loadmore":
                         list = gson.fromJson(data, ReceiveRoute.ReceiveRouteList.class);
-                        receiveRouteView.getAdapter().appendReceiveRoutes(list.list);
+                        receiveRouteAdapter.appendReceiveRoutes(list.list);
                         pagination.update(list.list.size());
                         if (list.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();

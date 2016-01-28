@@ -9,13 +9,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.ziyou.tourGuide.adapter.recyclerview.RouteCommunityAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.Pagination;
 import com.ziyou.tourGuide.model.RouteCommunity;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.MyRouteView;
+import com.ziyou.tourGuide.view.RouteCommunityPartView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
@@ -23,8 +24,9 @@ import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
  */
 public class MyRouteFragment extends BaseFragment implements StringCallBack<String> {
 
-    private MyRouteView myRouteView;
+    private RouteCommunityPartView<RouteCommunityAdapter> routeCommunityPartView;
     private Pagination pagination;
+    private RouteCommunityAdapter routeCommunityAdapter;
 
     @Override
     protected void initData() {
@@ -33,7 +35,7 @@ public class MyRouteFragment extends BaseFragment implements StringCallBack<Stri
 
     }
     private void initListener() {
-        myRouteView.getPullToRefreshRecyclerView().setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
+        routeCommunityPartView.getPullToRefreshRecyclerView().setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
                 /**
@@ -42,7 +44,7 @@ public class MyRouteFragment extends BaseFragment implements StringCallBack<Stri
                  * 这只是折中的解决方案
                  * 并不完美
                  */
-                myRouteView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
+                routeCommunityPartView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
                 requestNetwork();
             }
 
@@ -62,9 +64,12 @@ public class MyRouteFragment extends BaseFragment implements StringCallBack<Stri
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myRouteView = new MyRouteView(getContext());
+        routeCommunityPartView = new RouteCommunityPartView<>(getContext());
+        routeCommunityAdapter = new RouteCommunityAdapter();
+        routeCommunityPartView.setAdapter(routeCommunityAdapter);
+
         pagination = new Pagination(10, 0);
-        return myRouteView.getRootView();
+        return routeCommunityPartView.getRootView();
     }
 
     @Override
@@ -76,22 +81,22 @@ public class MyRouteFragment extends BaseFragment implements StringCallBack<Stri
                 RouteCommunity.RouteCommunityList routeCommunityList;
                 switch (tag) {
                     case "refresh":
-                        myRouteView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
+                        routeCommunityPartView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         routeCommunityList = gson.fromJson(data, RouteCommunity.RouteCommunityList.class);
-                        myRouteView.getAdapter().setRouteCommunities(routeCommunityList.list);
+                        routeCommunityAdapter.setRouteCommunities(routeCommunityList.list);
                         pagination.update(routeCommunityList.list.size());
                         break;
                     case "loadmore":
                         routeCommunityList = gson.fromJson(data, RouteCommunity.RouteCommunityList.class);
-                        myRouteView.getAdapter().appendRouteCommunities(routeCommunityList.list);
+                        routeCommunityAdapter.appendRouteCommunities(routeCommunityList.list);
                         pagination.update(routeCommunityList.list.size());
                         if (routeCommunityList.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
-                myRouteView.getPullToRefreshRecyclerView().onRefreshComplete();
-                myRouteView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
+                routeCommunityPartView.getPullToRefreshRecyclerView().onRefreshComplete();
+                routeCommunityPartView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
             }
         });
 

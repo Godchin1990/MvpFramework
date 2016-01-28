@@ -1,7 +1,6 @@
 package com.ziyou.tourGuide.view;
 
 import android.content.Context;
-import android.view.View;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.view.base.WebContentView;
@@ -16,10 +15,9 @@ public class BannerView extends WebContentView {
 
     /**
      * 初始化头
-     * @param view
      */
-    protected void initActionBar(View view) {
-        super.initActionBar(view);
-        actionBar.getRightView().setImageResource(R.mipmap.ic_share);
+    protected void initActionBar() {
+        super.initActionBar();
+        getActionBarView().getRightView().setImageResource(R.mipmap.ic_share);
     }
 }

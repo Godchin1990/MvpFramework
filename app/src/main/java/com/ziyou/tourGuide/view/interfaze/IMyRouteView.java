@@ -6,6 +6,7 @@ import com.ziyou.tourGuide.view.component.IRecyclerView;
 import com.ziyou.tourGuide.view.component.IRefreshViewContainer;
 
 /**
+ * @deprecated
  * Created by Edward on 16/1/25.
  */
 public interface IMyRouteView extends IRecyclerView<RouteCommunityAdapter>, IPullToRefreshRecyclerView,IRefreshViewContainer {

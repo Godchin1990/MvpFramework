@@ -11,7 +11,6 @@ import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.model.ItemViewMode;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IMeView;
-import com.ziyou.tourGuide.widget.MyActionBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,11 +87,12 @@ public class MeView extends TitleBarContentView implements IMeView {
     }
 
     @Override
-    protected void initActionBar(View view) {
-        actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
-        actionBar.getLeftView().setVisibility(View.GONE);
+    protected void initActionBar() {
+//        actionBar = (MyActionBar) view.findViewById(R.id.action_bar);
+        super.initActionBar();
+        getActionBarView().getLeftView().setVisibility(View.GONE);
         String title = getContext().getResources().getString(R.string.me);
-        actionBar.getTitleView().setText(title);
+        getActionBarView().getTitleView().setText(title);
     }
 
     @Override

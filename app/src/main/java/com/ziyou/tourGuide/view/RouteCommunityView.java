@@ -22,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * eg:路线社区界面
  * Created by Edward on 16/1/24.
  */
 public class RouteCommunityView extends TitleBarContentView implements IRouteCommunityView {
