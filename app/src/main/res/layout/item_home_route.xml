@@ -35,9 +35,10 @@
             fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@mipmap/bg_avata_hint"
             fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundAsCircle="true" />
-        <!--fresco:roundingBorderWidth="1dp"-->
-        <!--fresco:roundingBorderColor="@color/white"-->
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundingBorderColor="@color/white"/>
+
 
         <LinearLayout
             android:layout_width="wrap_content"

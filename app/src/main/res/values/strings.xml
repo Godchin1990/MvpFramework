@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">MvpFramework</string>
     <string name="load_more">加载更多</string>
+    <string name="load_empty">加载为空</string>
+    <string name="parse_json_error">解析json出错</string>
 
     <string name="title">标题</string>
     <string name="description">描述</string>
@@ -73,8 +75,8 @@
     <!-- user_edit fragment -->
     <string name="edit">编辑</string>
     <string name="save">保存</string>
-    <string name="name">名称</string>
-    <string name="phone_number">手机</string>
+    <string name="name">姓名</string>
+    <string name="phone_number">电话</string>
     <string name="current_living_place">现居地</string>
     <string name="password_setting">密码设置</string>
     <string name="age">年龄</string>
@@ -115,5 +117,21 @@
     <!-- route detail fragment-->
     <string name="yuan_per_person">元/人</string>
     <string name="appoint_right_now">立即预约</string>
+    <string name="customer_service_phone_number">客服电话</string>
+    <string name="is_sure_call_phone">是否拨打客服电话:%1$s</string>
+
+    <!-- ordersetting fragment-->
+    <string name="appoint">预约</string>
+    <string name="commit_appoint">提交预约</string>
+    <string name="appointment_info">预约信息</string>
+    <string name="contacts_info">联系人信息</string>
+    <string name="sales_promotion">优惠活动</string>
+    <string name="need_pay">需支付:</string>
+    <string name="start_date">出发日期</string>
+    <string name="people_number">人数</string>
+    <string name="appoint_price">预定价格</string>
+    <string name="please_select_date">请选择日期</string>
+
+
 
 </resources>

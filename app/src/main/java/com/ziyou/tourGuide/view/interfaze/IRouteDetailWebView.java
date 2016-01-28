@@ -8,4 +8,6 @@ import android.widget.TextView;
 public interface IRouteDetailWebView {
     TextView getPriceTextView();
     TextView getAppointTextView();
+    void showCallPhoneDialog(String number);
+
 }

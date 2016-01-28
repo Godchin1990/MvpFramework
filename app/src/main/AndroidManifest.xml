@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ziyou.tourGuide">
 
+    <!-- app自身需要的权限-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <!--//地图包、搜索包需要的基础权限-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -115,6 +117,9 @@
         <activity android:name=".activity.RouteCommunityActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.OrderStatisticActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.OrderSettingActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:screenOrientation="portrait"/>
     </application>
 

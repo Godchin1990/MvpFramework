@@ -57,10 +57,15 @@ public class GuiderOrderFragment extends BaseFragment implements StringCallBack<
                 switch (tag){
                     case "refresh":
                         Order.OrderList orderList = gson.fromJson(data, Order.OrderList.class);
-                        guiderOrderAdapter.setOrders(orderList.list);
+                        if(orderList.list.isEmpty()){
+                            guiderOrderView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_EMPTY);
+                        }else {
+                            guiderOrderAdapter.setOrders(orderList.list);
+                            guiderOrderView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
+                        }
                         break;
                 }
-                guiderOrderView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
+
             }
         });
     }

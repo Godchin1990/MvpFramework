@@ -1,16 +1,22 @@
 package com.ziyou.tourGuide.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.GuideDetailActivity;
+import com.ziyou.tourGuide.activity.OrderSettingActivity;
 import com.ziyou.tourGuide.activity.base.Const;
+import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
+import com.ziyou.tourGuide.helper.LocationHelper;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
@@ -19,6 +25,9 @@ import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * Created by Edward on 16/1/10.
@@ -44,6 +53,7 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
         webContentView.getAppointTextView().setOnClickListener(this);
         //未加载网络数据前,设置不可点击
         webContentView.getAppointTextView().setClickable(false);
+        webContentView.getAppointTextView().setOnClickListener(this);
     }
 
     @Override
@@ -54,7 +64,28 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
 
     @Override
     public void parseJsonToSkip(String json) {
-
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            int type = jsonObject.getInt("type");
+            Intent intent;
+            switch (type){
+                case 2:
+                    String guideId = jsonObject.getJSONObject("params").getString("guider_id");
+                    intent = new Intent(getContext(), GuideDetailActivity.class);
+                    Bundle bundleForGuider = new Bundle();
+                    bundleForGuider.putString(Const.GUIDE_ID, guideId);
+                    intent.putExtra(Const.BUNDLE, bundleForGuider);
+                    getContext().startActivity(intent);
+                    break;
+                case 4:
+                    String phone = jsonObject.getJSONObject("params").getString("phone");
+                    webContentView.showCallPhoneDialog(phone);
+                    break;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),getResources().getString(R.string.parse_json_error),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -66,8 +97,11 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                 break;
             case R.id.appoint:
                 Log.d(TAG,"click appoint");
-//                intent = new Intent(getContext(),);
-//                getContext().startActivity(intent);
+                intent = new Intent(getContext(), OrderSettingActivity.class);
+                Bundle bundleForRoute = new Bundle();
+                bundleForRoute.putString(Const.ROUTE_ID, getArguments().getString(Const.ROUTE_ID) + "");
+                intent.putExtra(Const.BUNDLE, bundleForRoute);
+                getContext().startActivity(intent);
                 break;
         }
     }
@@ -106,6 +140,34 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
 
     @Override
     public void onFail(int code, String message, Object object) {
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocationHelper.getInstance().onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(ClickEvent clickEvent){
+        switch (clickEvent.getTag()){
+            case RouteDetailWebView.TAG_CALL_PHONE:
+                //点击拨打电话
+                String number = (String) clickEvent.getParam();
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.CALL");
+                intent.setData(Uri.parse("tel:" + number));
+                startActivity(intent);
+                break;
+        }
 
     }
 }

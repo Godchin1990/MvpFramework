@@ -50,6 +50,7 @@ public class DiscoveryView<T extends RecyclerView.Adapter> extends RefreshRecycl
     @Override
     protected void initActionBar() {
         super.initActionBar();
+        getActionBarView().getLeftView().setVisibility(View.GONE);
         getActionBarView().getLeftTextView().setVisibility(View.VISIBLE);
         getActionBarView().getLeftTextView().setCompoundDrawablePadding(10);
         Drawable drawable = getContext().getResources().getDrawable(R.mipmap.ic_arrow_down);

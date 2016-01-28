@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewAdapter;
 
 /**
@@ -23,9 +24,8 @@ public abstract class SimpleRefreshViewAdapter extends RefreshViewAdapter {
 
     @Override
     public View setEmptyView() {
-        TextView textView = new TextView(getContext());
-        textView.setText("加载为空");
-        return textView;
+        View view = View.inflate(getContext(), R.layout.fragment_empty,null);
+        return view;
     }
 
     @Override
