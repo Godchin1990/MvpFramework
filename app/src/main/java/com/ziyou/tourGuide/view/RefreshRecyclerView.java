@@ -5,47 +5,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
-import com.ziyou.tourGuide.adapter.recyclerview.TopicAdapter;
 import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
-import com.ziyou.tourGuide.view.interfaze.ITopicView;
+import com.ziyou.tourGuide.view.interfaze.IRefreshRecyclerView;
 import com.ziyou.tourGuide.widget.PullToRefreshRecyclerView;
 import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
- *
- * @deprecated
+ * Created by Edward on 16/1/28.
  */
-public class TopicView extends TitleBarContentView implements ITopicView {
-
-    private PullToRefreshRecyclerView pullToRefreshRecyclerView;
-
-    private RecyclerView recyclerView;
-    private TopicAdapter adapter;
+public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBarContentView implements IRefreshRecyclerView<T> {
     private RefreshViewContainer refreshViewContainer;
+    private PullToRefreshRecyclerView pullToRefreshRecyclerView;
+    private RecyclerView recyclerView;
 
-    public TopicView(Context context) {
+    public RefreshRecyclerView(Context context) {
         super(context);
     }
-
-    @Override
-    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
-        return pullToRefreshRecyclerView;
-    }
-
-    @Override
-    public RecyclerView getRecyclerView() {
-        return pullToRefreshRecyclerView.getRefreshableView();
-    }
-
-    @Override
-    public TopicAdapter getAdapter() {
-        return adapter;
-    }
-
 
     @Override
     public View setContentView() {
@@ -57,15 +36,29 @@ public class TopicView extends TitleBarContentView implements ITopicView {
                 pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
                 pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
                 recyclerView = pullToRefreshRecyclerView.getRefreshableView();
-                adapter = new TopicAdapter();
+//                adapter = new TopicAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
-                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
-                recyclerView.setAdapter(adapter);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
                 return view;
             }
         });
         return refreshViewContainer;
+    }
+
+    @Override
+    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
+        return pullToRefreshRecyclerView;
+    }
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    @Override
+    public void setAdapter(T adapter) {
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

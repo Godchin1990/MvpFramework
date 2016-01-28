@@ -9,6 +9,7 @@ import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.model.City;
 import com.ziyou.tourGuide.util.ScreenHelper;
+import com.ziyou.tourGuide.view.DiscoveryView;
 
 import de.greenrobot.event.EventBus;
 
@@ -43,7 +44,7 @@ public class CityViewHolder extends BaseViewHolder<City> implements View.OnClick
     @Override
     public void onClick(View v) {
         String cityName = cityTv.getText().toString();
-        ClickEvent clickEvent = new ClickEvent("check_city");
+        ClickEvent clickEvent = new ClickEvent(DiscoveryView.TAG_CHECK_CITY);
         clickEvent.setParam(cityName);
 
         EventBus.getDefault().post(clickEvent);

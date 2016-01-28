@@ -8,26 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.base.Const;
+import com.ziyou.tourGuide.adapter.recyclerview.TopicAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.HomeRoute;
 import com.ziyou.tourGuide.model.Pagination;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.TopicView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
  * Created by Edward on 16/1/8.
  */
 public class TopicFragment extends BaseFragment implements StringCallBack<String>, View.OnClickListener {
 
-    private TopicView topicView;
+//    private TopicView topicView;
     private Pagination pagination;
+    private RefreshRecyclerView<TopicAdapter> refreshRecyclerView;
+    private TopicAdapter topicAdapter;
 
     @Override
     protected void initData() {
@@ -38,7 +41,7 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
 
     private void initDataFromArguments() {
         String name = getArguments().getString(Const.TOPIC_NAME);
-        topicView.getActionBarView().getTitleView().setText(name);
+        refreshRecyclerView.getActionBarView().getTitleView().setText(name);
     }
 
     private void requestNetwork() {
@@ -51,8 +54,8 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
     }
 
     private void initListener() {
-        topicView.getActionBarView().getLeftView().setOnClickListener(this);
-        topicView.getPullToRefreshRecyclerView().setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
+        refreshRecyclerView.getActionBarView().getLeftView().setOnClickListener(this);
+        refreshRecyclerView.getPullToRefreshRecyclerView().setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
                 /**
@@ -61,7 +64,7 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
                  * 这只是折中的解决方案
                  * 并不完美
                  */
-                topicView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
+                refreshRecyclerView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.DISABLED);
                 requestNetwork();
             }
 
@@ -77,9 +80,11 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        topicView = new TopicView(getContext());
+        refreshRecyclerView = new RefreshRecyclerView<>(getContext());
+        topicAdapter = new TopicAdapter();
+        refreshRecyclerView.setAdapter(topicAdapter);
         pagination = new Pagination(10, 0);
-        return topicView.getRootView();
+        return refreshRecyclerView.getRootView();
     }
 
     @Override
@@ -91,22 +96,24 @@ public class TopicFragment extends BaseFragment implements StringCallBack<String
                 Log.d(TAG,data);
                 switch (tag) {
                     case "refresh":
-                        topicView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
+                        refreshRecyclerView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         HomeRoute.HomeRouteLists homeRouteLists = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-                        topicView.getAdapter().setRoutes(homeRouteLists.list);
+//                        topicView.getAdapter().setRoutes(homeRouteLists.list);
+                        topicAdapter.setRoutes(homeRouteLists.list);
                         pagination.update(homeRouteLists.list.size());
                         break;
                     case "loadmore":
                         HomeRoute.HomeRouteLists homeRouteListsMore = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-                        topicView.getAdapter().appendRoutes(homeRouteListsMore.list);
+//                        topicView.getAdapter().appendRoutes(homeRouteListsMore.list);
+                        topicAdapter.appendRoutes(homeRouteListsMore.list);
                         pagination.update(homeRouteListsMore.list.size());
                         if (homeRouteListsMore.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
                         }
                         break;
                 }
-                topicView.getPullToRefreshRecyclerView().onRefreshComplete();
-                topicView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
+                refreshRecyclerView.getPullToRefreshRecyclerView().onRefreshComplete();
+                refreshRecyclerView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);
             }
         });
     }

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.adapter.recyclerview.DiscoveryAdapter;
 import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.helper.LocationHelper;
@@ -21,8 +24,6 @@ import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.DiscoveryView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
@@ -32,8 +33,9 @@ import de.greenrobot.event.Subscribe;
  */
 public class DiscoveryFragment extends LazyFragment implements StringCallBack<String>, View.OnClickListener {
 
-    private DiscoveryView discoveryView;
+    private DiscoveryView<DiscoveryAdapter> discoveryView;
     private Pagination pagination;
+    private DiscoveryAdapter adapter;
 
     @Override
     protected void initData() {
@@ -76,7 +78,10 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        discoveryView = new DiscoveryView(getContext());
+        discoveryView = new DiscoveryView<>(getContext());
+        adapter = new DiscoveryAdapter();
+        discoveryView.setAdapter(adapter);
+
         String string = getResources().getString(R.string.landmark);
         discoveryView.getActionBarView().getTitleView().setText(string);
         pagination = new Pagination(10, 0);
@@ -94,12 +99,12 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
                     case "refresh":
                         discoveryView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         Discovery.DiscoveryLists discoveryLists = gson.fromJson(data, Discovery.DiscoveryLists.class);
-                        discoveryView.getAdapter().setDiscovery(discoveryLists.list);
+                        adapter.setDiscovery(discoveryLists.list);
                         pagination.update(discoveryLists.list.size());
                         break;
                     case "loadmore":
                         Discovery.DiscoveryLists discoveryListsMore = gson.fromJson(data, Discovery.DiscoveryLists.class);
-                        discoveryView.getAdapter().appendDiscovery(discoveryListsMore.list);
+                        adapter.appendDiscovery(discoveryListsMore.list);
                         pagination.update(discoveryListsMore.list.size());
                         if (discoveryListsMore.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();
@@ -161,7 +166,7 @@ public class DiscoveryFragment extends LazyFragment implements StringCallBack<St
     public void onEvent(ClickEvent clickEvent){
         Log.d(TAG, clickEvent.toString());
         switch (clickEvent.getTag()){
-            case "check_city":
+            case DiscoveryView.TAG_CHECK_CITY:
                 String param = (String) clickEvent.getParam();
                 discoveryView.getCityListPopupWindow().dismiss();
                 discoveryView.getActionBarView().getLeftTextView().setText(param);

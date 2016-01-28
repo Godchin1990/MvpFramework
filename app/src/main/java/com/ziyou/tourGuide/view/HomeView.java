@@ -5,27 +5,25 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.adapter.recyclerview.HomeAdapter;
 import com.ziyou.tourGuide.adapter.recyclerview.holder.HomeTopicViewHolder;
 import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
 import com.ziyou.tourGuide.view.base.BaseView;
-import com.ziyou.tourGuide.view.interfaze.IHomeView;
+import com.ziyou.tourGuide.view.interfaze.IRefreshRecyclerView;
 import com.ziyou.tourGuide.widget.PullToRefreshRecyclerView;
 import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
  * Created by Edward on 16/1/1.
  */
-public class HomeView extends BaseView implements IHomeView {
+public class HomeView<T extends RecyclerView.Adapter> extends BaseView implements IRefreshRecyclerView<T> {
 
     private RefreshViewContainer refreshViewContainer;
     private PullToRefreshRecyclerView pullToRefreshRecyclerView;
     private RecyclerView recyclerView;
-
-    private HomeAdapter adapter;
 
     public HomeView(Context context) {
         super(context);
@@ -41,12 +39,11 @@ public class HomeView extends BaseView implements IHomeView {
                 pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
                 pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
                 recyclerView = pullToRefreshRecyclerView.getRefreshableView();
-                adapter = new HomeAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerView.setLayoutManager(manager);
                 recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
 //                recyclerView.addItemDecoration(new DividerItemSeparateDecoration());
-                recyclerView.setAdapter(adapter);
+
                 /**添加RecyclerView的滑动效果*/
                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
@@ -83,9 +80,14 @@ public class HomeView extends BaseView implements IHomeView {
     }
 
     @Override
-    public HomeAdapter getAdapter() {
-        return adapter;
+    public void setAdapter(T adapter) {
+        recyclerView.setAdapter(adapter);
     }
+
+//    @Override
+//    public HomeAdapter getAdapter() {
+//        return adapter;
+//    }
 
     @Override
     public RefreshViewContainer getRefreshViewContainer() {

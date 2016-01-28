@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.ziyou.tourGuide.adapter.recyclerview.HomeAdapter;
 import com.ziyou.tourGuide.fragment.base.LazyFragment;
 import com.ziyou.tourGuide.model.HomeBanner;
 import com.ziyou.tourGuide.model.HomeRoute;
@@ -17,20 +20,21 @@ import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.HomeView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
  * Created by Edward on 16/1/1.
  */
 public class HomeFragment extends LazyFragment implements StringCallBack<String> {
 
-    private HomeView homeView;
+    private HomeView<HomeAdapter> homeView;
     private Pagination pagination;
+    private HomeAdapter homeAdapter;
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeView = new HomeView(getContext());
+        homeView = new HomeView<>(getContext());
+        homeAdapter = new HomeAdapter();
+        homeView.setAdapter(homeAdapter);
         pagination = new Pagination(10, 0);
         return homeView.getRootView();
     }
@@ -84,21 +88,21 @@ public class HomeFragment extends LazyFragment implements StringCallBack<String>
                 switch (tag) {
                     case "banner":
                         HomeBanner.HomeBannerLists homeBannerLists = gson.fromJson(data, HomeBanner.HomeBannerLists.class);
-                        homeView.getAdapter().setBanners(homeBannerLists.list);
+                        homeAdapter.setBanners(homeBannerLists.list);
                         break;
                     case "topic":
                         HomeTopic.HomeTopicLists homeTopicLists = gson.fromJson(data, HomeTopic.HomeTopicLists.class);
-                        homeView.getAdapter().setTopics(homeTopicLists.list);
+                        homeAdapter.setTopics(homeTopicLists.list);
                         break;
                     case "refresh":
                         homeView.getPullToRefreshRecyclerView().setMode(PullToRefreshBase.Mode.BOTH);
                         HomeRoute.HomeRouteLists homeRouteLists = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-                        homeView.getAdapter().setRoutes(homeRouteLists.list);
+                        homeAdapter.setRoutes(homeRouteLists.list);
                         pagination.update(homeRouteLists.list.size());
                         break;
                     case "loadmore":
                         HomeRoute.HomeRouteLists homeRouteListsMore = gson.fromJson(data, HomeRoute.HomeRouteLists.class);
-                        homeView.getAdapter().appendRoutes(homeRouteListsMore.list);
+                        homeAdapter.appendRoutes(homeRouteListsMore.list);
                         pagination.update(homeRouteListsMore.list.size());
                         if (homeRouteListsMore.list.isEmpty()) {
                             Toast.makeText(getContext(), "没有更多数据", Toast.LENGTH_SHORT).show();

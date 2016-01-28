@@ -10,28 +10,22 @@ import android.widget.PopupWindow;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.adapter.recyclerview.CityListAdapter;
-import com.ziyou.tourGuide.adapter.recyclerview.DiscoveryAdapter;
-import com.ziyou.tourGuide.adapter.refreshviewcontainer.SimpleRefreshViewAdapter;
 import com.ziyou.tourGuide.util.ScreenHelper;
-import com.ziyou.tourGuide.view.base.TitleBarContentView;
 import com.ziyou.tourGuide.view.interfaze.IDiscoveryView;
 import com.ziyou.tourGuide.widget.MyActionBar;
-import com.ziyou.tourGuide.widget.PullToRefreshRecyclerView;
-import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
-import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 /**
  * Created by Edward on 16/1/10.
  */
-public class DiscoveryView extends TitleBarContentView implements IDiscoveryView<CityListAdapter> {
+public class DiscoveryView<T extends RecyclerView.Adapter> extends RefreshRecyclerView<T> implements IDiscoveryView {
 
     public static final String TAG_CHECK_CITY = "tag_check_city";
 
-    private RefreshViewContainer refreshViewContainer;
-    private PullToRefreshRecyclerView pullToRefreshRecyclerView;
-    private RecyclerView recyclerView;
-    private DiscoveryAdapter adapter;
+//    private RefreshViewContainer refreshViewContainer;
+//    private PullToRefreshRecyclerView pullToRefreshRecyclerView;
+//    private RecyclerView recyclerView;
+//    private DiscoveryAdapter adapter;
+
     private PopupWindow cityPopWindow;
     private RecyclerView cityListRecyclerView;
     private CityListAdapter cityListAdapter;
@@ -40,25 +34,25 @@ public class DiscoveryView extends TitleBarContentView implements IDiscoveryView
         super(context);
     }
 
-    @Override
-    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
-        return pullToRefreshRecyclerView;
-    }
-
-    @Override
-    public RecyclerView getRecyclerView() {
-        return recyclerView;
-    }
-
-    @Override
-    public DiscoveryAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public RefreshViewContainer getRefreshViewContainer() {
-        return refreshViewContainer;
-    }
+//    @Override
+//    public PullToRefreshRecyclerView getPullToRefreshRecyclerView() {
+//        return pullToRefreshRecyclerView;
+//    }
+//
+//    @Override
+//    public RecyclerView getRecyclerView() {
+//        return recyclerView;
+//    }
+//
+//    @Override
+//    public DiscoveryAdapter getAdapter() {
+//        return adapter;
+//    }
+//
+//    @Override
+//    public RefreshViewContainer getRefreshViewContainer() {
+//        return refreshViewContainer;
+//    }
 
     @Override
     public View setContentView() {
@@ -74,24 +68,24 @@ public class DiscoveryView extends TitleBarContentView implements IDiscoveryView
                 , ScreenHelper.dpToPxInt(getContext(), 180), true);
         cityPopWindow.setBackgroundDrawable(new BitmapDrawable());
 
-        //设置refreshviewcontainer
-        refreshViewContainer = new RefreshViewContainer(getContext());
-        refreshViewContainer.setAdapter(new SimpleRefreshViewAdapter(getContext()) {
-            @Override
-            public View setSuccessView() {
-                View view = View.inflate(getContext(), R.layout.layout_refresh_recyclerview, null);
-                pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
-                pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
-                recyclerView = pullToRefreshRecyclerView.getRefreshableView();
-                adapter = new DiscoveryAdapter();
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
-                recyclerView.setLayoutManager(manager);
-                recyclerView.setAdapter(adapter);
-                return view;
-            }
-        });
-        return refreshViewContainer;
+//        //设置refreshviewcontainer
+//        refreshViewContainer = new RefreshViewContainer(getContext());
+//        refreshViewContainer.setAdapter(new SimpleRefreshViewAdapter(getContext()) {
+//            @Override
+//            public View setSuccessView() {
+//                View view = View.inflate(getContext(), R.layout.layout_refresh_recyclerview, null);
+//                pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
+//                pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
+//                recyclerView = pullToRefreshRecyclerView.getRefreshableView();
+//                adapter = new DiscoveryAdapter();
+//                RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
+//                recyclerView.setLayoutManager(manager);
+//                recyclerView.setAdapter(adapter);
+//                return view;
+//            }
+//        });
+        return super.setContentView();
     }
 
     /**
