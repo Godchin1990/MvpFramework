@@ -71,6 +71,13 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
             int type = jsonObject.getInt("type");
             Intent intent;
             switch (type){
+                case 1:
+                    //跳转到聊天页面
+                    String userId = jsonObject.getJSONObject("params").getString("userId");
+                    intent = new Intent(getContext(), ChatActivity.class);
+                    intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
+                    getContext().startActivity(intent);
+                    break;
                 case 2:
                     //跳转导游
                     String guideId = jsonObject.getJSONObject("params").getString("guider_id");
@@ -84,13 +91,6 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                     //跳转拨打电话页面
                     String phone = jsonObject.getJSONObject("params").getString("phone");
                     webContentView.showCallPhoneDialog(phone);
-                    break;
-                case 1:
-                    //跳转拨打电话页面
-                    String userId = jsonObject.getJSONObject("params").getString("userId");
-                    intent = new Intent(getContext(), ChatActivity.class);
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
-                    getContext().startActivity(intent);
                     break;
             }
         } catch (JSONException e) {
