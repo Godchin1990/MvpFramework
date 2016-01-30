@@ -43,6 +43,7 @@
     <string name="please_input_password">请输入密码</string>
     <string name="phone_number_empty">手机号不能为空</string>
     <string name="password_empty">密码不能为空</string>
+    <string name="login_hx_error">登陆聊天失败,请尝试重新登陆或与我们联系</string>
 
     <!-- setting fragment-->
     <string name="more">更多</string>
@@ -118,7 +119,7 @@
     <string name="yuan_per_person">元/人</string>
     <string name="appoint_right_now">立即预约</string>
     <string name="customer_service_phone_number">客服电话</string>
-    <string name="is_sure_call_phone">是否拨打客服电话:%1$s</string>
+    <string name="is_sure_call_phone">拨打客服电话:%1$s</string>
 
     <!-- ordersetting fragment-->
     <string name="appoint">预约</string>
@@ -132,6 +133,8 @@
     <string name="appoint_price">预定价格</string>
     <string name="please_select_date">请选择日期</string>
 
+    <!-- guider detail fragment-->
+    <string name="contacts">联系一下</string>
 
 
 </resources>

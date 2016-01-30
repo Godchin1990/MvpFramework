@@ -22,6 +22,19 @@ public class ServerAPI {
     private static String getServerBase() {
         return DEBUG ? SERVER_BASE_TEST : SERVER_BASE_PRODUCT;
     }
+
+    /**
+     * SpashFragment相关接口
+     */
+    public static class Splash{
+        public static final String START_PAGE = "start_page";
+        public static String buildStartPageUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(START_PAGE);
+            return builder.toString();
+        }
+    }
+
     /**
      * HomeFragment相关的接口
      */

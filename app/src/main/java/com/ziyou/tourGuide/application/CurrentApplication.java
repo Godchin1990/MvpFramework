@@ -7,12 +7,9 @@ import android.view.WindowManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.ziyou.tourGuide.helper.IMHelper;
+import com.ziyou.tourGuide.helper.HXHelper;
 import com.ziyou.tourGuide.helper.SPHelper;
 import com.ziyou.tourGuide.helper.ShareHelper;
-import com.ziyou.tourGuide.helper.UserHelper;
-import com.ziyou.tourGuide.model.UserInformation;
-import com.ziyou.tourGuide.network.ServerAPI;
 
 /**
  * Created by Edward on 15/10/22.
@@ -27,8 +24,9 @@ public class CurrentApplication extends Application implements Thread.UncaughtEx
         ImagePipelineConfig imagePipelineConfig = ConfigConstants.getImagePipelineConfig(getApplicationContext());
         Fresco.initialize(this, imagePipelineConfig);
 
-        init();
         SPHelper.getInstance().init(getApplicationContext());
+        init();
+
         ShareHelper.getInstance().init();
 
         initIM();
@@ -36,16 +34,7 @@ public class CurrentApplication extends Application implements Thread.UncaughtEx
     }
 
     private void initIM() {
-//        是否第二次调用
-        if(!IMHelper.getInstance().isTwiceCall(getApplicationContext())){
-//            不是第二次调用,是第一次调用
-            IMHelper.getInstance().init(getApplicationContext());
-            IMHelper.getInstance().setDebugMode(ServerAPI.DEBUG);
-            if(UserHelper.getInstance().getUserInformation()!=null){
-                UserInformation userInformation = UserHelper.getInstance().getUserInformation();
-                IMHelper.getInstance().updateCurrentUserNick(userInformation.getNickname());
-            }
-        }
+        HXHelper.getInstance().init(this);
     }
 
     private void init() {

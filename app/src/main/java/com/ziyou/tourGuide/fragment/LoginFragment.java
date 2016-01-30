@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
+import com.ziyou.tourGuide.helper.HXHelper;
+import com.ziyou.tourGuide.helper.LocationHelper;
 import com.ziyou.tourGuide.helper.TokenHelper;
 import com.ziyou.tourGuide.helper.UUIDHelpter;
 import com.ziyou.tourGuide.helper.UserHelper;
@@ -23,6 +26,9 @@ import com.ziyou.tourGuide.view.LoginView;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * 登陆页面fragment
@@ -97,7 +103,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                         Log.d(TAG, "user info success");
                         UserInformation userInformation = gson.fromJson(data, UserInformation.class);
                         UserHelper.getInstance().setUserInformation(userInformation);
-                        getActivity().finish();
+                        loginHX(userInformation);
                         break;
                 }
             }
@@ -106,14 +112,21 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
     }
 
+    private void loginHX(final UserInformation userInformation) {
+        String userName = userInformation.getIm_username();
+        String password = userInformation.getIm_password();
+        HXHelper.getInstance().login(userName,password);
+
+    }
+
     /**
      * 通过token获得用户信息
      * @param tokenInfomation
      */
     private void getUserInfomation(TokenInfomation tokenInfomation) {
-        Log.d(TAG,"get user information");
+        Log.d(TAG, "get user information");
         String url = ServerAPI.User.buildUserInfoUrl();
-        NetworkHelper.getInstance().sendGetStringRequest(url,null,this,"user_info");
+        NetworkHelper.getInstance().sendGetStringRequest(url, null, this, "user_info");
     }
 
     @Override
@@ -124,5 +137,42 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocationHelper.getInstance().onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(ClickEvent clickEvent){
+        switch (clickEvent.getTag()){
+            case HXHelper.TAG_HX_LOGIN_SUCCESS:
+                // 登陆环信成功
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        getActivity().finish();
+                    }
+                });
+                break;
+            case HXHelper.TAG_HX_LOGIN_ERROR:
+                // 登陆环信失败
+                UserHelper.getInstance().clearUserInformation();
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getContext(), getResources().getString(R.string.login_hx_error), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                break;
+        }
+
     }
 }

@@ -12,15 +12,15 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
+import com.ziyou.tourGuide.view.GuiderDetailWebView;
 import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
-import com.ziyou.tourGuide.view.base.WebContentView;
 
 /**
  * Created by Edward on 16/1/10.
  */
 public class GuideDetailFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
 
-    private WebContentView webContentView;
+    private GuiderDetailWebView webContentView;
 
     @Override
     protected void initData() {
@@ -36,7 +36,7 @@ public class GuideDetailFragment extends BaseFragment implements GuideJavaScript
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        webContentView = new WebContentView(getContext());
+        webContentView = new GuiderDetailWebView(getContext());
         String string = getResources().getString(R.string.guider_detail);
         webContentView.getActionBarView().getTitleView().setText(string);
         return webContentView.getRootView();
@@ -44,6 +44,7 @@ public class GuideDetailFragment extends BaseFragment implements GuideJavaScript
 
     private void initListener() {
         webContentView.getActionBarView().getLeftView().setOnClickListener(this);
+        webContentView.getBottomLayout().setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +57,9 @@ public class GuideDetailFragment extends BaseFragment implements GuideJavaScript
         switch (v.getId()){
             case R.id.action_bar_left:
                 getActivity().finish();
+                break;
+            case R.id.layout_bottom:
+                Log.d(TAG,"click layout_bottom");
                 break;
         }
     }
@@ -75,6 +79,11 @@ public class GuideDetailFragment extends BaseFragment implements GuideJavaScript
 
     @Override
     public void onFail(int code, String message, Object object) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
+            }
+        });
     }
 }

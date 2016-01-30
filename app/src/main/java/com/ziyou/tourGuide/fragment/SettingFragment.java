@@ -9,6 +9,7 @@ import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.helper.DataCleanHelper;
+import com.ziyou.tourGuide.helper.HXHelper;
 import com.ziyou.tourGuide.helper.LocationHelper;
 import com.ziyou.tourGuide.helper.TokenHelper;
 import com.ziyou.tourGuide.helper.UserHelper;
@@ -64,9 +65,6 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             case R.id.clear_cache:
                 settingView.showClearCacheDialog();
                 break;
-//            case R.id.click:
-//                Log.d(TAG,"dialog click");
-//                break;
         }
     }
 
@@ -87,15 +85,17 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     public void onEvent(ClickEvent clickEvent){
         switch (clickEvent.getTag()){
             case SettingView.TAG_CANCEL_LOGIN:
-                //取消登陆点击后执行
-                UserHelper.getInstance().clearUserInformation();
-                TokenHelper.getInstance().clearTokenInformation();
-                getActivity().finish();
+                // 先登出环信
+                HXHelper.getInstance().logout();
                 break;
             case SettingView.TAG_CLEAR_CACHE:
                 //清除缓存点击后执行
                 DataCleanHelper.getInstance().cleanAppCache(getContext());
-
+                break;
+            case HXHelper.TAG_HX_LOGOUT_SUCCESS:
+                UserHelper.getInstance().clearUserInformation();
+                TokenHelper.getInstance().clearTokenInformation();
+                getActivity().finish();
                 break;
         }
 
