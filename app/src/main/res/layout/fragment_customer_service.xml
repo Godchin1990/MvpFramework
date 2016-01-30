@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<TextView-->
+        <!--android:layout_width=""-->
+        <!--android:layout_height="" />-->
+    <include
+        android:id="@+id/customer_service_phone_number"
+        layout="@layout/item_icon_left_textview_next"/>
+
+    <include
+        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_grey_line"/>
+
+    <include layout="@layout/item_muti_line_edittext2"/>
+
+    <Button
+        android:id="@+id/commit"
+        style="@style/width_match_parent_button"
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_red_button_selector"
+        android:text="@string/commit" />
+</LinearLayout>

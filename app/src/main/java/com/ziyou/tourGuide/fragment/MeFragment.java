@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.CustomerServiceActivity;
 import com.ziyou.tourGuide.activity.UserInformationActivity;
 import com.ziyou.tourGuide.activity.GuiderAreaActivity;
 import com.ziyou.tourGuide.activity.LoginActivity;
@@ -68,6 +69,7 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
         meView.getMyTour().setOnClickListener(this);
         meView.getMyWallet().setOnClickListener(this);
         meView.getSetting().setOnClickListener(this);
+        meView.getCustomerService().setOnClickListener(this);
         return meView.getRootView();
     }
 
@@ -157,6 +159,11 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
                     intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.customer_service:
+                Log.d(TAG, "click customer_service");
+                intent = new Intent(getContext(), CustomerServiceActivity.class);
+                getContext().startActivity(intent);
                 break;
             case R.id.setting:
                 Log.d(TAG, "click setting");

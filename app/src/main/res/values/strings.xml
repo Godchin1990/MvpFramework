@@ -118,7 +118,7 @@
     <!-- route detail fragment-->
     <string name="yuan_per_person">元/人</string>
     <string name="appoint_right_now">立即预约</string>
-    <string name="customer_service_phone_number">客服电话</string>
+    <string name="customer_service_phone_number">客服电话:</string>
     <string name="is_sure_call_phone">拨打客服电话:%1$s</string>
 
     <!-- ordersetting fragment-->
@@ -135,6 +135,13 @@
 
     <!-- guider detail fragment-->
     <string name="contacts">联系一下</string>
+
+    <!-- customer service fragment-->
+    <string name="suggest_callback">意见反馈</string>
+    <string name="please_input_your_suggest">请输入您的意见</string>
+    <string name="real_phone_number">400&#8211;136&#8211;8680</string>
+    <string name="commit">提交</string>
+    <string name="send_success">发送成功</string>
 
 
 </resources>

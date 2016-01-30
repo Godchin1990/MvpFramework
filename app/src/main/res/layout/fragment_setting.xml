@@ -26,7 +26,7 @@
             <Button
                 android:id="@+id/un_login"
                 style="@style/width_match_parent_button"
-                android:background="@drawable/bg_unlogin_button_selector"
+                android:background="@drawable/bg_red_button_selector"
                 android:text="@string/unlogin" />
         </LinearLayout>
     </ScrollView>

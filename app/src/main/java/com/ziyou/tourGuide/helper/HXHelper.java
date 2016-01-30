@@ -54,7 +54,7 @@ public class HXHelper {
      *
      */
     public void init(Context context) {
-        if (EaseUI.getInstance().init(appContext)) {
+        if (EaseUI.getInstance().init(context)) {
             appContext = context;
             EMChat.getInstance().setDebugMode(true);
             //设置全局监听

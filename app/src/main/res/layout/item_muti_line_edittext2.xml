@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/item_layout">
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textColor="@color/text_black_text"
+        android:text="@string/suggest_callback"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"/>
+    <include layout="@layout/item_grey_line"/>
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/muti_edittext"
+        android:lines="5"
+        android:hint="@string/please_input_your_suggest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/item_muti_edittext"/>
+
+</LinearLayout>

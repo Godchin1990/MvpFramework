@@ -282,6 +282,15 @@ public class ServerAPI {
 
     }
 
+    public static class CustomerService{
+        public static final String FEEDBACK = "feedback";
+        public static String buildFeedbackUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(FEEDBACK);
+            return builder.toString();
+        }
+    }
+
     /**
      * 订单统计
      */
@@ -328,7 +337,7 @@ public class ServerAPI {
         /**日历url*/
         public static String getCalendarH5Url(String routeId) {
             Uri.Builder builder = Uri.parse(CALENDAR_URL).buildUpon();
-            builder.appendQueryParameter(PARAM_ID,routeId);
+            builder.appendQueryParameter(PARAM_ID, routeId);
             return builder.toString() ;
         }
     }
