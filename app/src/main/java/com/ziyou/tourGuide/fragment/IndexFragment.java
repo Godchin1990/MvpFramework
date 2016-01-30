@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroupManager;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.view.IndexView;
 
@@ -24,5 +26,12 @@ public class IndexFragment extends BaseFragment {
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         indexView = new IndexView(getContext(),getFragmentManager());
         return indexView.getRootView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EMGroupManager.getInstance().loadAllGroups();
+        EMChatManager.getInstance().loadAllConversations();
     }
 }

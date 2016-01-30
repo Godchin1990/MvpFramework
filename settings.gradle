@@ -1,1 +1,2 @@
-include ':app', ':library', ':sharelibrary', ':im'
+include ':app', ':library', ':sharelibrary'
+include ':easeUI'

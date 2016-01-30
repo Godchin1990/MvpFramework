@@ -112,11 +112,14 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
 
     }
 
-    private void loginHX(final UserInformation userInformation) {
+    /**
+     * 登录环信
+     * @param userInformation
+     */
+    private void loginHX(UserInformation userInformation) {
         String userName = userInformation.getIm_username();
         String password = userInformation.getIm_password();
         HXHelper.getInstance().login(userName,password);
-
     }
 
     /**

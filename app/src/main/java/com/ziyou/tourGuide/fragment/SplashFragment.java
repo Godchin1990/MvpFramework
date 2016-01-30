@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroupManager;
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.activity.IndexActivity;
 import com.ziyou.tourGuide.command.SimpleDraweeViewCommand;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
+import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.model.Splash;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
@@ -63,10 +66,10 @@ public class SplashFragment extends BaseFragment implements StringCallBack<Strin
                         new Thread(new Runnable() {
                             public void run() {
                                 long start = System.currentTimeMillis();
-//                                if (UserHelper.getInstance().isLogin()) {
-//                                    EMGroupManager.getInstance().loadAllGroups();
-//                                    EMChatManager.getInstance().loadAllConversations();
-//                                }
+                                if (UserHelper.getInstance().isLogin()) {
+                                    EMGroupManager.getInstance().loadAllGroups();
+                                    EMChatManager.getInstance().loadAllConversations();
+                                }
                                 long costTime = System.currentTimeMillis() - start;
                                 //等待sleeptime时长
                                 if (sleepTime - costTime > 0) {

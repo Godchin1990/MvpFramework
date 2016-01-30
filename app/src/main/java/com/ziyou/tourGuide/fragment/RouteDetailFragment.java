@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.easemob.easeui.EaseConstant;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.ChatActivity;
 import com.ziyou.tourGuide.activity.GuideDetailActivity;
 import com.ziyou.tourGuide.activity.OrderSettingActivity;
 import com.ziyou.tourGuide.activity.base.Const;
@@ -82,6 +84,13 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                     //跳转拨打电话页面
                     String phone = jsonObject.getJSONObject("params").getString("phone");
                     webContentView.showCallPhoneDialog(phone);
+                    break;
+                case 1:
+                    //跳转拨打电话页面
+                    String userId = jsonObject.getJSONObject("params").getString("userId");
+                    intent = new Intent(getContext(), ChatActivity.class);
+                    intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
+                    getContext().startActivity(intent);
                     break;
             }
         } catch (JSONException e) {
@@ -169,6 +178,7 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                 intent.setData(Uri.parse("tel:" + number));
                 startActivity(intent);
                 break;
+
         }
 
     }
