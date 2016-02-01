@@ -51,11 +51,11 @@ public class DiscoveryDetailAdapter extends BaseAdapter {
         if (position == 0 ) {
             if(bannerEntity!=null){
                 DiscoveryDetailBannerViewHolder bannerViewHolder = (DiscoveryDetailBannerViewHolder) holder;
-                bannerViewHolder.setData(bannerEntity);
+                bannerViewHolder.setData(position, bannerEntity);
             }
         } else if (position > 0 && position < routes.size() + 1) {
             HomeRouteViewHolder topicViewHolder = (HomeRouteViewHolder) holder;
-            topicViewHolder.setData(routes.get(position - 1));
+            topicViewHolder.setData(position, routes.get(position - 1));
         } else {
             //加载更多界面
         }

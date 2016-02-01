@@ -49,7 +49,7 @@ public class HomeTopicViewHolder extends BaseViewHolder<HomeTopic> implements Vi
     }
 
     @Override
-    protected void inflateView(HomeTopic data) {
+    protected void inflateView(int position, HomeTopic data) {
 
         Command command = new SimpleDraweeViewCommand(content_iv,data.getImage());
         command.execute();

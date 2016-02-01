@@ -43,7 +43,7 @@ public class ReceiveRouteViewHolder extends BaseViewHolder<ReceiveRoute> {
     }
 
     @Override
-    protected void inflateView(ReceiveRoute data) {
+    protected void inflateView(int position, ReceiveRoute data) {
         item_title.setText(data.getTitle());
         view_wordwrap.setLabelList(data.getLabels(), 3);
         item_date.setText(data.getStart_date());

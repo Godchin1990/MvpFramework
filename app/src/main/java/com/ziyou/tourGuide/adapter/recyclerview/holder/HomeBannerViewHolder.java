@@ -40,7 +40,7 @@ public class HomeBannerViewHolder extends BaseViewHolder<List<HomeBanner>> {
     }
 
     @Override
-    protected void inflateView(List<HomeBanner> data) {
+    protected void inflateView(int position, List<HomeBanner> data) {
         adapter.setData(data);
     }
 

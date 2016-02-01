@@ -26,7 +26,7 @@ public class GuiderOrderAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         GuiderOrderViewHolder bannerViewHolder = (GuiderOrderViewHolder) holder;
-        bannerViewHolder.setData(orders.get(position));
+        bannerViewHolder.setData(position, orders.get(position));
     }
 
     @Override

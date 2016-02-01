@@ -25,7 +25,7 @@ public class RouteCommunityAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RouteCommunityViewHolder routeCommunityViewHolder = (RouteCommunityViewHolder) holder;
-        routeCommunityViewHolder.setData(routeCommunities.get(position));
+        routeCommunityViewHolder.setData(position, routeCommunities.get(position));
     }
 
     @Override

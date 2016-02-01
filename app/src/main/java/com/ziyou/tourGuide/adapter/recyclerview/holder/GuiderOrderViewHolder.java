@@ -51,7 +51,7 @@ public class GuiderOrderViewHolder extends BaseViewHolder<Order> implements View
     }
 
     @Override
-    protected void inflateView(Order data) {
+    protected void inflateView(int position, Order data) {
         Command commandForAvatar = new SimpleDraweeViewCommand(riv_guide_avatar,data.getAvatar());
         commandForAvatar.execute();
         title.setText(data.getUsername());

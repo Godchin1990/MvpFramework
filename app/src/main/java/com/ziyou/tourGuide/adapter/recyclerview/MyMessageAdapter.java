@@ -25,7 +25,8 @@ public class MyMessageAdapter extends BaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        MyMessageViewHolder myMessageViewHolder  =  (MyMessageViewHolder)holder;
+        myMessageViewHolder.setData(position, messages.get(position));
     }
 
     @Override
@@ -36,5 +37,15 @@ public class MyMessageAdapter extends BaseAdapter {
     public void setMessages(List<MyMessage> list) {
         messages = list;
         notifyDataSetChanged();
+    }
+
+    public void removeItem(String id) {
+        for(int i = 0;i<messages.size();i++){
+            if(id.equals(messages.get(i).getId()+"")){
+                messages.remove(i);
+                notifyItemRemoved(i);
+                break;
+            }
+        }
     }
 }

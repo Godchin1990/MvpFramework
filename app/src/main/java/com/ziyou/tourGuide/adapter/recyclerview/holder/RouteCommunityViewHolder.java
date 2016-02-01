@@ -39,7 +39,7 @@ public class RouteCommunityViewHolder extends BaseViewHolder<RouteCommunity> {
     }
 
     @Override
-    protected void inflateView(RouteCommunity data) {
+    protected void inflateView(int position, RouteCommunity data) {
         item_title.setText(data.getTitle());
         view_wordwrap.setLabelList(data.getLabels(),3);
         this.itemView.setTag(data);

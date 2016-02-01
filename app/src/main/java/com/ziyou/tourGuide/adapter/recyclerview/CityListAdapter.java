@@ -27,7 +27,7 @@ public class CityListAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CityViewHolder routeViewHolder = (CityViewHolder) holder;
-        routeViewHolder.setData(cities.get(position));
+        routeViewHolder.setData(position, cities.get(position));
     }
 
     @Override

@@ -30,7 +30,7 @@ public class DiscoveryDetailBannerViewHolder extends BaseViewHolder<DiscoveryDet
     }
 
     @Override
-    protected void inflateView(DiscoveryDetail.BannerEntity data) {
+    protected void inflateView(int position, DiscoveryDetail.BannerEntity data) {
         title.setText(data.getTitle());
         Command simpleDraweeViewCommand = new SimpleDraweeViewCommand(banner_image,data.getCover());
         simpleDraweeViewCommand.execute();

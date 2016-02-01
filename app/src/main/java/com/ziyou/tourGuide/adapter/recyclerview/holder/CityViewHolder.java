@@ -37,7 +37,7 @@ public class CityViewHolder extends BaseViewHolder<City> implements View.OnClick
     }
 
     @Override
-    protected void inflateView(City data) {
+    protected void inflateView(int position, City data) {
         cityTv.setText(data.getName());
     }
 

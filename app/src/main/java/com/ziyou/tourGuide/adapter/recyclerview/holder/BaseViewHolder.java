@@ -30,14 +30,14 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
             resources = itemView.getResources();
         }
     }
-    public void setData(T data) {
+    public void setData(int position, T data) {
         this.data = data;
         if (autoInflate){
-            inflateView(data);
+            inflateView(position, data);
         }
     }
 
-    protected abstract void inflateView(T data);
+    protected abstract void inflateView(int position, T data);
 
     public T getData() {
         return data;

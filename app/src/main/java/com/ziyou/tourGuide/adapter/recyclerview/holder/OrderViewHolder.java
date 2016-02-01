@@ -46,7 +46,7 @@ public class OrderViewHolder extends BaseViewHolder<Order> implements View.OnCli
     }
 
     @Override
-    protected void inflateView(Order data) {
+    protected void inflateView(int position, Order data) {
         title.setText(data.getTitle());
         time.setText(data.getCreate_time());
         switch (data.getTrade_status()){

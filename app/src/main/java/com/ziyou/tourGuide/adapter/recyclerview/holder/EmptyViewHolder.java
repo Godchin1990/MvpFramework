@@ -17,7 +17,7 @@ public class EmptyViewHolder extends BaseViewHolder<Empty> {
     }
 
     @Override
-    protected void inflateView(Empty data) {
+    protected void inflateView(int position, Empty data) {
 
     }
 

@@ -27,7 +27,7 @@ public class ReceiveRouteAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ReceiveRouteViewHolder receiveRouteViewHolder = (ReceiveRouteViewHolder) holder;
-        receiveRouteViewHolder.setData(receiveRoutes.get(position));
+        receiveRouteViewHolder.setData(position, receiveRoutes.get(position));
     }
 
     @Override

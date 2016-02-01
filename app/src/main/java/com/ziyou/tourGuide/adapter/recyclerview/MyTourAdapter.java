@@ -27,7 +27,7 @@ public class MyTourAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         OrderViewHolder orderViewHolder = (OrderViewHolder) holder;
-        orderViewHolder.setData(orders.get(position));
+        orderViewHolder.setData(position, orders.get(position));
     }
 
     @Override

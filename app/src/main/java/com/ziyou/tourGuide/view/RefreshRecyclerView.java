@@ -22,6 +22,7 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
     private RefreshViewContainer refreshViewContainer;
     private PullToRefreshRecyclerView pullToRefreshRecyclerView;
     private RecyclerView recyclerView;
+    private RecyclerView animationListener;
 
     public RefreshRecyclerView(Context context) {
         super(context);
@@ -37,6 +38,7 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
                 pullToRefreshRecyclerView = (PullToRefreshRecyclerView) view.findViewById(R.id.pull_to_refresh_recyclerview);
                 pullToRefreshRecyclerView.setMode(PullToRefreshBase.Mode.BOTH);
                 recyclerView = pullToRefreshRecyclerView.getRefreshableView();
+                setAnimationListener(recyclerView);
 //                adapter = new TopicAdapter();
                 RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(manager);
@@ -48,7 +50,7 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
     }
 
     protected void setDecoration(RecyclerView recyclerView) {
-        recyclerView.addItemDecoration(new CommenDividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST,R.drawable.recyclerview_order_divide_decoration));
+        recyclerView.addItemDecoration(new CommenDividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST, R.drawable.recyclerview_order_divide_decoration));
     }
 
     @Override
@@ -69,5 +71,9 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
     @Override
     public RefreshViewContainer getRefreshViewContainer() {
         return refreshViewContainer;
+    }
+
+    public void setAnimationListener(RecyclerView recyclerView) {
+
     }
 }

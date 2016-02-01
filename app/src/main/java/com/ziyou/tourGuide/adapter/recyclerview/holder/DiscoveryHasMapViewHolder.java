@@ -62,7 +62,7 @@ public class DiscoveryHasMapViewHolder extends BaseViewHolder<Discovery> impleme
     }
 
     @Override
-    protected void inflateView(Discovery data) {
+    protected void inflateView(int position, Discovery data) {
 
         if(data.getList().size()>=3){
             if(data.getPosition()==0){

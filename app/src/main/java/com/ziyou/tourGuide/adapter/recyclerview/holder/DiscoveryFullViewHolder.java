@@ -34,7 +34,7 @@ public class DiscoveryFullViewHolder extends BaseViewHolder<Discovery> implement
     }
 
     @Override
-    protected void inflateView(Discovery data) {
+    protected void inflateView(int position, Discovery data) {
         bindDiscovery(fullSimpleDraweeView, fullDesc, data.getList().get(0));
     }
 

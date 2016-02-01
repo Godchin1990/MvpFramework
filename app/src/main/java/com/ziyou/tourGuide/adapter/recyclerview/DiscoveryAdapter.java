@@ -50,11 +50,11 @@ public class DiscoveryAdapter extends BaseAdapter {
         switch (discovery.getType()) {
             case TYPE_HAS_MAP:
                 DiscoveryHasMapViewHolder hasMapViewHolder = (DiscoveryHasMapViewHolder) holder;
-                hasMapViewHolder.setData(discovery);
+                hasMapViewHolder.setData(position, discovery);
                 break;
             case TYPE_FULL_VIEW:
                 DiscoveryFullViewHolder fullViewHolder = (DiscoveryFullViewHolder) holder;
-                fullViewHolder.setData(discovery);
+                fullViewHolder.setData(position, discovery);
                 break;
             default:
                 break;

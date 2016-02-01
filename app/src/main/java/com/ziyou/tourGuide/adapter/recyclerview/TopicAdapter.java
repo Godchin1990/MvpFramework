@@ -27,7 +27,7 @@ public class TopicAdapter extends BaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HomeRouteViewHolder routeViewHolder = (HomeRouteViewHolder) holder;
-        routeViewHolder.setData(routes.get(position));
+        routeViewHolder.setData(position, routes.get(position));
     }
 
     @Override

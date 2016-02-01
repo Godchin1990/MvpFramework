@@ -45,7 +45,7 @@ public class HomeRouteViewHolder extends BaseViewHolder<HomeRoute> implements Vi
     }
 
     @Override
-    protected void inflateView(HomeRoute data) {
+    protected void inflateView(int position, HomeRoute data) {
 
         Command commandForAvatar = new SimpleDraweeViewCommand(riv_guide_avatar,data.getAvatar());
         commandForAvatar.execute();

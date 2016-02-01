@@ -55,13 +55,13 @@ public class HomeAdapter extends BaseAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
             HomeBannerViewHolder bannerViewHolder = (HomeBannerViewHolder) holder;
-            bannerViewHolder.setData(banners);
+            bannerViewHolder.setData(position, banners);
         } else if (position > 0 && position < topics.size() + 1) {
             HomeTopicViewHolder topicViewHolder = (HomeTopicViewHolder) holder;
-            topicViewHolder.setData(topics.get(position - 1));
+            topicViewHolder.setData(position, topics.get(position - 1));
         } else if (position >= topics.size() + 1 && position < routes.size() + topics.size() + 1) {
             HomeRouteViewHolder routeViewHolder = (HomeRouteViewHolder) holder;
-            routeViewHolder.setData(routes.get(position - topics.size() - 1));
+            routeViewHolder.setData(position, routes.get(position - topics.size() - 1));
         } else {
             //加载更多界面
         }

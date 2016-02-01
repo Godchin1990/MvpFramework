@@ -191,6 +191,7 @@ public class ServerAPI {
         public static final String GET_MESSAGE_LIST = "get_message_list";
         public static final String CHANGE_PASSWORD = "change_password";
         public static final String MODIFY_USER = "modify_user";
+        public static final String DELETE_MESSAGE = "delete_message";
 
         public static final String PARAM_PHONE = "phone";
         public static final String PARAM_IDENTIFY_CODE = "activation_code";
@@ -229,6 +230,13 @@ public class ServerAPI {
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(USER);
             builder.appendEncodedPath(GET_MESSAGE_LIST);
+            return builder.toString();
+        }
+
+        public static String buildDeleteMessageListUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(USER);
+            builder.appendEncodedPath(DELETE_MESSAGE);
             return builder.toString();
         }
 
