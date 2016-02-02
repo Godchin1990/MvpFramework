@@ -23,7 +23,7 @@ public class GuiderInformationView extends TitleBarContentView implements IGuide
 
     @Bind(R.id.name)
     View name;
-    @Bind(R.id.phone_number)
+    @Bind(R.id.appoint_people_count)
     View phone_number;
     @Bind(R.id.current_living_place)
     View current_living_place;

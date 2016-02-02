@@ -15,6 +15,7 @@ import com.ziyou.tourGuide.widget.recyclerview.DividerItemDecoration;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 /**
+ * @deprecated
  * Created by Edward on 16/1/8.
  */
 public class MyTourView extends TitleBarContentView implements IMyTourView {

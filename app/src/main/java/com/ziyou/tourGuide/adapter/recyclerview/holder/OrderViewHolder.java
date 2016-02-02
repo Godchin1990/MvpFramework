@@ -2,12 +2,14 @@ package com.ziyou.tourGuide.adapter.recyclerview.holder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.OrderDetailActivity;
+import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.model.Order;
 import com.ziyou.tourGuide.network.ServerAPI;
 
@@ -85,9 +87,10 @@ public class OrderViewHolder extends BaseViewHolder<Order> implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        Order tag = (Order) v.getTag();
         Intent intent = new Intent(itemView.getContext(),OrderDetailActivity.class);
-        intent.putExtra("orderId", tag.getId());
+        Bundle bundle = new Bundle();
+        bundle.putString(Const.ORDER_ID,getData().getId()+"");
+        intent.putExtra(Const.BUNDLE,bundle);
         v.getContext(). startActivity(intent);
     }
 }

@@ -279,6 +279,13 @@ public class ServerAPI {
     public static class Order{
         public static final String GET_USER_ORDERS = "get_user_orders";
         public static final String GET_GUIDE_ORDERS = "get_guide_orders";
+        public static final String ORDER_DETAILS = "order_details";
+
+        public static String buildOrderDetailsUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(ORDER_DETAILS);
+            return builder.toString();
+        }
 
         public static String buildGetUserOrdersUrl(){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();

@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.adapter.recyclerview.MyTourAdapter;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.Order;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
-import com.ziyou.tourGuide.view.MyTourView;
+import com.ziyou.tourGuide.view.RefreshRecyclerView;
 import com.ziyou.tourGuide.widget.refreshview.RefreshViewContainer;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ import java.util.List;
  */
 public class MyTourFragment extends BaseFragment implements View.OnClickListener, StringCallBack<String> {
 
-    private MyTourView myTourView;
+    private RefreshRecyclerView<MyTourAdapter> myTourView;
+    private MyTourAdapter myTourAdapter;
 
     @Override
     protected void initData() {
@@ -42,7 +44,9 @@ public class MyTourFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myTourView = new MyTourView(getContext());
+        myTourView = new RefreshRecyclerView<>(getContext());
+        myTourAdapter = new MyTourAdapter();
+        myTourView.setAdapter(myTourAdapter);
         myTourView.getActionBarView().getTitleView().setText(getResources().getString(R.string.my_tour));
         return myTourView.getRootView();
     }
@@ -73,7 +77,7 @@ public class MyTourFragment extends BaseFragment implements View.OnClickListener
                             }
                         }
                         orderList.list.removeAll(temp);
-                        myTourView.getAdapter().setOrders(orderList.list);
+                        myTourAdapter.setOrders(orderList.list);
                         break;
                 }
                 myTourView.getRefreshViewContainer().setCurrentState(RefreshViewContainer.STATE_SUCCESS);

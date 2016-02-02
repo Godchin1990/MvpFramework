@@ -30,4 +30,6 @@ public class Const {
     public static final String NUMBER = "number";
     public static final String PRICE = "price";
 
+    /**order detail fragment*/
+    public static final String ORDER_ID = "order_id";
 }

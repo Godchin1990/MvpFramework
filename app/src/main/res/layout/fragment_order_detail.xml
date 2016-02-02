@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appointment_info"
+                    android:drawableLeft="@mipmap/ic_appoint_message"
+                    style="@style/order_setting_second_title"/>
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/route_sdv"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    fresco:actualImageScaleType="centerCrop"
+                    fresco:placeholderImage="@mipmap/bg_loading_image"
+                    fresco:placeholderImageScaleType="centerCrop" />
+                <include
+                    android:id="@+id/item_route"
+                    layout="@layout/item_next"/>
+                <include layout="@layout/item_grey_line"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contacts_info"
+                    android:drawableLeft="@mipmap/ic_contact_information"
+                    style="@style/order_setting_second_title"/>
+                <include layout="@layout/item_grey_line"/>
+                <include
+                    android:id="@+id/start_date"
+                    layout="@layout/item_right_textview"/>
+                <include layout="@layout/item_grey_line"/>
+                <include
+                    android:id="@+id/appoint_people_count"
+                    layout="@layout/item_right_textview"/>
+                <include layout="@layout/item_grey_line"/>
+                <include
+                    android:id="@+id/pay_cash"
+                    layout="@layout/item_right_textview"/>
+                <include layout="@layout/item_grey_line"/>
+                <include
+                    android:id="@+id/order_pay_number"
+                    layout="@layout/item_right_textview"/>
+                <include layout="@layout/item_grey_line"/>
+                <include
+                    android:id="@+id/appoint_date"
+                    layout="@layout/item_right_textview"/>
+                <include layout="@layout/item_grey_line"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                style="@style/width_match_parent_button"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/bg_red_button_selector"
+                android:text="@string/accept" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

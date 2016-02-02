@@ -15,7 +15,7 @@
                 layout="@layout/item_match_edittext"/>
             <include layout="@layout/item_grey_line"/>
             <include
-                android:id="@+id/phone_number"
+                android:id="@+id/appoint_people_count"
                 layout="@layout/item_match_edittext"/>
             <include layout="@layout/item_grey_line"/>
             <include

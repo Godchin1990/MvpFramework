@@ -129,7 +129,7 @@
     <string name="sales_promotion">优惠活动</string>
     <string name="need_pay">需支付:</string>
     <string name="start_date">出发日期</string>
-    <string name="people_number">人数</string>
+    <string name="appoint_people_count">预定人数</string>
     <string name="appoint_price">预定价格</string>
     <string name="please_select_date">请选择日期</string>
 
@@ -150,6 +150,14 @@
 
     <!-- 日历页面-->
     <string name="appointment_calendar">预约日历</string>
+
+    <!-- 订单详情页面-->
+    <string name="begin_date">开始日期</string>
+    <string name="pay_cash">支付金额</string>
+    <string name="order_pay_number">订单编号</string>
+    <string name="appoint_date">预定日期</string>
+    <string name="accept">接受</string>
+    <string name="order_detail">订单详情</string>
 
 
 </resources>

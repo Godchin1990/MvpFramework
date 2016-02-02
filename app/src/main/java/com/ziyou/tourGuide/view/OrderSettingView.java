@@ -32,8 +32,8 @@ public class OrderSettingView extends TitleBarBottomContentView implements IOrde
     View appoint_price;
     @Bind(R.id.name)
     View name;
-    @Bind(R.id.phone_number)
-    View phone_number;
+    @Bind(R.id.appoint_people_count)
+    View appoint_people_count;
     @Bind(R.id.discount_coupon)
     View discount_coupon;
 
@@ -53,22 +53,22 @@ public class OrderSettingView extends TitleBarBottomContentView implements IOrde
     public View setContentView() {
         View view =View.inflate(getContext(), R.layout.fragment_order_setting,null);
         ButterKnife.bind(this, view);
-        initMeItemList();
+        initItemList();
         return view;
     }
 
-    private void initMeItemList(){
+    private void initItemList(){
         List<View> viewList = new ArrayList<>();
         viewList.add(start_date);
         viewList.add(people_number);
         viewList.add(appoint_price);
         viewList.add(name);
-        viewList.add(phone_number);
+        viewList.add(appoint_people_count);
         viewList.add(discount_coupon);
 
         List<ItemViewMode> viewModeList = new ArrayList<>();
         viewModeList.add(new ItemViewMode(R.string.start_date));
-        viewModeList.add(new ItemViewMode(R.string.people_number));
+        viewModeList.add(new ItemViewMode(R.string.appoint_people_count));
         viewModeList.add(new ItemViewMode(R.string.appoint_price));
         viewModeList.add(new ItemViewMode(R.string.name));
         viewModeList.add(new ItemViewMode(R.string.phone_number));
@@ -85,7 +85,7 @@ public class OrderSettingView extends TitleBarBottomContentView implements IOrde
         appoint_price_tv.setText("0");
         people_number_snv = (SelectNumberView) people_number.findViewById(R.id.select_number_view);
         name_et = (EditText) name.findViewById(R.id.item_edittext);
-        phone_number_et = (EditText) phone_number.findViewById(R.id.item_edittext);
+        phone_number_et = (EditText) appoint_people_count.findViewById(R.id.item_edittext);
     }
 
     @Override
