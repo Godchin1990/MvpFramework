@@ -133,6 +133,12 @@ public class ServerAPI {
         public static final String PARAM_ROUTE = "ctype";
         public static String buildGuideDetailUrl(String routeId){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_GUIDE_DETAIL);
+            builder.appendQueryParameter(ID, routeId);
+            return builder.toString();
+        }
+        public static String buildGuideDetailV3Url(String routeId){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
             builder.appendEncodedPath(VERSION_V3);
             builder.appendEncodedPath(GET_GUIDE_DETAIL);
             builder.appendQueryParameter(ID, routeId);

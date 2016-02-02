@@ -19,24 +19,22 @@ import de.greenrobot.event.EventBus;
 public class MyMessageViewHolder extends BaseViewHolder<MyMessage> implements View.OnLongClickListener {
 
     public final static String TAG_DELETE = "message_delete";
-    public final static String PARAM_POSITION = "position";
     public final static String PARAM_ID = "id";
 
-//    @Bind(R.id.item_title)
-    private static TextView item_title;
-    private static TextView item_date;
-    private static TextView item_content;
+    private TextView item_title;
+    private TextView item_date;
+    private TextView item_content;
 
     public static View getView(Context context) {
         View routeView = LayoutInflater.from(context).inflate(R.layout.item_my_message, null);
-        item_title = (TextView) routeView.findViewById(R.id.item_title);
-        item_date = (TextView) routeView.findViewById(R.id.item_date);
-        item_content = (TextView) routeView.findViewById(R.id.item_content);
         return routeView;
     }
 
     public MyMessageViewHolder(View itemView) {
         super(itemView);
+        item_title = (TextView) itemView.findViewById(R.id.item_title);
+        item_date = (TextView) itemView.findViewById(R.id.item_date);
+        item_content = (TextView) itemView.findViewById(R.id.item_content);
     }
 
     @Override
@@ -53,7 +51,7 @@ public class MyMessageViewHolder extends BaseViewHolder<MyMessage> implements Vi
         MyMessage data = getData();
         ClickEvent clickEvent = new ClickEvent(TAG_DELETE);
         Bundle bundle = new Bundle();
-        bundle.putString(PARAM_ID,data.getId()+"");
+        bundle.putString(PARAM_ID, data.getId() + "");
         Log.d(TAG,bundle.toString());
         clickEvent.setParam(bundle);
         EventBus.getDefault().post(clickEvent);

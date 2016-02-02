@@ -1,7 +1,7 @@
 package com.ziyou.tourGuide.activity;
 
 import com.ziyou.tourGuide.activity.base.BaseFragmentActivity;
-import com.ziyou.tourGuide.fragment.GuideDetailFragment;
+import com.ziyou.tourGuide.fragment.GuiderDetailFragment;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 
 /**
@@ -10,6 +10,6 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 public class GuideDetailActivity extends BaseFragmentActivity {
     @Override
     protected BaseFragment createFragmentForActivity() {
-        return new GuideDetailFragment();
+        return new GuiderDetailFragment();
     }
 }
