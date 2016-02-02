@@ -11,19 +11,22 @@ import com.ziyou.tourGuide.view.base.FragmentView;
  * Created by Edward on 15/10/15.
  */
 public abstract class BaseFragmentActivity extends BaseActivity {
+
+    private BaseFragment baseFragment;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentView fragmentView = new FragmentView(this);
         setContentView(fragmentView.getRootView());
-        BaseFragment fragment = createFragmentForActivity();
+        baseFragment = createFragmentForActivity();
         if(getIntent().getBundleExtra(Const.BUNDLE)!=null){
             Bundle bundleExtra = getIntent().getBundleExtra(Const.BUNDLE);
-            fragment.setArguments(bundleExtra);
+            baseFragment.setArguments(bundleExtra);
         }
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.activity_fragment, fragment, fragment.getTAG())
+                .replace(R.id.activity_fragment, baseFragment, baseFragment.getTAG())
                 .commit();
     }
 
@@ -32,4 +35,8 @@ public abstract class BaseFragmentActivity extends BaseActivity {
      * @return 返回创建的fragment
      */
     protected abstract BaseFragment createFragmentForActivity();
+
+    protected BaseFragment getBaseFragment() {
+        return baseFragment;
+    }
 }

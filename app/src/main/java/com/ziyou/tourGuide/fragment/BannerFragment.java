@@ -12,12 +12,12 @@ import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.helper.ShareHelper;
 import com.ziyou.tourGuide.model.HomeBanner;
 import com.ziyou.tourGuide.view.BannerView;
-import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
+import com.ziyou.tourGuide.view.base.JavaScriptCallback;
 
 /**
  * Created by Edward on 16/1/7.
  */
-public class BannerFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener {
+public class BannerFragment extends BaseFragment implements JavaScriptCallback, View.OnClickListener {
 
     private BannerView webContentView;
     private HomeBanner homeBanner;

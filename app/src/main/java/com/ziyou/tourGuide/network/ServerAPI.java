@@ -325,6 +325,7 @@ public class ServerAPI {
         private static final String H5_URL_PRODUCT_BASE = "http://h5.jieke100.com" ;
 
         public static final String PARAM_ID = "id";
+        public static final String PARAM_PHONE = "phone";
 
         /**路线*/
         private static final String ROUTE_DETAIL_URL = getH5BaseUrl() +"/client/jieke/pages/route.html";
@@ -352,6 +353,13 @@ public class ServerAPI {
         public static String getCalendarH5Url(String routeId) {
             Uri.Builder builder = Uri.parse(CALENDAR_URL).buildUpon();
             builder.appendQueryParameter(PARAM_ID, routeId);
+            return builder.toString() ;
+        }
+        /**日历url*/
+        public static String getCalendarH5Url(String routeId,String phone) {
+            Uri.Builder builder = Uri.parse(CALENDAR_URL).buildUpon();
+            builder.appendQueryParameter(PARAM_ID, routeId);
+            builder.appendQueryParameter(PARAM_PHONE, phone);
             return builder.toString() ;
         }
     }

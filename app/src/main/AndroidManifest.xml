@@ -129,10 +129,13 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.OrderSettingActivity"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ChatActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.CustomerServiceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CalendarWebActivity"
             android:screenOrientation="portrait"/>
     </application>
 

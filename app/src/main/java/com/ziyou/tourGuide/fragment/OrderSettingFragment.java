@@ -1,11 +1,15 @@
 package com.ziyou.tourGuide.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.CalendarWebActivity;
 import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.network.NetworkHelper;
@@ -30,6 +34,23 @@ public class OrderSettingFragment extends BaseFragment implements View.OnClickLi
         requestNetwork();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG,"onresume");
+        Bundle bundle = getActivity().getIntent().getBundleExtra(Const.BUNDLE);
+        String calendar = bundle.getString(Const.CALENDAR);
+        String price = bundle.getString(Const.PRICE);
+        if(!TextUtils.isEmpty(calendar)){
+            orderSettingView.getStartDateTextView().setText(calendar);
+        }
+        if (!TextUtils.isEmpty(price)){
+            orderSettingView.getAppointPriceTextView().setText(price);
+            orderSettingView.getSelectNumberView().setNumber(1);
+            setTotalPrice(1);
+        }
+    }
+
     private void initListener() {
         orderSettingView.getActionBarView().getLeftView().setOnClickListener(this);
         orderSettingView.getSelectNumberView().setCallBack(new SelectNumberView.CallBack() {
@@ -39,6 +60,7 @@ public class OrderSettingFragment extends BaseFragment implements View.OnClickLi
                 setTotalPrice(currentNumber);
             }
         });
+        orderSettingView.getStartDateView().setOnClickListener(this);
     }
 
     private void setTotalPrice(int currentNumber) {
@@ -57,14 +79,26 @@ public class OrderSettingFragment extends BaseFragment implements View.OnClickLi
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         orderSettingView = new OrderSettingView(getContext());
         orderSettingView.getActionBarView().getTitleView().setText(getResources().getString(R.string.appoint));
+        String calendar = getArguments().getString(Const.CALENDAR);
+        if(!TextUtils.isEmpty(calendar)){
+            orderSettingView.getStartDateTextView().setText(calendar);
+        }
         return orderSettingView.getRootView();
     }
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.action_bar_left:
                 getActivity().finish();
+                break;
+            case R.id.start_date:
+                intent = new Intent(getContext(), CalendarWebActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(Const.ROUTE_ID, getArguments().getString(Const.ROUTE_ID) + "");
+                intent.putExtra(Const.BUNDLE, bundle);
+                getContext().startActivity(intent);
                 break;
         }
     }

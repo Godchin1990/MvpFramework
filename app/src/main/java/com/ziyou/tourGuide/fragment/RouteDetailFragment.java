@@ -12,18 +12,21 @@ import android.widget.Toast;
 
 import com.easemob.easeui.EaseConstant;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.CalendarWebActivity;
 import com.ziyou.tourGuide.activity.ChatActivity;
 import com.ziyou.tourGuide.activity.GuideDetailActivity;
+import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.OrderSettingActivity;
 import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.helper.LocationHelper;
+import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.RouteDetailWebView;
-import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
+import com.ziyou.tourGuide.view.base.JavaScriptCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +37,7 @@ import de.greenrobot.event.Subscribe;
 /**
  * Created by Edward on 16/1/10.
  */
-public class RouteDetailFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
+public class RouteDetailFragment extends BaseFragment implements JavaScriptCallback, View.OnClickListener, StringCallBack<String> {
 
     private RouteDetailWebView webContentView;
 
@@ -92,6 +95,15 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                     String phone = jsonObject.getJSONObject("params").getString("phone");
                     webContentView.showCallPhoneDialog(phone);
                     break;
+                case 6:
+                    String routeId = jsonObject.getJSONObject("params").getString("id");
+                    intent = new Intent(getContext(),CalendarWebActivity.class);
+                    Bundle bundleForRoute = new Bundle();
+                    bundleForRoute.putString(Const.ROUTE_ID, routeId);
+                    intent.putExtra(Const.BUNDLE, bundleForRoute);
+                    getContext().startActivity(intent);
+//                    getContext().startActivity(intent);
+                    break;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -107,12 +119,17 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
                 getActivity().finish();
                 break;
             case R.id.appoint:
-                Log.d(TAG,"click appoint");
-                intent = new Intent(getContext(), OrderSettingActivity.class);
-                Bundle bundleForRoute = new Bundle();
-                bundleForRoute.putString(Const.ROUTE_ID, getArguments().getString(Const.ROUTE_ID) + "");
-                intent.putExtra(Const.BUNDLE, bundleForRoute);
-                getContext().startActivity(intent);
+                Log.d(TAG, "click appoint");
+                if(UserHelper.getInstance().isLogin()){
+                    intent = new Intent(getContext(), OrderSettingActivity.class);
+                    Bundle bundleForRoute = new Bundle();
+                    bundleForRoute.putString(Const.ROUTE_ID, getArguments().getString(Const.ROUTE_ID) + "");
+                    intent.putExtra(Const.BUNDLE, bundleForRoute);
+                    getContext().startActivity(intent);
+                }else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    getContext().startActivity(intent);
+                }
                 break;
         }
     }
@@ -123,7 +140,6 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
             @Override
             public void run() {
                 Log.d(TAG, data);
-//                Gson gson = new Gson();
                 try {
                     JSONObject jsonObject = new JSONObject(data);
                     String title = jsonObject.getString("title");
@@ -169,11 +185,12 @@ public class RouteDetailFragment extends BaseFragment implements GuideJavaScript
 
     @Subscribe
     public void onEvent(ClickEvent clickEvent){
+        Intent intent = null;
         switch (clickEvent.getTag()){
             case RouteDetailWebView.TAG_CALL_PHONE:
                 //点击拨打电话
                 String number = (String) clickEvent.getParam();
-                Intent intent = new Intent();
+                intent = new Intent();
                 intent.setAction("android.intent.action.CALL");
                 intent.setData(Uri.parse("tel:" + number));
                 startActivity(intent);

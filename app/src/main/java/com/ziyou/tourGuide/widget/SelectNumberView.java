@@ -32,6 +32,12 @@ public class SelectNumberView extends FrameLayout implements View.OnClickListene
         this.callBack = callBack;
     }
 
+    public void setNumber(int number) {
+        this.number = number;
+        initData();
+        callBack.onItemClick(getCurrentNumber());
+    }
+
     public interface CallBack{
         void onItemClick(int currentNumber);
     }
@@ -54,8 +60,11 @@ public class SelectNumberView extends FrameLayout implements View.OnClickListene
         decrease_btn = (Button) view.findViewById(R.id.decrease_btn);
         number_tv = (TextView) view.findViewById(R.id.number_tv);
         increate_btn = (Button) view.findViewById(R.id.increate_btn);
+        initData();
+    }
 
-        number_tv.setText(number+"");
+    private void initData() {
+        number_tv.setText(String.valueOf(number));
         decrease_btn.setOnClickListener(this);
         increate_btn.setOnClickListener(this);
     }

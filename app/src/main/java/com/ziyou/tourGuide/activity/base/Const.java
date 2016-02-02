@@ -5,6 +5,10 @@ package com.ziyou.tourGuide.activity.base;
  */
 public class Const {
 
+    public static final int SUCCESS = 200;
+    public static final String FROM = "from";
+    public static final String TO = "to";
+
     public static final String BUNDLE = "bundle";
     /**home banner*/
     public static final String BANNER = "banner";
@@ -20,4 +24,10 @@ public class Const {
 
     /**discovery detail fragment*/
     public static final String DISCOVERY_ID = "discovery_id";
+
+    /**calendar fragment*/
+    public static final String CALENDAR = "calendar";
+    public static final String NUMBER = "number";
+    public static final String PRICE = "price";
+
 }

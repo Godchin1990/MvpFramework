@@ -14,6 +14,7 @@ public interface IOrderSettingView {
     TextView getCommitAppointTextView();
     TextView getTitleTextView();
     TextView getStartDateTextView();
+    View getStartDateView();
     View getAppointPriceTextView();
     SelectNumberView getSelectNumberView();
     EditText getNameEditText();

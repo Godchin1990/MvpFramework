@@ -15,7 +15,7 @@ public class WebContentBottomView extends TitleBarBottomContentView implements I
 
     private WebView webView;
 
-    private GuideJavaScriptCallback callback;
+    private JavaScriptCallback callback;
 
     public WebContentBottomView(Context context) {
         super(context);
@@ -37,7 +37,7 @@ public class WebContentBottomView extends TitleBarBottomContentView implements I
      * 设置H5监听回调,如果不设置,就不会回调Js代码,因为被turn_app方法屏蔽了
      * @param callback
      */
-    public void setCallback(GuideJavaScriptCallback callback) {
+    public void setCallback(JavaScriptCallback callback) {
         webView.addJavascriptInterface(new GuideJavaScriptInterFace(callback),"guide");
     }
 }

@@ -117,6 +117,11 @@ public class OrderSettingView extends TitleBarBottomContentView implements IOrde
     }
 
     @Override
+    public View getStartDateView() {
+        return start_date;
+    }
+
+    @Override
     public TextView getAppointPriceTextView() {
         return appoint_price_tv;
     }

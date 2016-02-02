@@ -17,7 +17,7 @@ import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
 import com.ziyou.tourGuide.view.GuiderDetailWebView;
-import com.ziyou.tourGuide.view.base.GuideJavaScriptCallback;
+import com.ziyou.tourGuide.view.base.JavaScriptCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
  * 使用的不是V3接口中的数据,因为V3的导游详情没有环信账号信息
  * Created by Edward on 16/1/10.
  */
-public class GuiderDetailFragment extends BaseFragment implements GuideJavaScriptCallback, View.OnClickListener, StringCallBack<String> {
+public class GuiderDetailFragment extends BaseFragment implements JavaScriptCallback, View.OnClickListener, StringCallBack<String> {
 
     private GuiderDetailWebView webContentView;
     private String im_username;

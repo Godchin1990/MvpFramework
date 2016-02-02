@@ -148,5 +148,8 @@
     <string name="delete_message">删除消息</string>
     <string name="is_sure_delete_message">是否删除消息</string>
 
+    <!-- 日历页面-->
+    <string name="appointment_calendar">预约日历</string>
+
 
 </resources>

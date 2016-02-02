@@ -13,9 +13,9 @@ public class GuideJavaScriptInterFace {
         TAG = getClass().getSimpleName();
     }
 
-    private GuideJavaScriptCallback callback;
+    private JavaScriptCallback callback;
 
-    public GuideJavaScriptInterFace(GuideJavaScriptCallback callback) {
+    public GuideJavaScriptInterFace(JavaScriptCallback callback) {
         this.callback = callback;
     }
 
