@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.easemob.easeui.EaseConstant;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.ChatActivity;
+import com.ziyou.tourGuide.activity.RouteDetailActivity;
 import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.network.NetworkHelper;
@@ -55,11 +57,35 @@ public class GuiderDetailFragment extends BaseFragment implements JavaScriptCall
         webContentView.getActionBarView().getLeftView().setOnClickListener(this);
         webContentView.getBottomLayout().setOnClickListener(this);
         webContentView.getBottomLayout().setOnClickListener(this);
+        webContentView.setCallback(this);
     }
 
     @Override
     public void parseJsonToSkip(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            int type = jsonObject.getInt("type");
+            Intent intent;
+            switch (type) {
+                case 7:
+                    //跳转到路线详情
+                    String routeId = jsonObject.getJSONObject("params").getString("id");
+                    intent = new Intent(getContext(), RouteDetailActivity.class);
+                    Bundle bundleForRoute = new Bundle();
+                    bundleForRoute.putString(Const.ROUTE_ID, routeId);
+                    intent.putExtra(Const.BUNDLE, bundleForRoute);
+                    getContext().startActivity(intent);
+                    break;
+                case 8:
+                    // 跳转到游客评论
+                    String commitId = jsonObject.getJSONObject("params").getString("id");
+                    // 跳转到评论页面
 
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), getResources().getString(R.string.parse_json_error), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -94,6 +94,7 @@
         <activity android:name=".activity.RouteDetailActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.GuideDetailActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.DiscoveryDetailActivity"
             android:screenOrientation="portrait"/>
