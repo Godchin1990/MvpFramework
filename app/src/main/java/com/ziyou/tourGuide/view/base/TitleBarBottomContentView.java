@@ -3,6 +3,7 @@ package com.ziyou.tourGuide.view.base;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.widget.MyActionBar;
@@ -68,6 +69,6 @@ public abstract class TitleBarBottomContentView extends BaseView implements ITit
         return layout_bottom;
     }
     public View setBottomLayout(){
-        return new View(getContext());
+        return new TextView(getContext());
     }
 }

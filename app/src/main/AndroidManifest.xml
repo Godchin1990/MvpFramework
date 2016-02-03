@@ -137,6 +137,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.CalendarWebActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MyMessageDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VoucherActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

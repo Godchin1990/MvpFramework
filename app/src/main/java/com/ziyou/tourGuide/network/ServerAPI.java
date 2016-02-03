@@ -198,12 +198,24 @@ public class ServerAPI {
         public static final String CHANGE_PASSWORD = "change_password";
         public static final String MODIFY_USER = "modify_user";
         public static final String DELETE_MESSAGE = "delete_message";
+        public static final String READ_MESSAGE = "read_message";
 
         public static final String PARAM_PHONE = "phone";
         public static final String PARAM_IDENTIFY_CODE = "activation_code";
         public static final String PARAM_CLIENT_ID = "client_id";
         public static final String PARAM_CLIENT_INFO = "client_info";
         public static final String PARAM_VERIFY_CODE_TYPE = "type";
+
+        /**
+         * 向服务器发送,我的消息页面,这条消息已经阅读
+         * @return
+         */
+        public static String buildReadMessageUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(USER);
+            builder.appendEncodedPath(READ_MESSAGE);
+            return builder.toString();
+        }
 
         public static String buildLoginUrl(){
             Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
@@ -260,6 +272,19 @@ public class ServerAPI {
         }
 
     }
+
+    /**
+     * 我的优惠券
+     */
+    public static class Voucher{
+        public static final String GET_COUPON_LIST = "get_coupon_list";
+        public static String buildGetCouponListUrl(){
+            Uri.Builder builder = Uri.parse(getServerBase()).buildUpon();
+            builder.appendEncodedPath(GET_COUPON_LIST);
+            return builder.toString();
+        }
+    }
+
 
     /**
      * 我的钱包

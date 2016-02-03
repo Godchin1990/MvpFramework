@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.ziyou.tourGuide.R;
+import com.ziyou.tourGuide.activity.VoucherActivity;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.model.Wallet;
 import com.ziyou.tourGuide.network.NetworkHelper;
@@ -61,7 +62,8 @@ public class MyWalletFragment extends BaseFragment implements View.OnClickListen
                 //TODO 体现说明
                 break;
             case R.id.discount_coupon:
-                //TODO 优惠券
+                intent = new Intent(getContext(), VoucherActivity.class);
+                startActivity(intent);
                 break;
         }
     }

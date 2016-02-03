@@ -22,7 +22,6 @@ public class RefreshRecyclerView<T extends RecyclerView.Adapter> extends TitleBa
     private RefreshViewContainer refreshViewContainer;
     private PullToRefreshRecyclerView pullToRefreshRecyclerView;
     private RecyclerView recyclerView;
-    private RecyclerView animationListener;
 
     public RefreshRecyclerView(Context context) {
         super(context);

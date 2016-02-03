@@ -32,4 +32,9 @@ public class Const {
 
     /**order detail fragment*/
     public static final String ORDER_ID = "order_id";
+
+    /**order detail fragment*/
+    public static final String MESSAGE_ID = "message_id";
+    public static final String MESSAGE_CONTENT = "message_content";
+    public static final String MESSAGE_DATE = "message_date";
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@mipmap/bg_voucher">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/price"
+                android:text="@string/price"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/order_detail_orange"
+                android:textSize="35sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yuan"
+                android:textColor="@color/order_detail_orange"
+                android:layout_alignBaseline="@id/price"
+                android:text="@string/yuan"
+                android:layout_toRightOf="@id/price" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/order_detail_orange"
+                android:layout_alignBaseline="@id/price"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/new_user_voucher"
+                android:layout_toRightOf="@id/yuan" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/validity_period"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="@string/validity_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/date"
+                android:layout_toRightOf="@id/validity_period"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="@string/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/status"
+                android:textSize="14sp"
+                android:text="@string/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
