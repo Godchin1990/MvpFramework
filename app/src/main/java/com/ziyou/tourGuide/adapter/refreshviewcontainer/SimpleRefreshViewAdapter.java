@@ -30,9 +30,8 @@ public abstract class SimpleRefreshViewAdapter extends RefreshViewAdapter {
 
     @Override
     public View setLoadingView() {
-        TextView textView = new TextView(getContext());
-        textView.setText("正在加载");
-        return textView;
+        View view = View.inflate(getContext(), R.layout.fragment_loading,null);
+        return view;
     }
 
 
