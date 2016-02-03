@@ -76,10 +76,15 @@ public class RouteDetailFragment extends BaseFragment implements JavaScriptCallb
             switch (type){
                 case 1:
                     //跳转到聊天页面
-                    String userId = jsonObject.getJSONObject("params").getString("userId");
-                    intent = new Intent(getContext(), ChatActivity.class);
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
-                    getContext().startActivity(intent);
+                    if(UserHelper.getInstance().isLogin()){
+                        String userId = jsonObject.getJSONObject("params").getString("userId");
+                        intent = new Intent(getContext(), ChatActivity.class);
+                        intent.putExtra(EaseConstant.EXTRA_USER_ID,userId);
+                        getContext().startActivity(intent);
+                    }else {
+                        intent = new Intent(getContext(),LoginActivity.class);
+                        getContext().startActivity(intent);
+                    }
                     break;
                 case 2:
                     //跳转导游
@@ -96,6 +101,7 @@ public class RouteDetailFragment extends BaseFragment implements JavaScriptCallb
                     webContentView.showCallPhoneDialog(phone);
                     break;
                 case 6:
+                    //跳转到日历页面
                     String routeId = jsonObject.getJSONObject("params").getString("id");
                     intent = new Intent(getContext(),CalendarWebActivity.class);
                     Bundle bundleForRoute = new Bundle();

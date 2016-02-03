@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.easemob.easeui.EaseConstant;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.activity.ChatActivity;
+import com.ziyou.tourGuide.activity.LoginActivity;
 import com.ziyou.tourGuide.activity.RouteDetailActivity;
 import com.ziyou.tourGuide.activity.base.Const;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
+import com.ziyou.tourGuide.helper.UserHelper;
 import com.ziyou.tourGuide.network.NetworkHelper;
 import com.ziyou.tourGuide.network.ServerAPI;
 import com.ziyou.tourGuide.network.StringCallBack;
@@ -91,24 +93,30 @@ public class GuiderDetailFragment extends BaseFragment implements JavaScriptCall
     @Override
     public void onClick(View v) {
         Intent intent = null;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.action_bar_left:
                 getActivity().finish();
                 break;
             case R.id.layout_bottom:
-                Log.d(TAG,"click layout_bottom");
-                if(!TextUtils.isEmpty(im_username)){
-                    intent = new Intent(getContext(), ChatActivity.class);
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID,im_username);
-                    startActivity(intent);
+                Log.d(TAG, "click layout_bottom");
+                if (UserHelper.getInstance().isLogin()) {
+                    if (!TextUtils.isEmpty(im_username)) {
+                        intent = new Intent(getContext(), ChatActivity.class);
+                        intent.putExtra(EaseConstant.EXTRA_USER_ID, im_username);
+                        getContext().startActivity(intent);
+                    }
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                    getContext().startActivity(intent);
                 }
+
                 break;
         }
     }
 
     @Override
     public void onSuccess(final String data, String tag) {
-        Log.d(TAG,data);
+        Log.d(TAG, data);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -131,7 +139,7 @@ public class GuiderDetailFragment extends BaseFragment implements JavaScriptCall
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG,message);
+                Log.d(TAG, message);
             }
         });
     }
