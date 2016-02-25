@@ -133,8 +133,17 @@ public class MeFragment extends LazyFragment implements StringCallBack<String>, 
             case R.id.guider_area:
                 Log.d(TAG, "click guider_area");
                 if (UserHelper.getInstance().isLogin()) {
-                    intent = new Intent(getContext(), GuiderAreaActivity.class);
-                    startActivity(intent);
+                    UserInformation userInformation = UserHelper.getInstance().getUserInformation();
+                    if(userInformation.getType()==0){
+                        // 进入达人社区页面
+                        intent = new Intent(getContext(), GuiderAreaActivity.class);
+                        startActivity(intent);
+                    }else {
+                        // 申请达人页面
+                        intent = new Intent(getContext(), GuiderAreaActivity.class);
+                        startActivity(intent);
+                    }
+
                 } else {
                     intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);

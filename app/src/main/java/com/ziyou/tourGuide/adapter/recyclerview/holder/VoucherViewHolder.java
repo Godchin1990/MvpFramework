@@ -42,7 +42,11 @@ public class VoucherViewHolder extends BaseViewHolder<Voucher> {
         setStartAndEndTime(date,data.getCreate_time(),data.getValid_until());
         setVoucherState(status,data.getType());
 
-
+        if (data.getType()==0) {
+            itemView.setAlpha(1f);
+        } else {
+            itemView.setAlpha(0.5f);
+        }
     }
 
     /**
@@ -62,11 +66,5 @@ public class VoucherViewHolder extends BaseViewHolder<Voucher> {
     public void setVoucherState(TextView view,int level) {
         if (level < 0 || level > userVoucherIcons.length-1) return;
         view.setText(userVoucherIcons[level]);
-
-        if (level == 0) {
-            status.setAlpha(1f);
-        }else{
-            status.setAlpha(0.5f);
-        }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MvpFramework</string>
+    <string name="app_name">街客旅行</string>
     <string name="load_more">加载更多</string>
     <string name="load_empty">加载为空</string>
     <string name="parse_json_error">解析json出错</string>
@@ -166,6 +166,9 @@
     <string name="price">0</string>
     <string name="new_user_voucher">新用户代金券</string>
     <string name="validity_period">有效期:</string>
+    <string name="oauth_login">第三方登录</string>
+    <string name="register_new_user">注册新用户</string>
+    <string name="forget_password">忘记密码</string>
 
 
 </resources>

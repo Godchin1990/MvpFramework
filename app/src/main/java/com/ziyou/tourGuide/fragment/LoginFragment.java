@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.event.ClickEvent;
 import com.ziyou.tourGuide.fragment.base.BaseFragment;
 import com.ziyou.tourGuide.helper.HXHelper;
 import com.ziyou.tourGuide.helper.LocationHelper;
+import com.ziyou.tourGuide.helper.ShareHelper;
 import com.ziyou.tourGuide.helper.TokenHelper;
 import com.ziyou.tourGuide.helper.UUIDHelpter;
 import com.ziyou.tourGuide.helper.UserHelper;
@@ -41,13 +44,14 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
     @Override
     protected void initData() {
         loginView.getLoginButton().setOnClickListener(this);
+        loginView.getActionBarView().getLeftView().setOnClickListener(this);
+        loginView.getQQImageView().setOnClickListener(this);
     }
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         loginView = new LoginView(getContext());
         loginView.getActionBarView().getTitleView().setText(getResources().getString(R.string.quick_login));
-        loginView.getActionBarView().getLeftView().setOnClickListener(this);
         return loginView.getRootView();
     }
 
@@ -59,15 +63,39 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
                 break;
             case R.id.login:
                 Log.d(TAG,"click login");
-                executeLogin();
+                String username = loginView.getUserNameEdittext().getText().toString();
+                String password = loginView.getPasswordEdittext().getText().toString();
+                executeLogin(username,password);
+                break;
+            case R.id.qq:
+                ShareHelper.getInstance().oauthLogin(getActivity(),SHARE_MEDIA.QQ, new UMAuthListener() {
+                    @Override
+                    public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+                        Log.d(TAG,"complete "+ data.toString());
+                    }
+
+                    @Override
+                    public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+                        Log.d(TAG, "fail");
+                    }
+
+                    @Override
+                    public void onCancel(SHARE_MEDIA platform, int action) {
+                        Log.d(TAG, "cancel");
+                    }
+                });
                 break;
         }
     }
 
-    private void executeLogin() {
+    /**
+     * 执行登录逻辑
+     * @param username
+     * @param password
+     */
+    private void executeLogin(String username, String password) {
         //判断用户名和密码是否存在
-        String username = loginView.getUserNameEdittext().getText().toString();
-        String password = loginView.getPasswordEdittext().getText().toString();
+
         if (TextUtils.isEmpty(username)){
             Toast.makeText(getContext(),getResources().getString(R.string.phone_number_empty),Toast.LENGTH_SHORT).show();
             return;

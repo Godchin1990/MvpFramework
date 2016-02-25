@@ -7,6 +7,8 @@ import android.text.TextUtils;
 
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -17,6 +19,11 @@ import com.ziyou.tourGuide.R;
  * Created by Edward on 16/1/13.
  */
 public class ShareHelper {
+    private final String TAG;
+    {
+        TAG = getClass().getSimpleName();
+    }
+
 
     public static final String PARAM_IMAGE_URL = "image_url";
     public static final String PARAM_SHARE_URL = "share_url";
@@ -67,6 +74,13 @@ public class ShareHelper {
 //        shareImageAndUrl(activity, bundle, shareBoardlistener);
 //    }
 
+    /**
+     * 分享图片和URL
+     * @param activity
+     * @param bundle
+     * @param shareBoardlistener
+     * @param umShareListener
+     */
     public void shareImageAndUrl(Activity activity, Bundle bundle, ShareBoardlistener shareBoardlistener, UMShareListener... umShareListener){
         String imageUrl = bundle.getString(PARAM_IMAGE_URL);
         String shareUrl = bundle.getString(PARAM_SHARE_URL);
@@ -87,5 +101,10 @@ public class ShareHelper {
                 .setListenerList(umShareListener)
                 .setShareboardclickCallback(shareBoardlistener)
                 .open();
+    }
+
+    public void oauthLogin(Activity activity,SHARE_MEDIA platform,UMAuthListener umAuthListener){
+        UMShareAPI umShareAPI = UMShareAPI.get(activity);
+        umShareAPI.doOauthVerify(activity, platform, umAuthListener);
     }
 }

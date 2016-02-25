@@ -5,6 +5,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.ziyou.tourGuide.R;
 import com.ziyou.tourGuide.view.base.TitleBarContentView;
@@ -24,6 +25,8 @@ public class LoginView extends TitleBarContentView implements ILoginView {
     View password;
     @Bind(R.id.login)
     Button login;
+    @Bind(R.id.qq)
+    ImageView qq;
 
     public LoginView(Context context) {
         super(context);
@@ -58,5 +61,10 @@ public class LoginView extends TitleBarContentView implements ILoginView {
     @Override
     public Button getLoginButton() {
         return login;
+    }
+
+    @Override
+    public ImageView getQQImageView() {
+        return qq;
     }
 }
